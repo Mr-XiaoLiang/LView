@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="black">#000000</color>
+    <color name="no_color">#0000</color>
+    <color name="translucence">#30000000</color>
+    <color name="ashen">#f4f4f4</color>
+    <color name="green">#70d29c</color>
+    <color name="gary">#f0f0f0</color>
+    <color name="gary2">#666666</color>
+</resources>
