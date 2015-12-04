@@ -11,71 +11,71 @@ import android.view.View;
 
 public class LLoadView extends View {
 	/**
-	 * »¡¶ÈµÄ»­±Ê
+	 * å¼§åº¦çš„ç”»ç¬”
 	 */
 	private Paint arcPaint1;
 	/**
-	 * »¡¶ÈµÄ»­±Ê
+	 * å¼§åº¦çš„ç”»ç¬”
 	 */
 	private Paint arcPaint2;
 	/**
-	 * »¡¶ÈµÄ»­±Ê
+	 * å¼§åº¦çš„ç”»ç¬”
 	 */
 	private Paint arcPaint3;
 	/**
-	 * Ô²Í·µÄ»­±Ê
+	 * åœ†å¤´çš„ç”»ç¬”
 	 */
 	private Paint circlePaint1;
 	/**
-	 * Ô²Í·µÄ»­±Ê
+	 * åœ†å¤´çš„ç”»ç¬”
 	 */
 	private Paint circlePaint2;
 	/**
-	 * Ô²Í·µÄ»­±Ê
+	 * åœ†å¤´çš„ç”»ç¬”
 	 */
 	private Paint circlePaint3;
 	/**
-	 * ±³¾°µÄ»­±Ê
+	 * èƒŒæ™¯çš„ç”»ç¬”
 	 */
 	private Paint bgPaint1;
 	/**
-	 * ±³¾°µÄ»­±Ê
+	 * èƒŒæ™¯çš„ç”»ç¬”
 	 */
 	private Paint bgPaint2;
 	/**
-	 * ±³¾°µÄ»­±Ê
+	 * èƒŒæ™¯çš„ç”»ç¬”
 	 */
 	private Paint bgPaint3;
 	/**
-	 * Ğı×ªÓÃµÄÏÂ±ê
+	 * æ—‹è½¬ç”¨çš„ä¸‹æ ‡
 	 */
 	private int index = 0;
 	/**
-	 * 1ºÅÑÕÉ«
+	 * 1å·é¢œè‰²
 	 */
 	private int color1;
 	/**
-	 * 2ºÅÑÕÉ«
+	 * 2å·é¢œè‰²
 	 */
 	private int color2;
 	/**
-	 * 3ºÅÑÕÉ«
+	 * 3å·é¢œè‰²
 	 */
 	private int color3;
 	/**
-	 * ¿í
+	 * å®½
 	 */
 	private float width;
 	/**
-	 * ¸ß
+	 * é«˜
 	 */
 	private float height;
 	/**
-	 * °ë¾¶
+	 * åŠå¾„
 	 */
 	private float radius;
 	/**
-	 * Í£Ö¹
+	 * åœæ­¢
 	 */
 	private boolean stop = false;
 
@@ -105,7 +105,7 @@ public class LLoadView extends View {
 			radius = width / 7;
 		}
 		/**
-		 * »­±Ê¿í¶È
+		 * ç”»ç¬”å®½åº¦
 		 */
 		arcPaint1.setStrokeWidth(radius);
 		arcPaint2.setStrokeWidth(radius);
@@ -114,13 +114,13 @@ public class LLoadView extends View {
 		bgPaint2.setStrokeWidth(radius);
 		bgPaint3.setStrokeWidth(radius);
 		/**
-		 * »­±³¾°
+		 * ç”»èƒŒæ™¯
 		 */
 //		 canvas.drawCircle(width/2, height/2, radius*3f, bgPaint1);
 //		 canvas.drawCircle(width/2, height/2, radius*2f, bgPaint2);
 //		 canvas.drawCircle(width/2, height/2, radius*1f, bgPaint3);
 		/**
-		 * Ô²»¡Î»ÖÃ
+		 * åœ†å¼§ä½ç½®
 		 */
 		RectF rectF1 = getRectF1();
 		RectF rectF2 = getRectF2();
@@ -198,15 +198,15 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * Ô²»¡Î»ÖÃ
-	 * 
+	 * åœ†å¼§ä½ç½®
+	 *
 	 * @return
 	 */
 	private RectF getRectF1() {
 		if (width > height) {
 			return new RectF((width - height) / 2 + (radius * 0.5f),
 					(radius * 0.5f), width - (width - height) / 2
-							- (radius * 0.5f), height - (radius * 0.5f));
+					- (radius * 0.5f), height - (radius * 0.5f));
 		} else {
 			return new RectF((radius * 0.5f), (height - width) / 2
 					+ (radius * 0.5f), width - (radius * 0.5f), height
@@ -215,15 +215,15 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * Ô²»¡Î»ÖÃ
-	 * 
+	 * åœ†å¼§ä½ç½®
+	 *
 	 * @return
 	 */
 	private RectF getRectF2() {
 		if (width > height) {
 			return new RectF((width - height) / 2 + (radius * 1.5f),
 					(radius * 1.5f), width - (width - height) / 2
-							- (radius * 1.5f), height - (radius * 1.5f));
+					- (radius * 1.5f), height - (radius * 1.5f));
 		} else {
 			return new RectF(radius * 1.5f, (height - width) / 2
 					+ (radius * 1.5f), width - (radius * 1.5f), height
@@ -232,15 +232,15 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * Ô²»¡Î»ÖÃ
-	 * 
+	 * åœ†å¼§ä½ç½®
+	 *
 	 * @return
 	 */
 	private RectF getRectF3() {
 		if (width > height) {
 			return new RectF((width - height) / 2 - (radius * 2.5f),
 					(radius * 2.5f), width - (width - height) / 2
-							- (radius * 2.5f), height - (radius * 2.5f));
+					- (radius * 2.5f), height - (radius * 2.5f));
 		} else {
 			return new RectF((radius * 2.5f), (height - width) / 2
 					+ (radius * 2.5f), width - (radius * 2.5f), height
@@ -249,8 +249,8 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½Ç¶È
-	 * 
+	 * è·å–è§’åº¦
+	 *
 	 * @param x
 	 * @return
 	 */
@@ -262,8 +262,8 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½Ç¶È
-	 * 
+	 * è·å–è§’åº¦
+	 *
 	 * @param x
 	 * @return
 	 */
@@ -275,8 +275,8 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½Ç¶È
-	 * 
+	 * è·å–è§’åº¦
+	 *
 	 * @param x
 	 * @return
 	 */
@@ -288,7 +288,7 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * µã×ø±ê»ñÈ¡
+	 * ç‚¹åæ ‡è·å–
 	 * @return
 	 */
 	private float[] getLocation1() {
@@ -319,8 +319,8 @@ public class LLoadView extends View {
 	}
 
 	/**
-	 * ÊÇ·ñÍ£Ö¹
-	 * 
+	 * æ˜¯å¦åœæ­¢
+	 *
 	 * @param stop
 	 */
 	public void stop(boolean stop) {

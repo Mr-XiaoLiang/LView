@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mytest"
+    package="com.l.j"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -27,6 +27,8 @@
             android:name="com.l.j.ClockTest"/>
          <activity
             android:name="com.l.j.ViewTest"/>
+         <activity
+            android:name="com.l.j.PageTest"/>
     </application>
 
 </manifest>

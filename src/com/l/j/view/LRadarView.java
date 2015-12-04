@@ -14,124 +14,125 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 /**
- * À×´ïÍ¼
+ * é›·è¾¾å›¾
  * @author LiuJ
  * @time 2015 10 14
+ * @
  */
 public class LRadarView extends View {
 	/**
-	 * ±³¾°»­±Ê
+	 * èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint bgPaint;
 	/**
-	 * Ç°¾°»­±Ê
+	 * å‰æ™¯ç”»ç¬”
 	 */
 	private Paint graphPaint;
 	/**
-	 * ÎÄ×Ö»­±Ê
+	 * æ–‡å­—ç”»ç¬”
 	 */
 	private Paint textPaint;
 	/**
-	 * ÎÄ×Ö»­±Ê
+	 * æ–‡å­—ç”»ç¬”
 	 */
 	private Paint smallTextPaint;
 	/**
-	 * ±³¾°É«
-	 * ´ÓÍâµ½ÀïÃæ
+	 * èƒŒæ™¯è‰²
+	 * ä»å¤–åˆ°é‡Œé¢
 	 */
 	private int[] bgColors = { Color.parseColor("#609bd2"), Color.parseColor("#77abdb"),
 			Color.parseColor("#8bbae5"), Color.parseColor("#b9d7f3"), Color.parseColor("#d6e8fa") };
 	/**
-	 * ±³¾°µÄÍ¸Ã÷¶È
-	 * ´ÓÍâÃæµ½ÀïÃæ
+	 * èƒŒæ™¯çš„é€æ˜åº¦
+	 * ä»å¤–é¢åˆ°é‡Œé¢
 	 */
 	private int[] bgAlphas = {102,128,179,204,230};
 	/**
-	 * Ç°¾°ÑÕÉ«
+	 * å‰æ™¯é¢œè‰²
 	 */
 	private int graphColor = Color.parseColor("#6c6fea");
 	/**
-	 * Êı¾İ¼¯
-	 * Ò»¸ömap¾ÍÒ»¸ö¶¥µã
-	 * map°üº¬ÁËµãµÄ»ù±¾ĞÅÏ¢
-	 * Ãû×Ö
-	 * ÏÔÊ¾µÄÖµ
-	 * °Ù·Ö±È
+	 * æ•°æ®é›†
+	 * ä¸€ä¸ªmapå°±ä¸€ä¸ªé¡¶ç‚¹
+	 * mapåŒ…å«äº†ç‚¹çš„åŸºæœ¬ä¿¡æ¯
+	 * åå­—
+	 * æ˜¾ç¤ºçš„å€¼
+	 * ç™¾åˆ†æ¯”
 	 */
 	private ArrayList<HashMap<String, Object>> dataArray;
 	/**
-	 * Ãû×Ö
-	 * ´«ÈëÊı¾İµÄÊı¾İÃû
+	 * åå­—
+	 * ä¼ å…¥æ•°æ®çš„æ•°æ®å
 	 */
 	public static final String VALUE_NAME = "VALUE_NAME";
 	/**
-	 * °Ù·Ö±È
-	 * ´«ÈëÊı¾İµÄÊı¾İÃû
+	 * ç™¾åˆ†æ¯”
+	 * ä¼ å…¥æ•°æ®çš„æ•°æ®å
 	 */
 	public static final String VALUE_PERCENT = "VALUE_PERCENT";
 	/**
-	 * ÏÔÊ¾Öµ
-	 * ´«ÈëÊı¾İµÄÊı¾İÃû
+	 * æ˜¾ç¤ºå€¼
+	 * ä¼ å…¥æ•°æ®çš„æ•°æ®å
 	 */
 	public static final String VALUE_VALUE = "VALUE_VALUE";
 	/**
-	 * ¶¥µãÊıÁ¿
+	 * é¡¶ç‚¹æ•°é‡
 	 */
 	private int pointNum = 0;
 	/**
-	 * µ¥Ôª½Ç¶È
+	 * å•å…ƒè§’åº¦
 	 */
 	private float angle = 0f;
 	/**
-	 * °ë¾¶
+	 * åŠå¾„
 	 */
 	private float radius = 0;
 	/**
-	 * ¿í¶È
+	 * å®½åº¦
 	 */
 	private float width = 0;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private float height = 0;
 	/**
-	 * ´ó×Ö³ß´ç
+	 * å¤§å­—å°ºå¯¸
 	 */
 	private float bigTaxtSize = 0;
 	/**
-	 * Ğ¡×Ö³ß´ç
+	 * å°å­—å°ºå¯¸
 	 */
 	private float smallTaxtSize = 0;
 	/**
-	 * ¶¯»­¼ÆÊıÆ÷
+	 * åŠ¨ç”»è®¡æ•°å™¨
 	 */
 	private int index = 0;
 	/**
-	 * »Øµ÷¼àÌı
+	 * å›è°ƒç›‘å¬
 	 */
 	private RadarViewListener lis;
-	
+
 	public LRadarView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		bgPaint = new Paint();
 		bgPaint.setAntiAlias(true);
 		bgPaint.setStyle(Paint.Style.FILL);
-		
+
 		graphPaint = new Paint();
 		graphPaint.setAntiAlias(true);
 		graphPaint.setStyle(Paint.Style.FILL);
 		graphPaint.setColor(graphColor);
 		graphPaint.setAlpha(128);
-		
+
 		textPaint = new Paint();
 		textPaint.setAntiAlias(true);
 		textPaint.setTextAlign(Align.CENTER);
-		
+
 		smallTextPaint = new Paint();
 		smallTextPaint.setAntiAlias(true);
 		smallTextPaint.setColor(graphColor);
 		smallTextPaint.setTextAlign(Align.CENTER);
-		
+
 		dataArray = new ArrayList<HashMap<String,Object>>();
 		for(int i = 0;i<7;i++){
 			HashMap<String,Object> map = new HashMap<String, Object>();
@@ -153,12 +154,12 @@ public class LRadarView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		/**
-		 * ÔÚÕâÀï¼ÆËã³ß´çÊÇÒòÎªÔÚview´´½¨Ö®³õ»ñÈ¡³ß´çÊÇÓĞÎÊÌâµÄ
-		 * ËùÒÔÔÚµ÷ÓÃÕâ¸ö·½·¨µÄÊ±ºò»ñÈ¡µÄ³ß´ç²ÅÊÇÓĞĞ§µØ
+		 * åœ¨è¿™é‡Œè®¡ç®—å°ºå¯¸æ˜¯å› ä¸ºåœ¨viewåˆ›å»ºä¹‹åˆè·å–å°ºå¯¸æ˜¯æœ‰é—®é¢˜çš„
+		 * æ‰€ä»¥åœ¨è°ƒç”¨è¿™ä¸ªæ–¹æ³•çš„æ—¶å€™è·å–çš„å°ºå¯¸æ‰æ˜¯æœ‰æ•ˆåœ°
 		 */
 		width = getWidth();
 		height = getHeight();
-		//±£Ö¤Ô²ÓëÎÄ×ÖÏÔÊ¾Õı³£
+		//ä¿è¯åœ†ä¸æ–‡å­—æ˜¾ç¤ºæ­£å¸¸
 		if((height*2/3)>(width/2)){
 			radius = width/2/2;
 		}else{
@@ -180,16 +181,16 @@ public class LRadarView extends View {
 		super.onDraw(canvas);
 	}
 	/**
-	 * »æÖÆÀ×´ï±³¾°
+	 * ç»˜åˆ¶é›·è¾¾èƒŒæ™¯
 	 * @param canvas
 	 */
 	private void drawBg(Canvas canvas) {
 		float radiusWidth = radius/5;
-		//5²ã
+		//5å±‚
 		for(int i = 0;i<5;i++){
 			bgPaint.setColor(bgColors[i]);
 			bgPaint.setAlpha(bgAlphas[i]);
-			//¶¨µã
+			//å®šç‚¹
 			Path path = new Path();
 			for(int j = 0;j<pointNum;j++){
 				float[] p = getLocation(j*angle, radius-(i*radiusWidth));
@@ -204,7 +205,7 @@ public class LRadarView extends View {
 		}
 	}
 	/**
-	 * »æÖÆÀ×´ïÇ°¾°
+	 * ç»˜åˆ¶é›·è¾¾å‰æ™¯
 	 * @param canvas
 	 */
 	private void drawGraph(Canvas canvas) {
@@ -227,7 +228,7 @@ public class LRadarView extends View {
 		canvas.drawPath(path, graphPaint);
 	}
 	/**
-	 * »æÖÆÀ×´ïÎÄ×Ö
+	 * ç»˜åˆ¶é›·è¾¾æ–‡å­—
 	 * @param canvas
 	 */
 	private void drawText(Canvas canvas) {
@@ -235,26 +236,26 @@ public class LRadarView extends View {
 		String per = "";
 		float[] p;
 		/*
-		 * ¸ø»­±ÊÉèÖÃ×ÖÌå´óĞ¡
+		 * ç»™ç”»ç¬”è®¾ç½®å­—ä½“å¤§å°
 		 */
 		textPaint.setTextSize(bigTaxtSize);
 		smallTextPaint.setTextSize(smallTaxtSize);
 		/*
-		 * ¼ÆËãÎÄ×Ö¸ß¶ÈÆ«ÒÆÁ¿,ÈÃËı¸ß¶È¾ÓÖĞ
+		 * è®¡ç®—æ–‡å­—é«˜åº¦åç§»é‡,è®©å¥¹é«˜åº¦å±…ä¸­
 		 */
 		FontMetrics fm = textPaint.getFontMetrics();
 		float bigTextY = -fm.descent + (fm.descent - fm.ascent) / 2;
 		fm = smallTextPaint.getFontMetrics();
 		float smallTextY = -fm.descent + (fm.descent - fm.ascent) / 2;
 		/**
-		 * ¿ªÊ¼»æÖÆ
+		 * å¼€å§‹ç»˜åˆ¶
 		 */
 		for(int j = 0;j<pointNum;j++){
 			name = (String) dataArray.get(j).get(VALUE_NAME);
 			per = "("+dataArray.get(j).get(VALUE_VALUE).toString()+")";
 			p = getLocation(j*angle, radius);
 			/*
-			 * ÎªÁË±ÜÃâÎÄ×Ö¸²¸ÇÍ¼Ïñ,ËùÒÔ¸ù¾İÎ»ÖÃ²»Í¬¼ÆËãÆ«ÒÆÁ¿
+			 * ä¸ºäº†é¿å…æ–‡å­—è¦†ç›–å›¾åƒ,æ‰€ä»¥æ ¹æ®ä½ç½®ä¸åŒè®¡ç®—åç§»é‡
 			 */
 			if(j*angle<90){
 				canvas.drawText(name, p[0]+(name.length()*bigTaxtSize/2), p[1]+bigTextY+bigTaxtSize/2, textPaint);
@@ -272,25 +273,25 @@ public class LRadarView extends View {
 		}
 	}
 	/**
-	 * ¸ù¾İ½Ç¶È¼°°ë¾¶¼ÆËãÎ»ÖÃ
-	 * @param angle ½Ç¶È
-	 * @param radiu °ë¾¶
+	 * æ ¹æ®è§’åº¦åŠåŠå¾„è®¡ç®—ä½ç½®
+	 * @param angle è§’åº¦
+	 * @param radiu åŠå¾„
 	 * @return
-	 * ¹«Ê½:ÀûÓÃÈı½Çº¯Êı·´Ïò¼ÆËã
-	 * X = ¿í¶È/2 + Math.sin(½Ç¶È/180*Math.PI)*°ë¾¶
-	 * Y = ¸ß¶È/2 + Math.cos(½Ç¶È/180*Math.PI)*°ë¾¶
+	 * å…¬å¼:åˆ©ç”¨ä¸‰è§’å‡½æ•°åå‘è®¡ç®—
+	 * X = å®½åº¦/2 + Math.sin(è§’åº¦/180*Math.PI)*åŠå¾„
+	 * Y = é«˜åº¦/2 + Math.cos(è§’åº¦/180*Math.PI)*åŠå¾„
 	 */
 	private float[] getLocation(float angle,float radiu){
-		//°Ñ½Ç¶È½ÃÕıÎª0¡ãÔÚyÖáÕı·½Ïò
+		//æŠŠè§’åº¦çŸ«æ­£ä¸º0Â°åœ¨yè½´æ­£æ–¹å‘
 //		angle += 180;
 		float x = (float) (width / 2 + (Math.sin(angle/180 * Math.PI) * radiu));
 		float y = (float) (height / 2 + (Math.cos(angle/180 * Math.PI) * radiu));
 		return new float[]{x,y};
 	}
 	/**
-	 * ÉèÖÃÏÔÊ¾Êı¾İ
+	 * è®¾ç½®æ˜¾ç¤ºæ•°æ®
 	 * @param dataArray
-	 * ÒªÇó°Ù·Ö±ÈÎªÕûÊı,·ñÔò»áÅ×³öÔËĞĞÊ±Òì³£(ÀàĞÍ×ª»»Òì³£)
+	 * è¦æ±‚ç™¾åˆ†æ¯”ä¸ºæ•´æ•°,å¦åˆ™ä¼šæŠ›å‡ºè¿è¡Œæ—¶å¼‚å¸¸(ç±»å‹è½¬æ¢å¼‚å¸¸)
 	 */
 	public void setDataArray(ArrayList<HashMap<String, Object>> dataArray) {
 		this.dataArray = dataArray;
@@ -328,7 +329,7 @@ public class LRadarView extends View {
 		return true;
 	}
 	/**
-	 * µã»÷¼àÌı
+	 * ç‚¹å‡»ç›‘å¬
 	 * @author xiao
 	 *
 	 */

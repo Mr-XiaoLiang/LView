@@ -20,127 +20,127 @@ import android.view.View;
 
 public class LProgressButton extends View {
 	/**
-	 * ²ÎÊı
+	 * å‚æ•°
 	 */
 	private LProgressButtonOption option;
 	/**
-	 * °´Å¥¿í¶È
+	 * æŒ‰é’®å®½åº¦
 	 */
 	private int width;
 	/**
-	 * °´Å¥¸ß¶È
+	 * æŒ‰é’®é«˜åº¦
 	 */
 	private int height;
 	/**
-	 * ¿ªÊ¼Ê±µÄ±³¾°»­±Ê
+	 * å¼€å§‹æ—¶çš„èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint startBgPaint;
 	/**
-	 * ¿ªÊ¼Ê±µÄÇ°½ø»­±Ê
+	 * å¼€å§‹æ—¶çš„å‰è¿›ç”»ç¬”
 	 */
 	private Paint startPaint;
 	/**
-	 * ½ø¶ÈÌõ±³¾°»­±Ê
+	 * è¿›åº¦æ¡èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint progressBgPaint;
 	/**
-	 * ½ø¶ÈÌõÖĞĞÄ¿éµÄ»­±Ê
+	 * è¿›åº¦æ¡ä¸­å¿ƒå—çš„ç”»ç¬”
 	 */
 	private Paint progressCenterPaint;
 	/**
-	 * ½ø¶ÈÌõÇ°¾°»­±Ê
+	 * è¿›åº¦æ¡å‰æ™¯ç”»ç¬”
 	 */
 	private Paint progressPaint;
 	/**
-	 * ½ø¶ÈÌõÇ°¾°ÎÄ×Ö»­±Ê
+	 * è¿›åº¦æ¡å‰æ™¯æ–‡å­—ç”»ç¬”
 	 */
 	private Paint progressTextPaint;
 	/**
-	 * ½áÊø±³¾°»­±Ê
+	 * ç»“æŸèƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint endBgPaint;
 	/**
-	 * ½áÊøÇ°¾°»­±Ê
+	 * ç»“æŸå‰æ™¯ç”»ç¬”
 	 */
 	private Paint endPaint;
 	/**
-	 * Òì³£±³¾°»­±Ê
+	 * å¼‚å¸¸èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint errorBgPaint;
 	/**
-	 * Òì³£Ç°¾°»­±Ê
+	 * å¼‚å¸¸å‰æ™¯ç”»ç¬”
 	 */
 	private Paint errorPaint;
 	/**
-	 * µ±Ç°×´Ì¬
+	 * å½“å‰çŠ¶æ€
 	 */
 	private int type = TYPE_NONE;
 	/**
-	 * ÉÏÒ»¸ö×´Ì¬
+	 * ä¸Šä¸€ä¸ªçŠ¶æ€
 	 */
 	private int oldType = type;
 	/**
-	 * Î´³õÊ¼»¯
+	 * æœªåˆå§‹åŒ–
 	 */
 	public final static int TYPE_NONE = -1;
 	/**
-	 * ¿ªÊ¼×´Ì¬
+	 * å¼€å§‹çŠ¶æ€
 	 */
 	public final static int TYPE_START = 0;
 	/**
-	 * ×¼±¸¼ÓÔØÖĞ
+	 * å‡†å¤‡åŠ è½½ä¸­
 	 */
 	public final static int TYPE_PREPARE = 4;
 	/**
-	 * ¼ÓÔØÖĞ
+	 * åŠ è½½ä¸­
 	 */
 	public final static int TYPE_LOADING = 1;
 	/**
-	 * ½áÊø
+	 * ç»“æŸ
 	 */
 	public final static int TYPE_END = 2;
 	/**
-	 * Òì³£
+	 * å¼‚å¸¸
 	 */
 	public final static int TYPE_ERROR = 3;
 	/**
-	 * ×Ü½ø¶È
+	 * æ€»è¿›åº¦
 	 */
 	private float allNum = 0;
 	/**
-	 * ÒÑ¼ÓÔØ
+	 * å·²åŠ è½½
 	 */
 	private float proNum = 0;
 	/**
-	 * ÏÔÊ¾µÄÒÑÓĞ½ø¶È
+	 * æ˜¾ç¤ºçš„å·²æœ‰è¿›åº¦
 	 */
 	private float proIndex = 0;
 	/**
-	 * µã»÷»Øµ÷ÊÂ¼ş
+	 * ç‚¹å‡»å›è°ƒäº‹ä»¶
 	 */
 	private LProgressButtonOnClickListener clickListener;
 	/**
-	 * ¶¯»­µÄÖ¡Êı
+	 * åŠ¨ç”»çš„å¸§æ•°
 	 */
 	private int index = 0;
 	/**
-	 * ×î´óÖ¡Êı
+	 * æœ€å¤§å¸§æ•°
 	 */
 	private int maxIndex = 30;
 	/**
-	 * ¾ÍĞ÷×´Ì¬µÄÏÂ±ê
+	 * å°±ç»ªçŠ¶æ€çš„ä¸‹æ ‡
 	 */
 	private float prepareIndex = 0;
 	/**
-	 * °ë¾¶
+	 * åŠå¾„
 	 */
 	private int radius = -1;
 	/**
-	 * »æÖÆ×´Ì¬
+	 * ç»˜åˆ¶çŠ¶æ€
 	 */
 	private boolean drawType = true;
 	/**
-	 * È·¶¨¶¯»­ÊÇ·ñÍê±Ï
+	 * ç¡®å®šåŠ¨ç”»æ˜¯å¦å®Œæ¯•
 	 */
 	private boolean isEnd = false;
 
@@ -163,7 +163,7 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »ù±¾³õÊ¼»¯
+	 * åŸºæœ¬åˆå§‹åŒ–
 	 */
 	private void init() {
 		if (option == null) {
@@ -215,65 +215,65 @@ public class LProgressButton extends View {
 	protected void onDraw(Canvas canvas) {
 		width = getWidth();
 		height = getHeight();
-		if (type == TYPE_NONE) {// Ã»ÓĞ³õÊ¼»¯µÄ°´Å¥²»»­
+		if (type == TYPE_NONE) {// æ²¡æœ‰åˆå§‹åŒ–çš„æŒ‰é’®ä¸ç”»
 			return;
 		}
 		drawType = true;
-		
+
 		drawType(oldType, canvas);
 		if (drawType)
 			drawType(type, canvas);
 	}
 
 	/**
-	 * ÓÃÓÚ¶¯»­ÏÎ½ÓµÄÅĞ¶Ï·½·¨
-	 * 
+	 * ç”¨äºåŠ¨ç”»è¡”æ¥çš„åˆ¤æ–­æ–¹æ³•
+	 *
 	 * @param t
 	 * @param canvas
 	 */
 	private void drawType(int t, Canvas canvas) {
 		switch (t) {
-		case TYPE_END:
-			// »­½áÊø½çÃæ
-			drawEndBackgroung(canvas);
-			break;
-		case TYPE_ERROR:
-			// »­Òì³£½çÃæ
-			drawErrorBackgroung(canvas);
-			break;
-		case TYPE_LOADING:
-			// »­¼ÓÔØ½çÃæ
-			drawProgress(canvas);
-			break;
-		case TYPE_PREPARE:
-			// »­µÈ´ı½çÃæ
-			drawProgressPrepare(canvas);
-			break;
-		case TYPE_START:
-			// »­¿ªÊ¼½çÃæ
-			drawStartBackgroung(canvas);
-			break;
+			case TYPE_END:
+				// ç”»ç»“æŸç•Œé¢
+				drawEndBackgroung(canvas);
+				break;
+			case TYPE_ERROR:
+				// ç”»å¼‚å¸¸ç•Œé¢
+				drawErrorBackgroung(canvas);
+				break;
+			case TYPE_LOADING:
+				// ç”»åŠ è½½ç•Œé¢
+				drawProgress(canvas);
+				break;
+			case TYPE_PREPARE:
+				// ç”»ç­‰å¾…ç•Œé¢
+				drawProgressPrepare(canvas);
+				break;
+			case TYPE_START:
+				// ç”»å¼€å§‹ç•Œé¢
+				drawStartBackgroung(canvas);
+				break;
 		}
 	}
 
 	/**
-	 * »æÖÆ¿ªÊ¼½çÃæ
-	 * 
+	 * ç»˜åˆ¶å¼€å§‹ç•Œé¢
+	 *
 	 * @param canvas
 	 */
 	private void drawStartBackgroung(Canvas canvas) {
 		if (type != TYPE_START && oldType != TYPE_START) {
-			return;// Èç¹ûÓë×Ô¼º²»Ïà¹Ø¾Í·µ»Ø
+			return;// å¦‚æœä¸è‡ªå·±ä¸ç›¸å…³å°±è¿”å›
 		}
 		drawType = false;
-		if (type == TYPE_START && oldType != TYPE_START) {// ½øÈëµ±Ç°×´Ì¬
+		if (type == TYPE_START && oldType != TYPE_START) {// è¿›å…¥å½“å‰çŠ¶æ€
 			createStart(canvas, TYPE_START);
 			if (index > maxIndex) {
 				index = maxIndex;
 				oldType = type;
 			}
 			index++;
-		} else if (type != TYPE_START && oldType == TYPE_START) {// ÍË³öµ±Ç°×´Ì¬
+		} else if (type != TYPE_START && oldType == TYPE_START) {// é€€å‡ºå½“å‰çŠ¶æ€
 			if (!isEnd) {
 				index--;
 				createStart(canvas, TYPE_START);
@@ -292,23 +292,23 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »æÖÆ½áÊø½çÃæ
-	 * 
+	 * ç»˜åˆ¶ç»“æŸç•Œé¢
+	 *
 	 * @param canvas
 	 */
 	private void drawEndBackgroung(Canvas canvas) {
 		if (type != TYPE_END && oldType != TYPE_END) {
-			return;// Èç¹ûÓë×Ô¼º²»Ïà¹Ø¾Í·µ»Ø
+			return;// å¦‚æœä¸è‡ªå·±ä¸ç›¸å…³å°±è¿”å›
 		}
 		drawType = false;
-		if (type == TYPE_END && oldType != TYPE_END) {// ½øÈëµ±Ç°×´Ì¬
+		if (type == TYPE_END && oldType != TYPE_END) {// è¿›å…¥å½“å‰çŠ¶æ€
 			createStart(canvas, TYPE_END);
 			if (index > maxIndex) {
 				index = maxIndex;
 				oldType = type;
 			}
 			index++;
-		} else if (type != TYPE_END && oldType == TYPE_END) {// ÍË³öµ±Ç°×´Ì¬
+		} else if (type != TYPE_END && oldType == TYPE_END) {// é€€å‡ºå½“å‰çŠ¶æ€
 			if (!isEnd) {
 				index--;
 				createStart(canvas, TYPE_END);
@@ -327,23 +327,23 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »æÖÆÒì³£½çÃæ
-	 * 
+	 * ç»˜åˆ¶å¼‚å¸¸ç•Œé¢
+	 *
 	 * @param canvas
 	 */
 	private void drawErrorBackgroung(Canvas canvas) {
 		if (type != TYPE_ERROR && oldType != TYPE_ERROR) {
-			return;// Èç¹ûÓë×Ô¼º²»Ïà¹Ø¾Í·µ»Ø
+			return;// å¦‚æœä¸è‡ªå·±ä¸ç›¸å…³å°±è¿”å›
 		}
 		drawType = false;
-		if (type == TYPE_ERROR && oldType != TYPE_ERROR) {// ½øÈëµ±Ç°×´Ì¬
+		if (type == TYPE_ERROR && oldType != TYPE_ERROR) {// è¿›å…¥å½“å‰çŠ¶æ€
 			createStart(canvas, TYPE_ERROR);
 			if (index > maxIndex) {
 				index = maxIndex;
 				oldType = type;
 			}
 			index++;
-		} else if (type != TYPE_ERROR && oldType == TYPE_ERROR) {// ÍË³öµ±Ç°×´Ì¬
+		} else if (type != TYPE_ERROR && oldType == TYPE_ERROR) {// é€€å‡ºå½“å‰çŠ¶æ€
 			if (!isEnd) {
 				index--;
 				createStart(canvas, TYPE_ERROR);
@@ -362,20 +362,20 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »æÖÆ½ø¶È½çÃæ
-	 * 
+	 * ç»˜åˆ¶è¿›åº¦ç•Œé¢
+	 *
 	 * @param canvas
 	 */
 	private void drawProgress(Canvas canvas) {
 		if (type != TYPE_LOADING & oldType != TYPE_LOADING) {
-			return;// Èç¹ûÓë×Ô¼º²»Ïà¹Ø¾Í·µ»Ø
+			return;// å¦‚æœä¸è‡ªå·±ä¸ç›¸å…³å°±è¿”å›
 		}
 		drawType = false;
-		// »­±³¾°É«
+		// ç”»èƒŒæ™¯è‰²
 		if (!option.isProgressCenterLucency()) {
 			canvas.drawCircle(width / 2, height / 2, radius, progressCenterPaint);
 		}
-		// »­±³¾°Í¼
+		// ç”»èƒŒæ™¯å›¾
 		if (!option.isProgressCenterLucency() && option.getBtnProgressCenterImage() > 0) {
 			canvas.drawBitmap(
 					createBitmap(BitmapFactory.decodeResource(getResources(), option.getBtnProgressCenterImage()),
@@ -411,7 +411,7 @@ public class LProgressButton extends View {
 //				}
 				canvas.drawArc(rectF, -90, 360 * proIndex / allNum, false, progressPaint);
 				String text = ((int)(proIndex / allNum * 100))+"%";
-				// »­×Ö
+				// ç”»å­—
 				if (text != null && text.length() > 0&&option.isShowPercent()) {
 					int textSize;
 					textSize = (int) (radius * 2 * 0.3);
@@ -462,20 +462,20 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »­½ø¶ÈµÈ´ı½çÃæ
-	 * 
+	 * ç”»è¿›åº¦ç­‰å¾…ç•Œé¢
+	 *
 	 * @param canvas
 	 */
 	private void drawProgressPrepare(Canvas canvas) {
 		if (type != TYPE_PREPARE && oldType != TYPE_PREPARE) {
-			return;// Èç¹ûÓë×Ô¼º²»Ïà¹Ø¾Í·µ»Ø
+			return;// å¦‚æœä¸è‡ªå·±ä¸ç›¸å…³å°±è¿”å›
 		}
 		drawType = false;
-		// »­±³¾°É«
+		// ç”»èƒŒæ™¯è‰²
 		if (!option.isProgressCenterLucency()) {
 			canvas.drawCircle(width / 2, height / 2, radius, progressCenterPaint);
 		}
-		// »­±³¾°Í¼
+		// ç”»èƒŒæ™¯å›¾
 		if (!option.isProgressCenterLucency() && option.getBtnProgressCenterImage() > 0) {
 			canvas.drawBitmap(
 					createBitmap(BitmapFactory.decodeResource(getResources(), option.getBtnProgressCenterImage()),
@@ -556,10 +556,10 @@ public class LProgressButton extends View {
 		}
 		invalidate();
 	}
-	
+
 	/**
-	 * °´Å¥µÄÍê³É×´Ì¬
-	 * 
+	 * æŒ‰é’®çš„å®ŒæˆçŠ¶æ€
+	 *
 	 * @param canvas
 	 * @param type
 	 */
@@ -570,59 +570,59 @@ public class LProgressButton extends View {
 		int img;
 		int icon;
 		switch (type) {
-		case TYPE_END:
-			paint = endPaint;
-			bgpaint = endBgPaint;
-			text = option.getBtnEndText();
-			img = option.getBtnEndBgImage();
-			icon = option.getBtnEndIcon();
-			break;
-		case TYPE_ERROR:
-			paint = errorPaint;
-			bgpaint = errorBgPaint;
-			text = option.getBtnErrorText();
-			img = option.getBtnErrorBgImage();
-			icon = option.getBtnErrorIcon();
-			break;
-		case TYPE_START:
-			paint = startPaint;
-			bgpaint = startBgPaint;
-			text = option.getBtnStartText();
-			img = option.getBtnStartBgImage();
-			icon = option.getBtnStartIcon();
-			break;
-		default:
-			return;
+			case TYPE_END:
+				paint = endPaint;
+				bgpaint = endBgPaint;
+				text = option.getBtnEndText();
+				img = option.getBtnEndBgImage();
+				icon = option.getBtnEndIcon();
+				break;
+			case TYPE_ERROR:
+				paint = errorPaint;
+				bgpaint = errorBgPaint;
+				text = option.getBtnErrorText();
+				img = option.getBtnErrorBgImage();
+				icon = option.getBtnErrorIcon();
+				break;
+			case TYPE_START:
+				paint = startPaint;
+				bgpaint = startBgPaint;
+				text = option.getBtnStartText();
+				img = option.getBtnStartBgImage();
+				icon = option.getBtnStartIcon();
+				break;
+			default:
+				return;
 		}
 		isEnd = false;
 		this.type = oldType;
 		switch (option.getBtnRadius()) {
-		case LProgressButtonOption.Builder.btnRadius_HORIZONTAL:
-			radius = height / 2;
-			break;
-		case LProgressButtonOption.Builder.btnRadius_SQUARE:
-			radius = 0;
-			break;
-		case LProgressButtonOption.Builder.btnRadius_VERTICAL:
-			radius = width / 2;
-			break;
-		default:
-			if (option.getBtnRadius() > 0) {
-				radius = option.getBtnRadius();
-			} else {
+			case LProgressButtonOption.Builder.btnRadius_HORIZONTAL:
+				radius = height / 2;
+				break;
+			case LProgressButtonOption.Builder.btnRadius_SQUARE:
 				radius = 0;
-			}
-			break;
+				break;
+			case LProgressButtonOption.Builder.btnRadius_VERTICAL:
+				radius = width / 2;
+				break;
+			default:
+				if (option.getBtnRadius() > 0) {
+					radius = option.getBtnRadius();
+				} else {
+					radius = 0;
+				}
+				break;
 		}
-		// »­±³¾°É«
+		// ç”»èƒŒæ™¯è‰²
 		RectF rect = new RectF(0, 0, width, height);
 		canvas.drawRoundRect(rect, radius, radius, bgpaint);
-		// »­±³¾°Í¼
+		// ç”»èƒŒæ™¯å›¾
 		if (img > 0) {
 			canvas.drawBitmap(createBitmap(BitmapFactory.decodeResource(getResources(), img), height, width, radius),
 					width, height, null);
 		}
-		//»æÖÆÇ°¾°Í¼Æ¬
+		//ç»˜åˆ¶å‰æ™¯å›¾ç‰‡
 		if(icon>0){
 			int w = 0,h = 0;
 			float l = 0;
@@ -630,33 +630,33 @@ public class LProgressButton extends View {
 			if(bitmap.getWidth()!=0&&bitmap.getHeight()!=0){
 				l = bitmap.getWidth()/bitmap.getHeight();
 				switch (option.getBtnIconSizeType()) {
-				case LProgressButtonOption.Builder.btnIconSizeType_AUTO:
-					if(width/height>l){
+					case LProgressButtonOption.Builder.btnIconSizeType_AUTO:
+						if(width/height>l){
+							h = (int) (height*option.getBtnIconSize());
+							w = (int) (h*l);
+						}else{
+							w = (int) (width*option.getBtnIconSize());
+							h = (int) (w/l);
+						}
+						break;
+					case LProgressButtonOption.Builder.btnIconSizeType_HEIGHT:
 						h = (int) (height*option.getBtnIconSize());
 						w = (int) (h*l);
-					}else{
+						break;
+					case LProgressButtonOption.Builder.btnIconSizeType_WIDTH:
 						w = (int) (width*option.getBtnIconSize());
 						h = (int) (w/l);
-					}
-					break;
-				case LProgressButtonOption.Builder.btnIconSizeType_HEIGHT:
-					h = (int) (height*option.getBtnIconSize());
-					w = (int) (h*l);
-					break;
-				case LProgressButtonOption.Builder.btnIconSizeType_WIDTH:
-					w = (int) (width*option.getBtnIconSize());
-					h = (int) (w/l);
-					break;
+						break;
 				}
 				canvas.drawBitmap(createBitmap(bitmap,
-						h, w, option.getBtnIconRadius()), width / 2 - w/2, height / 2 - h/2,
+								h, w, option.getBtnIconRadius()), width / 2 - w/2, height / 2 - h/2,
 						null);
 			}
 			bitmap.recycle();
-			bitmap = null; 
+			bitmap = null;
 			System.gc();
 		}
-		// »­×Ö
+		// ç”»å­—
 		if (text != null && text.length() > 0) {
 			int textSize;
 			if (width > height) {
@@ -678,8 +678,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ¿ªÊ¼µÄ¶¯»­
-	 * 
+	 * å¼€å§‹çš„åŠ¨ç”»
+	 *
 	 * @param canvas
 	 */
 	private void createStart(Canvas canvas, int type) {
@@ -689,34 +689,34 @@ public class LProgressButton extends View {
 		int img;
 		int icon;
 		switch (type) {
-		case TYPE_END:
-			paint = endPaint;
-			bgpaint = endBgPaint;
-			text = option.getBtnEndText();
-			img = option.getBtnEndBgImage();
-			icon = option.getBtnEndIcon();
-			break;
-		case TYPE_ERROR:
-			paint = errorPaint;
-			bgpaint = errorBgPaint;
-			text = option.getBtnErrorText();
-			img = option.getBtnErrorBgImage();
-			icon = option.getBtnErrorIcon();
-			break;
-		case TYPE_START:
-			paint = startPaint;
-			bgpaint = startBgPaint;
-			text = option.getBtnStartText();
-			img = option.getBtnStartBgImage();
-			icon = option.getBtnStartIcon();
-			break;
-		default:
-			return;
+			case TYPE_END:
+				paint = endPaint;
+				bgpaint = endBgPaint;
+				text = option.getBtnEndText();
+				img = option.getBtnEndBgImage();
+				icon = option.getBtnEndIcon();
+				break;
+			case TYPE_ERROR:
+				paint = errorPaint;
+				bgpaint = errorBgPaint;
+				text = option.getBtnErrorText();
+				img = option.getBtnErrorBgImage();
+				icon = option.getBtnErrorIcon();
+				break;
+			case TYPE_START:
+				paint = startPaint;
+				bgpaint = startBgPaint;
+				text = option.getBtnStartText();
+				img = option.getBtnStartBgImage();
+				icon = option.getBtnStartIcon();
+				break;
+			default:
+				return;
 		}
-		if (index < (maxIndex / 2)) {// ´Óµã±ä³ÉÔ²
-			// »­±³¾°É«
+		if (index < (maxIndex / 2)) {// ä»ç‚¹å˜æˆåœ†
+			// ç”»èƒŒæ™¯è‰²
 			canvas.drawCircle(width / 2, height / 2, radius, bgpaint);
-			// »­±³¾°Í¼
+			// ç”»èƒŒæ™¯å›¾
 			if (img > 0) {
 				canvas.drawBitmap(
 						createBitmap(BitmapFactory.decodeResource(getResources(), img), radius * 2, radius * 2, radius),
@@ -729,7 +729,7 @@ public class LProgressButton extends View {
 				r = (int) (width * 0.5);
 			}
 			radius = r / maxIndex * 2 * index;
-		} else {// ´ÓÔ²±ä³É°´Å¥
+		} else {// ä»åœ†å˜æˆæŒ‰é’®
 			float wr = 0;
 			float hr = 0;
 			if (width > height) {
@@ -748,17 +748,17 @@ public class LProgressButton extends View {
 			if (hr > (height / 2 - radius)) {
 				hr = (height / 2 - radius);
 			}
-			// »­±³¾°É«
+			// ç”»èƒŒæ™¯è‰²
 			RectF rect = new RectF(width / 2 - wr - radius, height / 2 - hr - radius, width / 2 + wr + radius,
 					height / 2 + hr + radius);
 			canvas.drawRoundRect(rect, radius, radius, bgpaint);
-			// »­±³¾°Í¼
+			// ç”»èƒŒæ™¯å›¾
 			if (img > 0) {
 				canvas.drawBitmap(createBitmap(BitmapFactory.decodeResource(getResources(), img),
-						(int) hr * 2 + radius * 2, (int) wr * 2 + radius * 2, radius), width / 2 - wr, height / 2 - hr,
+								(int) hr * 2 + radius * 2, (int) wr * 2 + radius * 2, radius), width / 2 - wr, height / 2 - hr,
 						null);
 			}
-			//»æÖÆÇ°¾°Í¼Æ¬
+			//ç»˜åˆ¶å‰æ™¯å›¾ç‰‡
 			if(icon>0){
 				int w = 0,h = 0;
 				float l = 0;
@@ -766,33 +766,33 @@ public class LProgressButton extends View {
 				if(bitmap.getWidth()!=0&&bitmap.getHeight()!=0){
 					l = bitmap.getWidth()/bitmap.getHeight();
 					switch (option.getBtnIconSizeType()) {
-					case LProgressButtonOption.Builder.btnIconSizeType_AUTO:
-						if(wr/hr>l){
+						case LProgressButtonOption.Builder.btnIconSizeType_AUTO:
+							if(wr/hr>l){
+								h = (int) ((hr * 2 + radius * 2)*option.getBtnIconSize());
+								w = (int) (h*l);
+							}else{
+								w = (int) ((wr * 2 + radius * 2)*option.getBtnIconSize());
+								h = (int) (w/l);
+							}
+							break;
+						case LProgressButtonOption.Builder.btnIconSizeType_HEIGHT:
 							h = (int) ((hr * 2 + radius * 2)*option.getBtnIconSize());
 							w = (int) (h*l);
-						}else{
+							break;
+						case LProgressButtonOption.Builder.btnIconSizeType_WIDTH:
 							w = (int) ((wr * 2 + radius * 2)*option.getBtnIconSize());
 							h = (int) (w/l);
-						}
-						break;
-					case LProgressButtonOption.Builder.btnIconSizeType_HEIGHT:
-						h = (int) ((hr * 2 + radius * 2)*option.getBtnIconSize());
-						w = (int) (h*l);
-						break;
-					case LProgressButtonOption.Builder.btnIconSizeType_WIDTH:
-						w = (int) ((wr * 2 + radius * 2)*option.getBtnIconSize());
-						h = (int) (w/l);
-						break;
+							break;
 					}
 					canvas.drawBitmap(createBitmap(bitmap,
-							h, w, option.getBtnIconRadius()), width / 2 - w/2, height / 2 - h/2,
+									h, w, option.getBtnIconRadius()), width / 2 - w/2, height / 2 - h/2,
 							null);
 				}
 				bitmap.recycle();
-				bitmap = null; 
+				bitmap = null;
 				System.gc();
 			}
-			// »­×Ö
+			// ç”»å­—
 			if (text != null && text.length() > 0) {
 				int textSize;
 				if (wr > hr) {
@@ -815,9 +815,9 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * 
-	 * ´´½¨Ò»¸ö·ûºÏµÄbitmap
-	 * 
+	 *
+	 * åˆ›å»ºä¸€ä¸ªç¬¦åˆçš„bitmap
+	 *
 	 * @param bitmap
 	 * @param height
 	 * @param width
@@ -832,12 +832,12 @@ public class LProgressButton extends View {
 		Bitmap outPut = null;
 		Bitmap bm = bitmap;
 		try {
-			// ´¹Ö±À­Éì
+			// å‚ç›´æ‹‰ä¼¸
 			if (bm.getHeight() < height) {
 				float f = 1.0f * bm.getHeight() / height;
 				bm = Bitmap.createScaledBitmap(bm, (int) (bm.getWidth() / f), height, true);
 			}
-			// Ë®Æ½À­Éì
+			// æ°´å¹³æ‹‰ä¼¸
 			if (bm.getWidth() < width) {
 				float f = 1.0f * bm.getWidth() / width;
 				bm = Bitmap.createScaledBitmap(bm, width, (int) (bm.getHeight() / f), true);
@@ -868,8 +868,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ½ø¶È°´Å¥µã»÷ÊÂ¼ş¼àÌıÆ÷
-	 * 
+	 * è¿›åº¦æŒ‰é’®ç‚¹å‡»äº‹ä»¶ç›‘å¬å™¨
+	 *
 	 * @author LiuJ
 	 *
 	 */
@@ -878,8 +878,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »ñÈ¡ÏÖÓĞ²ÎÊı
-	 * 
+	 * è·å–ç°æœ‰å‚æ•°
+	 *
 	 * @return
 	 */
 	public LProgressButtonOption getOption() {
@@ -887,8 +887,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ÉèÖÃ°´Å¥ÑùÊ½²ÎÊı
-	 * 
+	 * è®¾ç½®æŒ‰é’®æ ·å¼å‚æ•°
+	 *
 	 * @param option
 	 */
 	public void setOption(LProgressButtonOption option) {
@@ -897,7 +897,7 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ÖØĞÂ¿ªÊ¼ ÖØÖÃ
+	 * é‡æ–°å¼€å§‹ é‡ç½®
 	 */
 	public void reset() {
 		type = TYPE_START;
@@ -905,8 +905,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ¿ªÊ¼ÏÂÔØ
-	 * 
+	 * å¼€å§‹ä¸‹è½½
+	 *
 	 * @param allNum
 	 * @param proNum
 	 */
@@ -919,8 +919,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ¸üĞÂÏÂÔØ½ø¶È
-	 * 
+	 * æ›´æ–°ä¸‹è½½è¿›åº¦
+	 *
 	 * @param proNum
 	 */
 	public void updateProgress(float proNum) {
@@ -929,7 +929,7 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ×¼±¸¼ÓÔØÖĞ
+	 * å‡†å¤‡åŠ è½½ä¸­
 	 */
 	public void onPrepare() {
 		oldType = type;
@@ -938,7 +938,7 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ÏÂÔØ½áÊø
+	 * ä¸‹è½½ç»“æŸ
 	 */
 	public void onEnd() {
 		oldType = type;
@@ -947,7 +947,7 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ³ö´í
+	 * å‡ºé”™
 	 */
 	public void onError() {
 		oldType = type;
@@ -956,8 +956,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°×´Ì¬
-	 * 
+	 * è·å–å½“å‰çŠ¶æ€
+	 *
 	 * @return
 	 */
 	public int getType() {
@@ -965,8 +965,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * »ñÈ¡°´Å¥µÄ¼àÌıÆ÷
-	 * 
+	 * è·å–æŒ‰é’®çš„ç›‘å¬å™¨
+	 *
 	 * @return
 	 */
 	public LProgressButtonOnClickListener getClickListener() {
@@ -974,8 +974,8 @@ public class LProgressButton extends View {
 	}
 
 	/**
-	 * ÉèÖÃ°´Å¥µÄ¼àÌıÆ÷
-	 * 
+	 * è®¾ç½®æŒ‰é’®çš„ç›‘å¬å™¨
+	 *
 	 * @param clickListener
 	 */
 	public void setClickListener(LProgressButtonOnClickListener clickListener) {

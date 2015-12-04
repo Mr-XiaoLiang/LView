@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:orientation="vertical"
+    android:weightSum="6"
+    android:gravity="center"
+    android:background="@color/gary">
+	<com.l.j.view.LProgressButton 
+	    android:layout_margin="10sp"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0px"
+	    android:id="@+id/pb"
+	    android:layout_weight="1"/>
+</LinearLayout><!-- From: file:/D:/Android/AndroidGit/LView/res/layout/progress_button.xml -->

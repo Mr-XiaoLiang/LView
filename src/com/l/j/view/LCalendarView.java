@@ -2,6 +2,8 @@ package com.l.j.view;
 
 import java.util.Calendar;
 
+import com.l.j.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -13,88 +15,86 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.mytest.R;
-
 public class LCalendarView extends View {
 	/**
-	 * Äê·İ
+	 * å¹´ä»½
 	 */
 	private int year;
 	/**
-	 * ÔÂ·İ
+	 * æœˆä»½
 	 */
 	private int month;
 	/**
-	 * ÈÕÆÚÊı×é
+	 * æ—¥æœŸæ•°ç»„
 	 */
 	private int[] days;
 	/**
-	 * ½ñÌì
+	 * ä»Šå¤©
 	 */
 	private int today = 0;
 	/**
-	 * Ñ¡ÖĞÈÕÆÚ
+	 * é€‰ä¸­æ—¥æœŸ
 	 */
 	private int selectedDay = 0;
 	/**
-	 * ×ÖÌå´óĞ¡
+	 * å­—ä½“å¤§å°
 	 */
 	private float textSize;
 	/**
-	 * ×ÖÌåÖĞĞÄµã
+	 * å­—ä½“ä¸­å¿ƒç‚¹
 	 */
 	private float textY;
 	/**
-	 * Ñ¡ÖĞÑÕÉ«
+	 * é€‰ä¸­é¢œè‰²
 	 */
 	private int selectColor;
 	/**
-	 * Êı×ÖÑÕÉ«
+	 * æ•°å­—é¢œè‰²
 	 */
 	private int textColor;
 	/**
-	 * ĞÇÆÚÑÕÉ«
+	 * æ˜ŸæœŸé¢œè‰²
 	 */
 	private int weekColor;
 	/**
-	 * ±³¾°É«
+	 * èƒŒæ™¯è‰²
 	 */
 	private int backgroundColor;
 	/**
-	 * ½ñÌìÑÕÉ«
+	 * ä»Šå¤©é¢œè‰²
 	 */
 	private int todayColor;;
 	/**
-	 * ÎÄ×ÖµÄ»­±Ê
+	 * æ–‡å­—çš„ç”»ç¬”
 	 */
 	private Paint textPaint;
 	/**
-	 * µãµÄ»­±Ê
+	 * ç‚¹çš„ç”»ç¬”
 	 */
 	private Paint pointPaint;
 	/**
-	 * ½ñÌì»­±Ê
+	 * ä»Šå¤©ç”»ç¬”
 	 */
 	private Paint todayPaint;
 	/**
-	 * ±³¾°±Ê
+	 * èƒŒæ™¯ç¬”
 	 */
 	private Paint backgroundPaint;
 
 	/**
-	 * ĞÇÆÚ
+	 * æ˜ŸæœŸ
 	 */
-	private String[] weeks = { "ÈÕ", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù" };
+	private String[] weeks = { "æ—¥", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­" };
 	/**
-	 * µ¥Ôª¸ñµÄ¿í¶È
+	 * å•å…ƒæ ¼çš„å®½åº¦
 	 */
 	int width = 0;
 	/**
-	 * µ¥Ôª¸ñµÄ¸ß¶È
+	 * å•å…ƒæ ¼çš„é«˜åº¦
 	 */
 	int height = 0;
 	/**
-	 * ÈÕÆÚÑ¡Ôñ¼àÌıÆ÷
+	 * æ—¥æœŸé€‰æ‹©ç›‘å¬å™¨
 	 */
 	private CalendarViewListener calendarViewListener;
 
@@ -116,7 +116,7 @@ public class LCalendarView extends View {
 		backgroundColor = getResources().getColor(android.R.color.transparent);
 		todayColor = Color.parseColor("#50000000");
 		/**
-		 * »ñµÃÎÒÃÇËù¶¨ÒåµÄ×Ô¶¨ÒåÑùÊ½ÊôĞÔ
+		 * è·å¾—æˆ‘ä»¬æ‰€å®šä¹‰çš„è‡ªå®šä¹‰æ ·å¼å±æ€§
 		 */
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
 				R.styleable.calendarview, defStyleAttr, 0);
@@ -124,33 +124,33 @@ public class LCalendarView extends View {
 		for (int i = 0; i < n; i++) {
 			int attr = a.getIndex(i);
 			switch (attr) {
-			case R.styleable.calendarview_background_color:
-				backgroundColor = a.getColor(attr, Color.parseColor("#ebebeb"));
-				break;
-			case R.styleable.calendarview_month:
-				month = a.getInt(attr, 0);
-				break;
-			case R.styleable.calendarview_selected:
-				selectedDay = a.getInt(attr, 0);
-				break;
-			case R.styleable.calendarview_selected_color:
-				selectColor = a.getColor(attr, Color.parseColor("#99c9f2"));
-				break;
-			case R.styleable.calendarview_today:
-				today = a.getInt(attr, 0);
-				break;
-			case R.styleable.calendarview_text_color:
-				textColor = a.getColor(attr, Color.BLACK);
-				break;
-			case R.styleable.calendarview_today_color:
-				todayColor = a.getColor(attr, Color.parseColor("#50000000"));
-				break;
-			case R.styleable.calendarview_weeks_color:
-				weekColor = a.getColor(attr, Color.GRAY);
-				break;
-			case R.styleable.calendarview_year:
-				year = a.getColor(attr, 0);
-				break;
+				case R.styleable.calendarview_background_color:
+					backgroundColor = a.getColor(attr, Color.parseColor("#ebebeb"));
+					break;
+				case R.styleable.calendarview_month:
+					month = a.getInt(attr, 0);
+					break;
+				case R.styleable.calendarview_selected:
+					selectedDay = a.getInt(attr, 0);
+					break;
+				case R.styleable.calendarview_selected_color:
+					selectColor = a.getColor(attr, Color.parseColor("#99c9f2"));
+					break;
+				case R.styleable.calendarview_today:
+					today = a.getInt(attr, 0);
+					break;
+				case R.styleable.calendarview_text_color:
+					textColor = a.getColor(attr, Color.BLACK);
+					break;
+				case R.styleable.calendarview_today_color:
+					todayColor = a.getColor(attr, Color.parseColor("#50000000"));
+					break;
+				case R.styleable.calendarview_weeks_color:
+					weekColor = a.getColor(attr, Color.GRAY);
+					break;
+				case R.styleable.calendarview_year:
+					year = a.getColor(attr, 0);
+					break;
 			}
 		}
 		a.recycle();
@@ -252,17 +252,17 @@ public class LCalendarView extends View {
 		int x = 0;
 		int y = 0;
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			x = (int) event.getX() / width;
-			y = (int) event.getY() / height;
-			/**
-			 * ÅĞ¶ÏÊÇ²»ÊÇÔÚÎÒÃÇµÄÈÕÀúÀïÃæ
-			 */
-			if (y >= 1 && x >= 0 && y < 7 && x < 7
-					&& days[((y - 1) * 7) + x] != 0) {
-				selectedDay = days[((y - 1) * 7) + x];
-			}
-			break;
+			case MotionEvent.ACTION_DOWN:
+				x = (int) event.getX() / width;
+				y = (int) event.getY() / height;
+				/**
+				 * åˆ¤æ–­æ˜¯ä¸æ˜¯åœ¨æˆ‘ä»¬çš„æ—¥å†é‡Œé¢
+				 */
+				if (y >= 1 && x >= 0 && y < 7 && x < 7
+						&& days[((y - 1) * 7) + x] != 0) {
+					selectedDay = days[((y - 1) * 7) + x];
+				}
+				break;
 		}
 		if (calendarViewListener != null) {
 			calendarViewListener.calendarSelected(selectedDay);
@@ -312,8 +312,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡Äê·İ
-	 * 
+	 * è·å–å¹´ä»½
+	 *
 	 * @return
 	 */
 	public int getYear() {
@@ -321,8 +321,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÄê·İ
-	 * 
+	 * è®¾ç½®å¹´ä»½
+	 *
 	 * @param year
 	 */
 	public void setYear(int year) {
@@ -331,8 +331,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡ÔÂ·İ
-	 * 
+	 * è·å–æœˆä»½
+	 *
 	 * @return
 	 */
 	public int getMonth() {
@@ -340,8 +340,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÔÂ·İ
-	 * 
+	 * è®¾ç½®æœˆä»½
+	 *
 	 * @param month
 	 */
 	public void setMonth(int month) {
@@ -350,8 +350,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½ñÌì
-	 * 
+	 * è·å–ä»Šå¤©
+	 *
 	 * @return
 	 */
 	public int getToday() {
@@ -359,8 +359,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ½ñÌì
-	 * 
+	 * è®¾ç½®ä»Šå¤©
+	 *
 	 * @param today
 	 */
 	public void setToday(int today) {
@@ -369,8 +369,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡Ñ¡ÖĞÈÕÆÚ
-	 * 
+	 * è·å–é€‰ä¸­æ—¥æœŸ
+	 *
 	 * @return
 	 */
 	public int getSelectedDay() {
@@ -378,8 +378,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÑ¡ÖĞÈÕÆÚ
-	 * 
+	 * è®¾ç½®é€‰ä¸­æ—¥æœŸ
+	 *
 	 * @param selectedDay
 	 */
 	public void setSelectedDay(int selectedDay) {
@@ -388,8 +388,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡×ÖÌå´óĞ¡
-	 * 
+	 * è·å–å­—ä½“å¤§å°
+	 *
 	 * @return
 	 */
 	public float getTextSize() {
@@ -397,8 +397,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ×ÖÌå´óĞ¡
-	 * 
+	 * è®¾ç½®å­—ä½“å¤§å°
+	 *
 	 * @param textSize
 	 */
 	public void setTextSize(float textSize) {
@@ -407,8 +407,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡Ñ¡ÖĞ±³¾°É«
-	 * 
+	 * è·å–é€‰ä¸­èƒŒæ™¯è‰²
+	 *
 	 * @return
 	 */
 	public int getSelectColor() {
@@ -416,8 +416,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÑ¡ÖĞ±³¾°É«
-	 * 
+	 * è®¾ç½®é€‰ä¸­èƒŒæ™¯è‰²
+	 *
 	 * @param selectColor
 	 */
 	public void setSelectColor(int selectColor) {
@@ -426,8 +426,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡×ÖÌåÑÕÉ«
-	 * 
+	 * è·å–å­—ä½“é¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getTextColor() {
@@ -435,8 +435,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ×ÖÌåÑÕÉ«
-	 * 
+	 * è®¾ç½®å­—ä½“é¢œè‰²
+	 *
 	 * @param textColor
 	 */
 	public void setTextColor(int textColor) {
@@ -445,8 +445,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡ĞÇÆÚÑÕÉ«
-	 * 
+	 * è·å–æ˜ŸæœŸé¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getWeekColor() {
@@ -454,8 +454,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃĞÇÆÚÑÕÉ«
-	 * 
+	 * è®¾ç½®æ˜ŸæœŸé¢œè‰²
+	 *
 	 * @param weekColor
 	 */
 	public void setWeekColor(int weekColor) {
@@ -464,8 +464,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * \ »ñÈ¡±³¾°É«
-	 * 
+	 * \ è·å–èƒŒæ™¯è‰²
+	 *
 	 * @return
 	 */
 	public int getBackgroundColor() {
@@ -473,7 +473,7 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±³¾°ÑÕÉ«
+	 * è®¾ç½®èƒŒæ™¯é¢œè‰²
 	 */
 	public void setBackgroundColor(int backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -481,8 +481,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½ñÌì±³¾°É«
-	 * 
+	 * è·å–ä»Šå¤©èƒŒæ™¯è‰²
+	 *
 	 * @return
 	 */
 	public int getTodayColor() {
@@ -490,8 +490,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ½ñÌì±³¾°É«
-	 * 
+	 * è®¾ç½®ä»Šå¤©èƒŒæ™¯è‰²
+	 *
 	 * @param todayColor
 	 */
 	public void setTodayColor(int todayColor) {
@@ -500,8 +500,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * »ñÈ¡ÈÕÀúÑ¡Ôñ¼àÌıÆ÷
-	 * 
+	 * è·å–æ—¥å†é€‰æ‹©ç›‘å¬å™¨
+	 *
 	 * @return
 	 */
 	public CalendarViewListener getCalendarViewListener() {
@@ -509,8 +509,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÈÕÀúÑ¡Ôñ¼àÌıÆ÷
-	 * 
+	 * è®¾ç½®æ—¥å†é€‰æ‹©ç›‘å¬å™¨
+	 *
 	 * @param calendarViewListener
 	 */
 	public void setCalendarViewListener(
@@ -519,8 +519,8 @@ public class LCalendarView extends View {
 	}
 
 	/**
-	 * ¸üĞÂÈÕÆÚ
-	 * 
+	 * æ›´æ–°æ—¥æœŸ
+	 *
 	 * @param year
 	 * @param month
 	 * @param today
@@ -534,8 +534,8 @@ public class LCalendarView extends View {
 		init();
 	}
 	/**
-	 * ÉèÖÃ¿ÉÑ¡Ïî
-	 * ´«Èë¿ÉÑ¡ÏîµÄ·¶Î§
+	 * è®¾ç½®å¯é€‰é¡¹
+	 * ä¼ å…¥å¯é€‰é¡¹çš„èŒƒå›´
 	 * @param min
 	 * @param max
 	 */
@@ -559,8 +559,8 @@ public class LCalendarView extends View {
 		invalidate();
 	}
 	/**
-	 * ÉèÖÃ¿ÉÑ¡Ïî
-	 * @param items ´«Èë¿ÉÑ¡ÏîµÄÊı×é
+	 * è®¾ç½®å¯é€‰é¡¹
+	 * @param items ä¼ å…¥å¯é€‰é¡¹çš„æ•°ç»„
 	 */
 	public void setItems(int[] item) {
 		int[] items = new int[days.length];

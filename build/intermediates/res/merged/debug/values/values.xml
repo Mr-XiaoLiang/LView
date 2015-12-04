@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/D:/Android/AndroidGit/LView/res/values/attrs.xml -->
+    <eat-comment/>
+    <attr format="color" name="background_color"/>
+    <attr format="color" name="text_color"/>
+    <!-- From: file:/D:/Android/AndroidGit/LView/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="ashen">#f4f4f4</color>
+    <color name="black">#000000</color>
+    <color name="gary">#f0f0f0</color>
+    <color name="gary2">#666666</color>
+    <color name="green">#70d29c</color>
+    <color name="no_color">#0000</color>
+    <color name="red">#FF0000</color>
+    <color name="translucence">#30000000</color>
+    <color name="white">#FFFFFF</color>
+    <declare-styleable name="calendarview"><attr name="background_color"/><attr name="text_color"/><attr format="color" name="weeks_color"/><attr format="color" name="selected_color"/><attr format="color" name="today_color"/><attr format="integer" name="year"/><attr format="integer" name="month"/><attr format="integer" name="today"/><attr format="integer" name="selected"/></declare-styleable>
+    <declare-styleable name="clockview"><attr name="type"><enum name="hours" value="0"/><enum name="minutes" value="1"/></attr><attr format="color" name="border_color"/><attr name="text_color"/><attr format="dimension" name="border_width"/><attr format="color" name="dial_color"/><attr name="background_color"/><attr format="dimension" name="text_size"/><attr format="color" name="pointer_color"/><attr format="reference" name="background_image"/><attr format="color" name="text_color_un"/><attr format="color" name="scale_color"/></declare-styleable>
+    <declare-styleable name="roundedimageview"><attr format="dimension" name="border_thickness"/><attr format="color" name="border_inside_color"/><attr format="color" name="border_outside_color"/></declare-styleable>
+    <!-- From: file:/D:/Android/AndroidGit/LView/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="dimen_10">10sp</dimen>
+    <dimen name="dimen_12">12sp</dimen>
+    <dimen name="dimen_15">15sp</dimen>
+    <dimen name="dimen_20">20sp</dimen>
+    <dimen name="dimen_25">25sp</dimen>
+    <dimen name="dimen_5">5sp</dimen>
+    <!-- From: file:/D:/Android/AndroidGit/LView/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">我的View</string>
+    <!-- From: file:/D:/Android/AndroidGit/LView/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

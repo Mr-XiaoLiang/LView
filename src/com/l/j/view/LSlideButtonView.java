@@ -12,106 +12,106 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * »¬¶¯¿ª¹Ø
- * 
- * @author LiuJ Ò»¸ö¼àÌıµã»÷ºÍ»¬¶¯Ê±¼äµÄ°´Å¥ »¬¶¯Ê±,±³¾°ÑÕÉ«Ëæ×Å»¬¶¯µÄ¾àÀë±äÉî
+ * æ»‘åŠ¨å¼€å…³
+ *
+ * @author LiuJ ä¸€ä¸ªç›‘å¬ç‚¹å‡»å’Œæ»‘åŠ¨æ—¶é—´çš„æŒ‰é’® æ»‘åŠ¨æ—¶,èƒŒæ™¯é¢œè‰²éšç€æ»‘åŠ¨çš„è·ç¦»å˜æ·±
  */
 public class LSlideButtonView extends View {
 	/**
-	 * ¹Ø±Õ×´Ì¬µÄ±³¾°É«
+	 * å…³é—­çŠ¶æ€çš„èƒŒæ™¯è‰²
 	 */
 	private int offColor = Color.parseColor("#d7f6e5");
 	/**
-	 * ´ò¿ª×´Ì¬µÄ±³¾°É«
+	 * æ‰“å¼€çŠ¶æ€çš„èƒŒæ™¯è‰²
 	 */
 	private int onColor = Color.parseColor("#6eda9e");
 	/**
-	 * °´Å¥ÑÕÉ«
+	 * æŒ‰é’®é¢œè‰²
 	 */
 	private int btnColor = Color.parseColor("#3fc279");
 	/**
-	 * ÒõÓ°»­±Ê
+	 * é˜´å½±ç”»ç¬”
 	 */
 	private Paint shadowPaint;
-	
+
 	/**
-	 * µ¥Î»ÑÕÉ«µÄÉ«Öµ(ÓÃÀ´¼ÆËãÑÕÉ«±ä»¯)
+	 * å•ä½é¢œè‰²çš„è‰²å€¼(ç”¨æ¥è®¡ç®—é¢œè‰²å˜åŒ–)
 	 */
 	private float unitRed;
 	/**
-	 * µ¥Î»ÑÕÉ«µÄÉ«Öµ(ÓÃÀ´¼ÆËãÑÕÉ«±ä»¯)
+	 * å•ä½é¢œè‰²çš„è‰²å€¼(ç”¨æ¥è®¡ç®—é¢œè‰²å˜åŒ–)
 	 */
 	private float unitBlue;
 	/**
-	 * µ¥Î»ÑÕÉ«µÄÉ«Öµ(ÓÃÀ´¼ÆËãÑÕÉ«±ä»¯)
+	 * å•ä½é¢œè‰²çš„è‰²å€¼(ç”¨æ¥è®¡ç®—é¢œè‰²å˜åŒ–)
 	 */
 	private float unitGreen;
 	/**
-	 * ÑÕÉ«µÄÉ«Öµ(ÓÃÀ´¼ÆËãÑÕÉ«±ä»¯)
+	 * é¢œè‰²çš„è‰²å€¼(ç”¨æ¥è®¡ç®—é¢œè‰²å˜åŒ–)
 	 */
 	private int red;
 	/**
-	 * ÑÕÉ«µÄÉ«Öµ(ÓÃÀ´¼ÆËãÑÕÉ«±ä»¯)
+	 * é¢œè‰²çš„è‰²å€¼(ç”¨æ¥è®¡ç®—é¢œè‰²å˜åŒ–)
 	 */
 	private int blue;
 	/**
-	 * ÑÕÉ«µÄÉ«Öµ(ÓÃÀ´¼ÆËãÑÕÉ«±ä»¯)
+	 * é¢œè‰²çš„è‰²å€¼(ç”¨æ¥è®¡ç®—é¢œè‰²å˜åŒ–)
 	 */
 	private int green;
 	/**
-	 * °´Å¥µÄ×´Ì¬
+	 * æŒ‰é’®çš„çŠ¶æ€
 	 */
 	private boolean type = false;
 	/**
-	 * ÊÇ·ñÊÖÖ¸ËÉ¿ª
+	 * æ˜¯å¦æ‰‹æŒ‡æ¾å¼€
 	 */
 	private boolean isTouchUp = true;
 	/**
-	 * ÊÖÖ¸°´ÏÂÊ±¼ä ÓÃÀ´ÅĞ¶ÏÊÖÖ¸ÊÂ¼şÀàĞÍ
+	 * æ‰‹æŒ‡æŒ‰ä¸‹æ—¶é—´ ç”¨æ¥åˆ¤æ–­æ‰‹æŒ‡äº‹ä»¶ç±»å‹
 	 */
 	private long downTime = 0;
 	/**
-	 * ÊÖÖ¸ËÉ¿ªÊ±¼ä ÓÃÀ´ÅĞ¶ÏÊÖÖ¸ÊÂ¼şÀàĞÍ
+	 * æ‰‹æŒ‡æ¾å¼€æ—¶é—´ ç”¨æ¥åˆ¤æ–­æ‰‹æŒ‡äº‹ä»¶ç±»å‹
 	 */
 	private long upTime = 0;
 	/**
-	 * X×ø±ê,ÓÃÀ´ÈÃ°´Å¥Õ³ÊÖ
+	 * Xåæ ‡,ç”¨æ¥è®©æŒ‰é’®ç²˜æ‰‹
 	 */
 	private int X = 0;
 	/**
-	 * ÎÄ×Ö»­±Ê
+	 * æ–‡å­—ç”»ç¬”
 	 */
 	private Paint textPaint;
 	/**
-	 * °´Å¥»­±Ê
+	 * æŒ‰é’®ç”»ç¬”
 	 */
 	private Paint btnPaint;
 	/**
-	 * ±³¾°»­±Ê
+	 * èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint bgPaint;
 	/**
-	 * »­²¼¿í¶È ÓÃÀ´ÈÃ°´Å¥¾ÓÖĞ
+	 * ç”»å¸ƒå®½åº¦ ç”¨æ¥è®©æŒ‰é’®å±…ä¸­
 	 */
 	private int width;
 	/**
-	 * »­²¼¸ß¶È, ÓÃÀ´ÈÃ°´Å¥¾ÓÖĞ
+	 * ç”»å¸ƒé«˜åº¦, ç”¨æ¥è®©æŒ‰é’®å±…ä¸­
 	 */
 	private int height;
 	/**
-	 * °´Å¥°ë¾¶
+	 * æŒ‰é’®åŠå¾„
 	 */
 	private int radius;
 	/**
-	 * µ¥Î»¿ç¶È
+	 * å•ä½è·¨åº¦
 	 */
 	private int index = 0;
 	/**
-	 * »Øµ÷¼àÌı
+	 * å›è°ƒç›‘å¬
 	 */
 	private SlideButtonViewListener lis;
 	/**
-	 * ½Ç¶È
+	 * è§’åº¦
 	 */
 	private float angle = 0;
 
@@ -137,7 +137,7 @@ public class LSlideButtonView extends View {
 		shadowPaint.setStyle(Paint.Style.FILL);
 		shadowPaint.setColor(Color.GRAY);
 		shadowPaint.setAlpha(128);
-		
+
 		red = Color.red(offColor);
 		blue = Color.blue(offColor);
 		green = Color.green(offColor);
@@ -150,14 +150,14 @@ public class LSlideButtonView extends View {
 		width = getWidth();
 		height = getHeight();
 		/**
-		 * ¼ÆËã³ß´ç,ÈÃ°´Å¥ÔÚÈÎºÎÇé¿öÏÂ²»±äĞÎ
+		 * è®¡ç®—å°ºå¯¸,è®©æŒ‰é’®åœ¨ä»»ä½•æƒ…å†µä¸‹ä¸å˜å½¢
 		 */
 		if (width > height * 2) {
 			radius = height / 2;
 		} else {
 			radius = width / 4;
 		}
-		//ÕâÊÇ¼ÓÒõÓ°µÄËã·¨½ÃÕı
+		//è¿™æ˜¯åŠ é˜´å½±çš„ç®—æ³•çŸ«æ­£
 //		radius*=0.9;
 		if (X == 0) {
 			X = width / 2 - radius;
@@ -166,12 +166,12 @@ public class LSlideButtonView extends View {
 		calculateUnitColor();
 		drawBg(canvas);
 		drawButton(canvas);
-		// °ÑÃ»ÓĞÅÜÍêµÄÅÜÍê
+		// æŠŠæ²¡æœ‰è·‘å®Œçš„è·‘å®Œ
 		if (isTouchUp) {
 			if (type) {
 				if (X < (width / 2 + radius)) {
 					X += index;
-					// ·ÀÖ¹ÅÜ¹ıÍ·
+					// é˜²æ­¢è·‘è¿‡å¤´
 					if (X > (width / 2 + radius)) {
 						X = (width / 2 + radius);
 					}
@@ -180,7 +180,7 @@ public class LSlideButtonView extends View {
 			} else {
 				if (X > (width / 2 - radius)) {
 					X -= index;
-					// ·ÀÖ¹ÅÜ¹ıÍ·
+					// é˜²æ­¢è·‘è¿‡å¤´
 					if (X < (width / 2 - radius)) {
 						X = (width / 2 - radius);
 					}
@@ -200,26 +200,26 @@ public class LSlideButtonView extends View {
 			angle = 720;
 		}
 	}
-	
+
 	/**
-	 * ¼ÆËãµ±Ç°±³¾°É«Öµ
+	 * è®¡ç®—å½“å‰èƒŒæ™¯è‰²å€¼
 	 */
 	private void drawBg(Canvas canvas) {
 		int index = X - width / 2 + radius;
 		bgPaint.setColor(Color.rgb(red - (int) (index * unitRed), green
 				- (int) (index * unitGreen), blue - (int) (index * unitBlue)));
-		// °´Å¥Í»³ö
+		// æŒ‰é’®çªå‡º
 		RectF rect = new RectF(width / 2 - radius * 2, height / 2 - radius*0.7f,
 				width / 2 + radius * 2, height / 2 + radius*0.7f);
 		canvas.drawRoundRect(rect, radius*0.7f, radius*0.7f, bgPaint);
-		// °´Å¥È«°ü
+		// æŒ‰é’®å…¨åŒ…
 //		 RectF rect = new RectF(width / 2 - radius * 2, height / 2 - radius,
 //		 width / 2 + radius * 2, height / 2+radius);
 //		 canvas.drawRoundRect(rect, radius, radius, bgPaint);
 	}
 
 	private void drawButton(Canvas canvas) {
-		//»­ÒõÓ°
+		//ç”»é˜´å½±
 //		canvas.drawCircle(X+radius*0.1f, height / 2+radius*0.1f, radius, shadowPaint);
 		float t = 2 * radius * 0.5f / radius;
 		getAngle();
@@ -240,7 +240,7 @@ public class LSlideButtonView extends View {
 	}
 
 	/**
-	 * µ¥Î»ÑÕÉ«¼ÆËã ±£Ö¤ÑÕÉ«½¥±äµÄË³»¬
+	 * å•ä½é¢œè‰²è®¡ç®— ä¿è¯é¢œè‰²æ¸å˜çš„é¡ºæ»‘
 	 */
 	private void calculateUnitColor() {
 		float startRed = Color.red(offColor);
@@ -264,32 +264,32 @@ public class LSlideButtonView extends View {
 			X = (width / 2 + radius);
 		}
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			downTime = System.currentTimeMillis();
-			isTouchUp = false;
-			break;
-		case MotionEvent.ACTION_UP:
-			upTime = System.currentTimeMillis();
-			isTouchUp = true;
-			if (upTime - downTime <= 300) {
-				if (type) {
-					type = false;
+			case MotionEvent.ACTION_DOWN:
+				downTime = System.currentTimeMillis();
+				isTouchUp = false;
+				break;
+			case MotionEvent.ACTION_UP:
+				upTime = System.currentTimeMillis();
+				isTouchUp = true;
+				if (upTime - downTime <= 300) {
+					if (type) {
+						type = false;
+					} else {
+						type = true;
+					}
 				} else {
-					type = true;
+					if (X > width / 2) {
+						type = true;
+					} else {
+						type = false;
+					}
 				}
-			} else {
-				if (X > width / 2) {
-					type = true;
-				} else {
-					type = false;
+				if (lis != null) {
+					lis.SlideButtonOnClick(this, type);
 				}
-			}
-			if (lis != null) {
-				lis.SlideButtonOnClick(this, type);
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 		invalidate();
 		return true;
@@ -304,19 +304,19 @@ public class LSlideButtonView extends View {
 	}
 
 	/**
-	 * »¬¶¯°´Å¥µÄµã»÷ÊÂ¼ş
-	 * 
+	 * æ»‘åŠ¨æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶
+	 *
 	 * @author LiuJ
 	 *
 	 */
 	public interface SlideButtonViewListener {
 		public void SlideButtonOnClick(LSlideButtonView SlideButtonView,
-				boolean isOpen);
+									   boolean isOpen);
 	}
 
 	/**
-	 * ÉèÖÃ¼àÌıÆ÷
-	 * 
+	 * è®¾ç½®ç›‘å¬å™¨
+	 *
 	 * @param lis
 	 */
 	public void setOnSlideListener(SlideButtonViewListener lis) {
@@ -324,8 +324,8 @@ public class LSlideButtonView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÊÇ·ñ´ò¿ª
-	 * 
+	 * è®¾ç½®æ˜¯å¦æ‰“å¼€
+	 *
 	 * @param type
 	 */
 	public void setOpen(boolean type) {
@@ -333,8 +333,8 @@ public class LSlideButtonView extends View {
 	}
 
 	/**
-	 * ÊÇ·ñÒÑ´ò¿ª
-	 * 
+	 * æ˜¯å¦å·²æ‰“å¼€
+	 *
 	 * @return
 	 */
 	public boolean isOpen() {

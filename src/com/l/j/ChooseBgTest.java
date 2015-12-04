@@ -1,6 +1,5 @@
 package com.l.j;
 
-import com.example.mytest.R;
 import com.l.j.view.LChooseBgView;
 import com.l.j.view.LChooseBgView.ChooseBgViewListener;
 
@@ -11,8 +10,8 @@ import android.widget.Toast;
 
 public class ChooseBgTest extends Activity {
 
-	private LChooseBgView c; 
-	
+	private LChooseBgView c;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,14 +19,14 @@ public class ChooseBgTest extends Activity {
 		c = (LChooseBgView) findViewById(R.id.c);
 		Intent intent = getIntent();
 		c.setStyle(intent.getBooleanExtra("type", true));
-		c.setLeftName("◊Û±ﬂ");
-		c.setRightName("”“±ﬂ");
+		c.setLeftName("Â∑¶Ëæπ");
+		c.setRightName("Âè≥Ëæπ");
 		c.setChooseBgViewListener(new ChooseBgViewListener() {
 			@Override
 			public void onChooseViewClick(boolean isLeft) {
-				Toast.makeText(ChooseBgTest.this, isLeft?"◊Û":"”“", Toast.LENGTH_SHORT).show();
+				Toast.makeText(ChooseBgTest.this, isLeft?"Â∑¶":"Âè≥", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
-	
+
 }

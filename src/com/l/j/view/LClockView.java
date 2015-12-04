@@ -1,5 +1,7 @@
 package com.l.j.view;
 
+import com.l.j.R;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -19,181 +21,179 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.mytest.R;
-
 /**
- * ±íÅÌÑùÊ½µÄÊ±¼äÑ¡ÔñÆ÷
- * 
+ * è¡¨ç›˜æ ·å¼çš„æ—¶é—´é€‰æ‹©å™¨
+ *
  * @author Liuj
  *
  */
 public class LClockView extends View {
 
-	/*-------------------------³£Á¿ÉùÃ÷¿ªÊ¼-------------------------------*/
+	/*-------------------------å¸¸é‡å£°æ˜å¼€å§‹-------------------------------*/
 	/**
-	 * Ğ¡Ê±
+	 * å°æ—¶
 	 */
 	public static final int TYPE_HOURS = 0;
 	/**
-	 * ·ÖÖÓ(ÃëÍ¬ÓÃ)
+	 * åˆ†é’Ÿ(ç§’åŒç”¨)
 	 */
 	public static final int TYPE_MINUTES = 1;
-	/*-------------------------³£Á¿ÉùÃ÷½áÊø-------------------------------*/
+	/*-------------------------å¸¸é‡å£°æ˜ç»“æŸ-------------------------------*/
 
-	/*-------------------------±äÁ¿ÉùÃ÷¿ªÊ¼-------------------------------*/
+	/*-------------------------å˜é‡å£°æ˜å¼€å§‹-------------------------------*/
 	/**
-	 * ¿í¶È
+	 * å®½åº¦
 	 */
 	private float width;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private float height;
 	/**
-	 * °ë¾¶
+	 * åŠå¾„
 	 */
 	private float radius;
 	/**
-	 * Ê±ÖÓÀàĞÍ
+	 * æ—¶é’Ÿç±»å‹
 	 */
 	private int type;
 	/**
-	 * Ğ¡Ê±Êı×é
+	 * å°æ—¶æ•°ç»„
 	 */
 	private int[] hoursItems;
 	/**
-	 * ·ÖÖÓÊı×é
+	 * åˆ†é’Ÿæ•°ç»„
 	 */
 	private int[] minutesItems;
 	/**
-	 * ±ß¿òÑÕÉ«
+	 * è¾¹æ¡†é¢œè‰²
 	 */
 	private int borderColor;
 	/**
-	 * ±³¾°É«
+	 * èƒŒæ™¯è‰²
 	 */
 	private int backgroundColor;
 	/**
-	 * ±íÅÌÑÕÉ«
+	 * è¡¨ç›˜é¢œè‰²
 	 */
 	private int dialColor;
 	/**
-	 * ±ß¿ò¿í¶È
+	 * è¾¹æ¡†å®½åº¦
 	 */
 	private float borderWidth;
 	/**
-	 * ×ÖÌå´óĞ¡
+	 * å­—ä½“å¤§å°
 	 */
 	private float textSize;
 	/**
-	 * ×ÖÌåÑÕÉ«
+	 * å­—ä½“é¢œè‰²
 	 */
 	private int textColor;
 	/**
-	 * ±³¾°Í¼Æ¬
+	 * èƒŒæ™¯å›¾ç‰‡
 	 */
 	private int dialImage;
 	/**
-	 * Ö¸ÕëÑÕÉ«
+	 * æŒ‡é’ˆé¢œè‰²
 	 */
 	private int pointerColor;
 	/**
-	 * ²»¿ÉÓÃ×ÖÌåÑÕÉ«
+	 * ä¸å¯ç”¨å­—ä½“é¢œè‰²
 	 */
 	private int textColorForUn;
 	/**
-	 * ¿Ì¶ÈÑÕÉ«
+	 * åˆ»åº¦é¢œè‰²
 	 */
 	private int scaleColor;
 	/**
-	 * Ö¸Õë½Ç¶È
+	 * æŒ‡é’ˆè§’åº¦
 	 */
 	private double pointerAngle = 0f;
 	/**
-	 * ÒÑÑ¡ÖĞ
+	 * å·²é€‰ä¸­
 	 */
 	private int selected = 0;
 	/**
-	 * ÒÑÑ¡ÖĞÑÕÉ«
+	 * å·²é€‰ä¸­é¢œè‰²
 	 */
 	private int selectedColor;
 	/**
-	 * ÒÑÑ¡ÖĞ
+	 * å·²é€‰ä¸­
 	 */
 	private int realSelected = 0;
 	/**
-	 * Ö¸Õë½Ç¶È
+	 * æŒ‡é’ˆè§’åº¦
 	 */
 	private double realPointerAngle = 0f;
 	/**
-	 * ÒÔÑ¡ÖĞ»­±Ê
+	 * ä»¥é€‰ä¸­ç”»ç¬”
 	 */
 	private Paint selectedPaint;
 	/**
-	 * ÎÄ×Ö»­±Ê
+	 * æ–‡å­—ç”»ç¬”
 	 */
 	private Paint textPaint;
 	/**
-	 * ÄÚÈ¦ÎÄ×Ö»­±Ê
+	 * å†…åœˆæ–‡å­—ç”»ç¬”
 	 */
 	private Paint smallTextPaint;
 	/**
-	 * ÎÄ×Ö»­±Ê-- »ÒÉ«
+	 * æ–‡å­—ç”»ç¬”-- ç°è‰²
 	 */
 	private Paint textGaryPaint;
 	/**
-	 * ÄÚÈ¦ÎÄ×Ö»­±Ê-- »ÒÉ«
+	 * å†…åœˆæ–‡å­—ç”»ç¬”-- ç°è‰²
 	 */
 	private Paint smallTextGaryPaint;
 	/**
-	 * ±ß¿ò»­±Ê
+	 * è¾¹æ¡†ç”»ç¬”
 	 */
 	private Paint borderPaint;
 	/**
-	 * Ö¸Õë»­±Ê
+	 * æŒ‡é’ˆç”»ç¬”
 	 */
 	private Paint pointerPaint;
 	/**
-	 * ±³¾°»­±Ê
+	 * èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint backgroundPaint;
 	/**
-	 * ±íÅÌ»­±Ê
+	 * è¡¨ç›˜ç”»ç¬”
 	 */
 	private Paint dialPaint;
 	/**
-	 * ´ó¿Ì¶È»­±Ê
+	 * å¤§åˆ»åº¦ç”»ç¬”
 	 */
 	private Paint scaleBigPaint;
 	/**
-	 * Ğ¡¿Ì¶È»­±Ê
+	 * å°åˆ»åº¦ç”»ç¬”
 	 */
 	private Paint scaleSmallPaint;
 
 	/**
-	 * Ñ¡ÖĞÎÄ×Ö»­±Ê
+	 * é€‰ä¸­æ–‡å­—ç”»ç¬”
 	 */
 	private Paint selectedTextPaint;
 	/**
-	 * Ñ¡ÖĞÎÄ×Ö»­±Ê
+	 * é€‰ä¸­æ–‡å­—ç”»ç¬”
 	 */
 	private Paint selectedSmallTextPaint;
-	
-	/*-------------------------±äÁ¿ÉùÃ÷½áÊø-------------------------------*/
-	/*-------------------------»Øµ÷º¯ÊıÉùÃ÷¿ªÊ¼-------------------------------*/
+
+	/*-------------------------å˜é‡å£°æ˜ç»“æŸ-------------------------------*/
+	/*-------------------------å›è°ƒå‡½æ•°å£°æ˜å¼€å§‹-------------------------------*/
 	public interface ClockViewListener {
 		public void onClockChange(int t);
 	}
 	/**
-	 * »Øµ÷º¯Êı
+	 * å›è°ƒå‡½æ•°
 	 */
 	private ClockViewListener lis;
-	/*-------------------------»Øµ÷º¯ÊıÉùÃ÷¿ªÊ¼-------------------------------*/
-	/*-------------------------¹¹Ôì·½·¨¿ªÊ¼-------------------------------*/
+	/*-------------------------å›è°ƒå‡½æ•°å£°æ˜å¼€å§‹-------------------------------*/
+	/*-------------------------æ„é€ æ–¹æ³•å¼€å§‹-------------------------------*/
 	public LClockView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		/**
-		 * ±äÁ¿³õÊ¼»¯
+		 * å˜é‡åˆå§‹åŒ–
 		 */
 		type = TYPE_HOURS;
 		hoursItems = new int[24];
@@ -214,7 +214,7 @@ public class LClockView extends View {
 			minutesItems[i] = i;
 		}
 		/**
-		 * »ñµÃÎÒÃÇËù¶¨ÒåµÄ×Ô¶¨ÒåÑùÊ½ÊôĞÔ
+		 * è·å¾—æˆ‘ä»¬æ‰€å®šä¹‰çš„è‡ªå®šä¹‰æ ·å¼å±æ€§
 		 */
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
 				R.styleable.clockview, defStyleAttr, 0);
@@ -222,36 +222,36 @@ public class LClockView extends View {
 		for (int i = 0; i < n; i++) {
 			int attr = a.getIndex(i);
 			switch (attr) {
-			case R.styleable.clockview_background_color:
-				backgroundColor = a.getColor(attr, Color.TRANSPARENT);
-				break;
-			case R.styleable.clockview_background_image:
-				dialImage = a.getInt(attr, 0);
-				break;
-			case R.styleable.clockview_border_color:
-				borderColor = a.getColor(attr, Color.GRAY);
-				break;
-			case R.styleable.clockview_border_width:
-				borderWidth = a.getDimension(attr, 0);
-				break;
-			case R.styleable.clockview_dial_color:
-				dialColor = a.getColor(attr, Color.WHITE);
-				break;
-			case R.styleable.clockview_pointer_color:
-				pointerColor = a.getColor(attr, Color.RED);
-				break;
-			case R.styleable.clockview_scale_color:
-				scaleColor = a.getColor(attr, Color.BLACK);
-				break;
-			case R.styleable.clockview_text_color:
-				textColor = a.getColor(attr, Color.BLACK);
-				break;
-			case R.styleable.clockview_text_color_un:
-				textColorForUn = a.getColor(attr, Color.GRAY);
-				break;
-			case R.styleable.clockview_type:
-				type = a.getInt(attr, TYPE_HOURS);
-				break;
+				case R.styleable.clockview_background_color:
+					backgroundColor = a.getColor(attr, Color.TRANSPARENT);
+					break;
+				case R.styleable.clockview_background_image:
+					dialImage = a.getInt(attr, 0);
+					break;
+				case R.styleable.clockview_border_color:
+					borderColor = a.getColor(attr, Color.GRAY);
+					break;
+				case R.styleable.clockview_border_width:
+					borderWidth = a.getDimension(attr, 0);
+					break;
+				case R.styleable.clockview_dial_color:
+					dialColor = a.getColor(attr, Color.WHITE);
+					break;
+				case R.styleable.clockview_pointer_color:
+					pointerColor = a.getColor(attr, Color.RED);
+					break;
+				case R.styleable.clockview_scale_color:
+					scaleColor = a.getColor(attr, Color.BLACK);
+					break;
+				case R.styleable.clockview_text_color:
+					textColor = a.getColor(attr, Color.BLACK);
+					break;
+				case R.styleable.clockview_text_color_un:
+					textColorForUn = a.getColor(attr, Color.GRAY);
+					break;
+				case R.styleable.clockview_type:
+					type = a.getInt(attr, TYPE_HOURS);
+					break;
 
 			}
 		}
@@ -267,7 +267,7 @@ public class LClockView extends View {
 		this(context, null);
 	}
 
-	/*-------------------------¹¹Ôì·½·¨½áÊø-------------------------------*/
+	/*-------------------------æ„é€ æ–¹æ³•ç»“æŸ-------------------------------*/
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -289,33 +289,33 @@ public class LClockView extends View {
 			selectedSmallTextPaint.setTextSize(textSize / 2);
 		}
 		/**
-		 * »­ÊÓÍ¼±³¾°
+		 * ç”»è§†å›¾èƒŒæ™¯
 		 */
 		canvas.drawRect(0, 0, width, height, backgroundPaint);
 		/**
-		 * »­±³¾°É«
+		 * ç”»èƒŒæ™¯è‰²
 		 */
 		canvas.drawCircle(width / 2, height / 2, radius, dialPaint);
 		/**
-		 * »­±³¾°Í¼
+		 * ç”»èƒŒæ™¯å›¾
 		 */
 		if (dialImage > 0) {
 			Bitmap roundBitmap = getCroppedRoundBitmap();
 			canvas.drawBitmap(roundBitmap, width / 2 - radius, height / 2
 					- radius, null);
 		}
-		
+
 		float[] scale;
 		for (int i = 0; i < 60; i++) {
 			/**
-			 * »­Ğ¡¿Ì¶È
+			 * ç”»å°åˆ»åº¦
 			 */
 			scale = getSmallScale(i);
 			canvas.drawLine(scale[0], scale[1], scale[2], scale[3],
 					scaleSmallPaint);
 			if (i % 5 == 0) {
 				/**
-				 * »­´ó¿Ì¶È
+				 * ç”»å¤§åˆ»åº¦
 				 */
 				scale = getBigScale(i);
 				canvas.drawLine(scale[0], scale[1], scale[2], scale[3],
@@ -323,7 +323,7 @@ public class LClockView extends View {
 			}
 		}
 		/**
-		 * »­ÎÄ×Ö
+		 * ç”»æ–‡å­—
 		 */
 		FontMetrics fm = textPaint.getFontMetrics();
 		float textY = -fm.descent + (fm.descent - fm.ascent) / 2;
@@ -384,11 +384,11 @@ public class LClockView extends View {
 			}
 		}
 		/**
-		 * »­Ö¸ÕëĞ¡ºìµã
+		 * ç”»æŒ‡é’ˆå°çº¢ç‚¹
 		 */
-		 canvas.drawCircle(width / 2, height / 2, radius/20,pointerPaint );
+		canvas.drawCircle(width / 2, height / 2, radius/20,pointerPaint );
 		/**
-		 * »­Ö¸Õë
+		 * ç”»æŒ‡é’ˆ
 		 */
 		canvas.drawPath(getPointerLocation(), pointerPaint);
 		// scale = getPointerLocation();
@@ -397,65 +397,65 @@ public class LClockView extends View {
 		super.onDraw(canvas);
 	}
 
-	/*-------------------------²ÎÊıÉèÖÃ·½·¨¿ªÊ¼-------------------------------*/
+	/*-------------------------å‚æ•°è®¾ç½®æ–¹æ³•å¼€å§‹-------------------------------*/
 	/**
-	 * ÉèÖÃÑ¡ÔñÏî ÄãĞèÒªÏÈÈ·¶¨typeÀàĞÍ ´«ÈëÒ»¸öÑ¡ÔñÏîµÄÊı×é type Îª hoursÊ±,×î´óÖµÎª23,×îĞ¡ÖµÎª0 type Îª
-	 * minutesÊ±,×î´óÖµÎª59,×îĞ¡ÖµÎª0 ´«Èë·Ç·¨ÖµÔòÌø¹ı
+	 * è®¾ç½®é€‰æ‹©é¡¹ ä½ éœ€è¦å…ˆç¡®å®štypeç±»å‹ ä¼ å…¥ä¸€ä¸ªé€‰æ‹©é¡¹çš„æ•°ç»„ type ä¸º hoursæ—¶,æœ€å¤§å€¼ä¸º23,æœ€å°å€¼ä¸º0 type ä¸º
+	 * minutesæ—¶,æœ€å¤§å€¼ä¸º59,æœ€å°å€¼ä¸º0 ä¼ å…¥éæ³•å€¼åˆ™è·³è¿‡
 	 */
 	public void setItem(int[] items) {
 		switch (type) {
-		case TYPE_HOURS:
-			// Çå¿ÕĞ¡Ê±Êı×é
-			hoursItems = new int[24];
-			for (int i = 0; i < hoursItems.length; i++) {
-				hoursItems[i] = -1;
-			}
-			// ÉèÖÃĞ¡Ê±Êı×é
-			for (int i = 0; i < items.length; i++) {
-				if (items[i] < 24 && items[i] >= 0) {
-					hoursItems[items[i]] = 1;
+			case TYPE_HOURS:
+				// æ¸…ç©ºå°æ—¶æ•°ç»„
+				hoursItems = new int[24];
+				for (int i = 0; i < hoursItems.length; i++) {
+					hoursItems[i] = -1;
 				}
-			}
-			for (int i = 0; i < hoursItems.length; i++) {
-				if (hoursItems[i] > 0) {
-					selected = i;
-					realSelected = i;
-					realPointerAngle = i * 30;
-					pointerAngle = i * 30;
-					break;
+				// è®¾ç½®å°æ—¶æ•°ç»„
+				for (int i = 0; i < items.length; i++) {
+					if (items[i] < 24 && items[i] >= 0) {
+						hoursItems[items[i]] = 1;
+					}
 				}
-			}
-			break;
-		case TYPE_MINUTES:
-			// Çå¿Õ·ÖÖÓÊı×é
-			minutesItems = new int[60];
-			for (int i = 0; i < minutesItems.length; i++) {
-				minutesItems[i] = -1;
-			}
-			// ÉèÖÃ·ÖÖÓÊı×é
-			for (int i = 0; i < items.length; i++) {
-				if (items[i] < 60 && items[i] >= 0) {
-					minutesItems[items[i]] = 1;
+				for (int i = 0; i < hoursItems.length; i++) {
+					if (hoursItems[i] > 0) {
+						selected = i;
+						realSelected = i;
+						realPointerAngle = i * 30;
+						pointerAngle = i * 30;
+						break;
+					}
 				}
-			}
-			for (int i = 0; i < minutesItems.length; i++) {
-				if (minutesItems[i] > 0) {
-					selected = i;
-					realSelected = i;
-					realPointerAngle = i * 6;
-					pointerAngle = i * 6;
-					break;
+				break;
+			case TYPE_MINUTES:
+				// æ¸…ç©ºåˆ†é’Ÿæ•°ç»„
+				minutesItems = new int[60];
+				for (int i = 0; i < minutesItems.length; i++) {
+					minutesItems[i] = -1;
 				}
-			}
-			break;
+				// è®¾ç½®åˆ†é’Ÿæ•°ç»„
+				for (int i = 0; i < items.length; i++) {
+					if (items[i] < 60 && items[i] >= 0) {
+						minutesItems[items[i]] = 1;
+					}
+				}
+				for (int i = 0; i < minutesItems.length; i++) {
+					if (minutesItems[i] > 0) {
+						selected = i;
+						realSelected = i;
+						realPointerAngle = i * 6;
+						pointerAngle = i * 6;
+						break;
+					}
+				}
+				break;
 		}
 		invalidate();
 	}
 
 	/**
-	 * ÉèÖÃÑ¡ÔñÏî ÄãĞèÒªÏÈÈ·¶¨typeÀàĞÍ type Îª hoursÊ±,×î´óÖµÎª23,×îĞ¡ÖµÎª0 type Îª
-	 * minutesÊ±,×î´óÖµÎª59,×îĞ¡ÖµÎª0 ´«ÈëÑ¡ÔñÏîµÄÇø¼ä
-	 * 
+	 * è®¾ç½®é€‰æ‹©é¡¹ ä½ éœ€è¦å…ˆç¡®å®štypeç±»å‹ type ä¸º hoursæ—¶,æœ€å¤§å€¼ä¸º23,æœ€å°å€¼ä¸º0 type ä¸º
+	 * minutesæ—¶,æœ€å¤§å€¼ä¸º59,æœ€å°å€¼ä¸º0 ä¼ å…¥é€‰æ‹©é¡¹çš„åŒºé—´
+	 *
 	 * @param min
 	 * @param max
 	 */
@@ -464,57 +464,57 @@ public class LClockView extends View {
 			min = 0;
 		}
 		switch (type) {
-		case TYPE_HOURS:
-			if (max > 23) {
-				max = 23;
-			}
-			// Çå¿ÕĞ¡Ê±Êı×é
-			hoursItems = new int[24];
-			for (int i = 0; i < hoursItems.length; i++) {
-				hoursItems[i] = -1;
-			}
-			for (int i = min; i <= max; i++) {
-				hoursItems[i] = 1;
-			}
-			for (int i = 0; i < hoursItems.length; i++) {
-				if (hoursItems[i] > 0) {
-					selected = i;
-					realSelected = i;
-					realPointerAngle = i * 30;
-					pointerAngle = i * 30;
-					break;
+			case TYPE_HOURS:
+				if (max > 23) {
+					max = 23;
 				}
-			}
-			break;
-		case TYPE_MINUTES:
-			if (max > 59) {
-				max = 59;
-			}
-			// Çå¿Õ·ÖÖÓÊı×é
-			minutesItems = new int[60];
-			for (int i = 0; i < minutesItems.length; i++) {
-				minutesItems[i] = -1;
-			}
-			for (int i = min; i <= max; i++) {
-				minutesItems[i] = 1;
-			}
-			for (int i = 0; i < minutesItems.length; i++) {
-				if (minutesItems[i] > 0) {
-					selected = i;
-					realSelected = i;
-					realPointerAngle = i * 6;
-					pointerAngle = i * 6;
-					break;
+				// æ¸…ç©ºå°æ—¶æ•°ç»„
+				hoursItems = new int[24];
+				for (int i = 0; i < hoursItems.length; i++) {
+					hoursItems[i] = -1;
 				}
-			}
-			break;
+				for (int i = min; i <= max; i++) {
+					hoursItems[i] = 1;
+				}
+				for (int i = 0; i < hoursItems.length; i++) {
+					if (hoursItems[i] > 0) {
+						selected = i;
+						realSelected = i;
+						realPointerAngle = i * 30;
+						pointerAngle = i * 30;
+						break;
+					}
+				}
+				break;
+			case TYPE_MINUTES:
+				if (max > 59) {
+					max = 59;
+				}
+				// æ¸…ç©ºåˆ†é’Ÿæ•°ç»„
+				minutesItems = new int[60];
+				for (int i = 0; i < minutesItems.length; i++) {
+					minutesItems[i] = -1;
+				}
+				for (int i = min; i <= max; i++) {
+					minutesItems[i] = 1;
+				}
+				for (int i = 0; i < minutesItems.length; i++) {
+					if (minutesItems[i] > 0) {
+						selected = i;
+						realSelected = i;
+						realPointerAngle = i * 6;
+						pointerAngle = i * 6;
+						break;
+					}
+				}
+				break;
 		}
 		invalidate();
 	}
 
 	/**
-	 * »ñÈ¡ÀàĞÍ
-	 * 
+	 * è·å–ç±»å‹
+	 *
 	 * @return
 	 */
 	public int getType() {
@@ -522,10 +522,10 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÀàĞÍ(Ğ¡Ê±ÖÆ,·ÖÖÓÖÆ)
-	 * 
+	 * è®¾ç½®ç±»å‹(å°æ—¶åˆ¶,åˆ†é’Ÿåˆ¶)
+	 *
 	 * @param type
-	 *            Ğ¡Ê± TYPE_HOURS ·ÖÖÓ(ÃëÍ¬ÓÃ) TYPE_MINUTES
+	 *            å°æ—¶ TYPE_HOURS åˆ†é’Ÿ(ç§’åŒç”¨) TYPE_MINUTES
 	 */
 	public void setType(int type) {
 		this.type = type;
@@ -533,8 +533,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡±ß¿òÑÕÉ«
-	 * 
+	 * è·å–è¾¹æ¡†é¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getBorderColor() {
@@ -542,8 +542,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±ß¿òÑÕÉ«
-	 * 
+	 * è®¾ç½®è¾¹æ¡†é¢œè‰²
+	 *
 	 * @param borderColor
 	 */
 	public void setBorderColor(int borderColor) {
@@ -552,8 +552,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡±³¾°É«
-	 * 
+	 * è·å–èƒŒæ™¯è‰²
+	 *
 	 * @return
 	 */
 	public int getBackgroundColor() {
@@ -561,7 +561,7 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±³¾°É«
+	 * è®¾ç½®èƒŒæ™¯è‰²
 	 */
 	public void setBackgroundColor(int backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -569,8 +569,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡±íÅÌÑÕÉ«
-	 * 
+	 * è·å–è¡¨ç›˜é¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getDialColor() {
@@ -578,8 +578,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±íÅÌÑÕÉ«
-	 * 
+	 * è®¾ç½®è¡¨ç›˜é¢œè‰²
+	 *
 	 * @param dialColor
 	 */
 	public void setDialColor(int dialColor) {
@@ -588,8 +588,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡±íÅÌÃè±ß¿í¶È
-	 * 
+	 * è·å–è¡¨ç›˜æè¾¹å®½åº¦
+	 *
 	 * @return
 	 */
 	public float getDialWidth() {
@@ -597,8 +597,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±íÅÌÃè±ß¿í¶È
-	 * 
+	 * è®¾ç½®è¡¨ç›˜æè¾¹å®½åº¦
+	 *
 	 * @param dialWidth
 	 */
 	public void setDialWidth(float dialWidth) {
@@ -607,8 +607,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡×ÖÌå´óĞ¡
-	 * 
+	 * è·å–å­—ä½“å¤§å°
+	 *
 	 * @return
 	 */
 	public float getTextSize() {
@@ -616,8 +616,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ×ÖÌå´óĞ¡,´Ë´¦Éè¶¨Îª±ê×¼×ÖÌå,Á½ÔÑµÄÊ±ºòÄÚÈ¦×ÖÌå»á×Ô¶¯ËõĞ¡
-	 * 
+	 * è®¾ç½®å­—ä½“å¤§å°,æ­¤å¤„è®¾å®šä¸ºæ ‡å‡†å­—ä½“,ä¸¤åŒçš„æ—¶å€™å†…åœˆå­—ä½“ä¼šè‡ªåŠ¨ç¼©å°
+	 *
 	 * @param textSize
 	 */
 	public void setTextSize(float textSize) {
@@ -626,8 +626,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡×ÖÌåÑÕÉ«
-	 * 
+	 * è·å–å­—ä½“é¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getTextColor() {
@@ -635,10 +635,10 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ×ÖÌåÑÕÉ«
-	 * 
+	 * è®¾ç½®å­—ä½“é¢œè‰²
+	 *
 	 * @param textColor
-	 *            µ±Êı×Ö²»¿ÉÓÃ±íÏÖÎª»ÒÉ«,Èç¹ûÉèÖÃ»ÒÉ«»áµ¼ÖÂÇø·Ö²»Çå
+	 *            å½“æ•°å­—ä¸å¯ç”¨è¡¨ç°ä¸ºç°è‰²,å¦‚æœè®¾ç½®ç°è‰²ä¼šå¯¼è‡´åŒºåˆ†ä¸æ¸…
 	 */
 	public void setTextColor(int textColor) {
 		this.textColor = textColor;
@@ -646,8 +646,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡±³¾°ÑÕÉ«
-	 * 
+	 * è·å–èƒŒæ™¯é¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getBackgroundImage() {
@@ -655,8 +655,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±³¾°ÑÕÉ«
-	 * 
+	 * è®¾ç½®èƒŒæ™¯é¢œè‰²
+	 *
 	 * @param backgroundImage
 	 */
 	public void setBackgroundImage(int backgroundImage) {
@@ -665,8 +665,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡²»¿ÉÓÃµÄ×ÖÌåµÄÑÕÉ«
-	 * 
+	 * è·å–ä¸å¯ç”¨çš„å­—ä½“çš„é¢œè‰²
+	 *
 	 * @return
 	 */
 	public int getTextColorForUn() {
@@ -674,54 +674,54 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ²»¿ÉÓÃ×ÖÌåµÄÑÕÉ«
-	 * 
+	 * è®¾ç½®ä¸å¯ç”¨å­—ä½“çš„é¢œè‰²
+	 *
 	 * @param textColorForUn
 	 */
 	public void setTextColorForUn(int textColorForUn) {
 		this.textColorForUn = textColorForUn;
 	}
 	/**
-	 * »ñÈ¡»Øµ÷¼àÌı
+	 * è·å–å›è°ƒç›‘å¬
 	 * @return
 	 */
 	public ClockViewListener getClockViewListener() {
 		return lis;
 	}
 	/**
-	 * ÉèÖÃ»Øµ÷¼àÌı
+	 * è®¾ç½®å›è°ƒç›‘å¬
 	 * @param lis
 	 */
 	public void setClockViewListener(ClockViewListener lis) {
 		this.lis = lis;
 	}
 
-	/*-------------------------²ÎÊıÉèÖÃ·½·¨½áÊø-------------------------------*/
+	/*-------------------------å‚æ•°è®¾ç½®æ–¹æ³•ç»“æŸ-------------------------------*/
 	/**
-	 * »ñÈ¡²Ã¼ôºóµÄÔ²ĞÎÍ¼Æ¬
-	 * 
+	 * è·å–è£å‰ªåçš„åœ†å½¢å›¾ç‰‡
+	 *
 	 * @param radius
-	 *            °ë¾¶
+	 *            åŠå¾„
 	 */
 	private Bitmap getCroppedRoundBitmap() {
 		Bitmap scaledSrcBmp;
 		int diameter = (int) (radius * 2);
 		Resources res = getResources();
 		Bitmap bmp = BitmapFactory.decodeResource(res, dialImage);
-		// ÎªÁË·ÀÖ¹¿í¸ß²»ÏàµÈ£¬Ôì³ÉÔ²ĞÎÍ¼Æ¬±äĞÎ£¬Òò´Ë½ØÈ¡³¤·½ĞÎÖĞ´¦ÓÚÖĞ¼äÎ»ÖÃ×î´óµÄÕı·½ĞÎÍ¼Æ¬
+		// ä¸ºäº†é˜²æ­¢å®½é«˜ä¸ç›¸ç­‰ï¼Œé€ æˆåœ†å½¢å›¾ç‰‡å˜å½¢ï¼Œå› æ­¤æˆªå–é•¿æ–¹å½¢ä¸­å¤„äºä¸­é—´ä½ç½®æœ€å¤§çš„æ­£æ–¹å½¢å›¾ç‰‡
 		int bmpWidth = bmp.getWidth();
 		int bmpHeight = bmp.getHeight();
 		int squareWidth = 0, squareHeight = 0;
 		int x = 0, y = 0;
 		Bitmap squareBitmap;
-		if (bmpHeight > bmpWidth) {// ¸ß´óÓÚ¿í
+		if (bmpHeight > bmpWidth) {// é«˜å¤§äºå®½
 			squareWidth = squareHeight = bmpWidth;
 			x = 0;
 			y = (bmpHeight - bmpWidth) / 2;
-			// ½ØÈ¡Õı·½ĞÎÍ¼Æ¬
+			// æˆªå–æ­£æ–¹å½¢å›¾ç‰‡
 			squareBitmap = Bitmap.createBitmap(bmp, x, y, squareWidth,
 					squareHeight);
-		} else if (bmpHeight < bmpWidth) {// ¿í´óÓÚ¸ß
+		} else if (bmpHeight < bmpWidth) {// å®½å¤§äºé«˜
 			squareWidth = squareHeight = bmpHeight;
 			x = (bmpWidth - bmpHeight) / 2;
 			y = 0;
@@ -756,7 +756,7 @@ public class LClockView extends View {
 				paint);
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(scaledSrcBmp, rect, rect, paint);
-		// bitmap»ØÊÕ(recycleµ¼ÖÂÔÚ²¼¾ÖÎÄ¼şXML¿´²»µ½Ğ§¹û)
+		// bitmapå›æ”¶(recycleå¯¼è‡´åœ¨å¸ƒå±€æ–‡ä»¶XMLçœ‹ä¸åˆ°æ•ˆæœ)
 		// bmp.recycle();
 		// squareBitmap.recycle();
 		// scaledSrcBmp.recycle();
@@ -768,7 +768,7 @@ public class LClockView extends View {
 
 	private void init() {
 		/**
-		 * ÎÄ×Ö»­±Ê
+		 * æ–‡å­—ç”»ç¬”
 		 */
 		textPaint = new Paint();
 		textPaint.setColor(textColor);
@@ -776,7 +776,7 @@ public class LClockView extends View {
 		textPaint.setAntiAlias(true);
 		textPaint.setTextAlign(Align.CENTER);
 		/**
-		 * Ğ¡ÎÄ×Ö»­±Ê
+		 * å°æ–‡å­—ç”»ç¬”
 		 */
 		smallTextPaint = new Paint();
 		smallTextPaint.setColor(textColor);
@@ -784,7 +784,7 @@ public class LClockView extends View {
 		smallTextPaint.setAntiAlias(true);
 		smallTextPaint.setTextAlign(Align.CENTER);
 		/**
-		 * ÎÄ×Ö»­±Ê-- »ÒÉ«
+		 * æ–‡å­—ç”»ç¬”-- ç°è‰²
 		 */
 		textGaryPaint = new Paint();
 		textGaryPaint.setColor(textColorForUn);
@@ -792,7 +792,7 @@ public class LClockView extends View {
 		textGaryPaint.setAntiAlias(true);
 		textGaryPaint.setTextAlign(Align.CENTER);
 		/**
-		 * ÄÚÈ¦ÎÄ×Ö»­±Ê-- »ÒÉ«
+		 * å†…åœˆæ–‡å­—ç”»ç¬”-- ç°è‰²
 		 */
 		smallTextGaryPaint = new Paint();
 		smallTextGaryPaint.setColor(textColorForUn);
@@ -800,53 +800,53 @@ public class LClockView extends View {
 		smallTextGaryPaint.setAntiAlias(true);
 		smallTextGaryPaint.setTextAlign(Align.CENTER);
 		/**
-		 * ±ß¿ò»­±Ê
+		 * è¾¹æ¡†ç”»ç¬”
 		 */
 		borderPaint = new Paint();
 		borderPaint.setColor(borderColor);
 		borderPaint.setAntiAlias(true);
 		borderPaint.setStrokeWidth(borderWidth);
 		/**
-		 * Ö¸Õë»­±Ê
+		 * æŒ‡é’ˆç”»ç¬”
 		 */
 		pointerPaint = new Paint();
 		pointerPaint.setAntiAlias(true);
 		pointerPaint.setColor(pointerColor);
 		pointerPaint.setStyle(Paint.Style.FILL);
 		/**
-		 * ±³¾°»­±Ê
+		 * èƒŒæ™¯ç”»ç¬”
 		 */
 		backgroundPaint = new Paint();
 		backgroundPaint.setAntiAlias(true);
 		backgroundPaint.setColor(backgroundColor);
 		/**
-		 * ±íÅÌ»­±Ê
+		 * è¡¨ç›˜ç”»ç¬”
 		 */
 		dialPaint = new Paint();
 		dialPaint.setAntiAlias(true);
 		dialPaint.setColor(dialColor);
 		/**
-		 * ´ó¿Ì¶È»­±Ê
+		 * å¤§åˆ»åº¦ç”»ç¬”
 		 */
 		scaleBigPaint = new Paint();
 		scaleBigPaint.setAntiAlias(true);
 		scaleBigPaint.setColor(scaleColor);
 		scaleBigPaint.setStrokeWidth(10);
 		/**
-		 * Ğ¡¿Ì¶È»­±Ê
+		 * å°åˆ»åº¦ç”»ç¬”
 		 */
 		scaleSmallPaint = new Paint();
 		scaleSmallPaint.setAntiAlias(true);
 		scaleSmallPaint.setColor(scaleColor);
 		scaleSmallPaint.setStrokeWidth(5);
 		/**
-		 * ÒÔÑ¡ÖĞ»­±Ê
+		 * ä»¥é€‰ä¸­ç”»ç¬”
 		 */
 		selectedPaint = new Paint();
 		selectedPaint.setAntiAlias(true);
 		selectedPaint.setColor(selectedColor);
 		/**
-		 * Ñ¡ÖĞµÄÎÄ×ÖµÄ»­±Ê
+		 * é€‰ä¸­çš„æ–‡å­—çš„ç”»ç¬”
 		 */
 		selectedTextPaint = new Paint();
 		selectedTextPaint.setAntiAlias(true);
@@ -854,7 +854,7 @@ public class LClockView extends View {
 		selectedTextPaint.setColor(Color.WHITE);
 		selectedTextPaint.setTextAlign(Align.CENTER);
 		/**
-		 * Ñ¡ÖĞµÄĞ¡ÎÄ×ÖµÄ»­±Ê
+		 * é€‰ä¸­çš„å°æ–‡å­—çš„ç”»ç¬”
 		 */
 		selectedSmallTextPaint = new Paint();
 		selectedSmallTextPaint.setAntiAlias(true);
@@ -864,8 +864,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡´ó¿Ì¶ÈµÄÎ»ÖÃ×ø±ê
-	 * 
+	 * è·å–å¤§åˆ»åº¦çš„ä½ç½®åæ ‡
+	 *
 	 * @param index
 	 * @return
 	 */
@@ -885,8 +885,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡Ğ¡¿Ì¶ÈµÄÎ»ÖÃ×ø±ê
-	 * 
+	 * è·å–å°åˆ»åº¦çš„ä½ç½®åæ ‡
+	 *
 	 * @param index
 	 * @return
 	 */
@@ -906,8 +906,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡Êı×ÖµÄÎ»ÖÃ×ø±ê
-	 * 
+	 * è·å–æ•°å­—çš„ä½ç½®åæ ‡
+	 *
 	 * @param index
 	 * @return
 	 */
@@ -937,8 +937,8 @@ public class LClockView extends View {
 	}
 
 	/**
-	 * »ñÈ¡Ö¸ÕëÎ»ÖÃ
-	 * 
+	 * è·å–æŒ‡é’ˆä½ç½®
+	 *
 	 * @return
 	 */
 	private Path getPointerLocation() {
@@ -972,14 +972,14 @@ public class LClockView extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		/**
-		 * »ñÈ¡¶ÈÊı
+		 * è·å–åº¦æ•°
 		 */
 		float x = event.getX() - (width / 2);
 		float y = -(event.getY() - (height / 2));
 		double r = Math.sqrt((x * x) + (y * y));
 		double pa = Math.asin(x / r) / (2 * Math.PI) * 360;
 		/**
-		 * ¶ÈÊı½ÃÕı
+		 * åº¦æ•°çŸ«æ­£
 		 */
 		if (y < 0) {
 			if (x < 0) {
@@ -993,31 +993,31 @@ public class LClockView extends View {
 		}
 		onTouch(pa, r);
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_UP:
-			switch (type) {
-			case TYPE_HOURS:
-				if (hoursItems[selected] < 0) {
-					selected = realSelected;
-					pointerAngle = realPointerAngle;
-				} else {
-					realSelected = selected;
-					realPointerAngle = pointerAngle;
+			case MotionEvent.ACTION_UP:
+				switch (type) {
+					case TYPE_HOURS:
+						if (hoursItems[selected] < 0) {
+							selected = realSelected;
+							pointerAngle = realPointerAngle;
+						} else {
+							realSelected = selected;
+							realPointerAngle = pointerAngle;
+						}
+						break;
+					case TYPE_MINUTES:
+						if (minutesItems[selected] < 0) {
+							selected = realSelected;
+							pointerAngle = realPointerAngle;
+						} else {
+							realSelected = selected;
+							realPointerAngle = pointerAngle;
+						}
+						break;
+				}
+				if(lis!=null){
+					lis.onClockChange(selected);
 				}
 				break;
-			case TYPE_MINUTES:
-				if (minutesItems[selected] < 0) {
-					selected = realSelected;
-					pointerAngle = realPointerAngle;
-				} else {
-					realSelected = selected;
-					realPointerAngle = pointerAngle;
-				}
-				break;
-			}
-			if(lis!=null){
-				lis.onClockChange(selected);
-			}
-			break;
 		}
 		invalidate();
 		return true;

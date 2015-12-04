@@ -21,35 +21,35 @@ import android.widget.ImageView;
 
 public class LFilletImageView extends ImageView {
 	/**
-	 * Í¼Æ¬±Ê
+	 * å›¾ç‰‡ç¬”
 	 */
 	private Paint imagePaint;
 	/**
-	 * °´Å¥µÄ»­±Ê
+	 * æŒ‰é’®çš„ç”»ç¬”
 	 */
 	private Paint btnPaint;
 	/**
-	 * ÎÄ×Ö±Ê
+	 * æ–‡å­—ç¬”
 	 */
 	private Paint textPaint;
 	/**
-	 * Ğ´µÄÎÄ×Ö
+	 * å†™çš„æ–‡å­—
 	 */
 	private String text = "";
 	/**
-	 * ¿í¶È
+	 * å®½åº¦
 	 */
 	private int width;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private int height;
 	/**
-	 * Ô²½Ç°ë¾¶
+	 * åœ†è§’åŠå¾„
 	 */
 	private float radius = 30;
 	/**
-	 * ÊÇ·ñ°´ÏÂ
+	 * æ˜¯å¦æŒ‰ä¸‹
 	 */
 	private boolean isDown = false;
 
@@ -102,8 +102,8 @@ public class LFilletImageView extends ImageView {
 	}
 
 	/**
-	 * ´´½¨Ò»¸ö·ûºÏµÄbitmap
-	 * 
+	 * åˆ›å»ºä¸€ä¸ªç¬¦åˆçš„bitmap
+	 *
 	 * @param bitmap
 	 * @return
 	 */
@@ -111,13 +111,13 @@ public class LFilletImageView extends ImageView {
 		Bitmap outPut = null;
 		Bitmap bm = bitmap;
 		try {
-			// ´¹Ö±À­Éì
+			// å‚ç›´æ‹‰ä¼¸
 			if (bm.getHeight() < height) {
 				float f = 1.0f * bm.getHeight() / height;
 				bm = Bitmap.createScaledBitmap(bm, (int) (bm.getWidth() / f),
 						height, true);
 			}
-			// Ë®Æ½À­Éì
+			// æ°´å¹³æ‹‰ä¼¸
 			if (bm.getWidth() < width) {
 				float f = 1.0f * bm.getWidth() / width;
 				bm = Bitmap.createScaledBitmap(bm, width,
@@ -139,18 +139,18 @@ public class LFilletImageView extends ImageView {
 	}
 
 	/**
-	 * »­ÎÄ×Ö
-	 * 
+	 * ç”»æ–‡å­—
+	 *
 	 * @param canvas
 	 */
 	private void drawText(Canvas canvas) {
-		float textSize = height / 3;// ×ÖÌåÊ×ÏÈÄÃ¸ß¶ÈµÄÈı·ÖÖ®Ò»
-		// Èç¹ûÏÖÔÚµÄÎÄ×Ö³¤¶È³¬¹ıÁË¿í¶ÈµÄ°Ë·ÖÖ®°ËÊ®,ÄÇÃ´¾ÍÈÃÏÖÔÚµÄ³¤¶ÈµÈÓÚ°Ù·ÖÖ®°ËÊ®,µÃ³ö×ÖÌå´óĞ¡
+		float textSize = height / 3;// å­—ä½“é¦–å…ˆæ‹¿é«˜åº¦çš„ä¸‰åˆ†ä¹‹ä¸€
+		// å¦‚æœç°åœ¨çš„æ–‡å­—é•¿åº¦è¶…è¿‡äº†å®½åº¦çš„å…«åˆ†ä¹‹å…«å,é‚£ä¹ˆå°±è®©ç°åœ¨çš„é•¿åº¦ç­‰äºç™¾åˆ†ä¹‹å…«å,å¾—å‡ºå­—ä½“å¤§å°
 		if ((textSize * text.length()) > (width * 0.8)) {
 			textSize = width * 0.8f / text.length();
 		}
 		textPaint.setTextSize(textSize);
-		// ¼ÆËã×ÖÌåµÄ¸ß¶ÈÆ«ÒÆÁ¿
+		// è®¡ç®—å­—ä½“çš„é«˜åº¦åç§»é‡
 		FontMetrics fm = textPaint.getFontMetrics();
 		float textY = height / 2 - fm.descent + (fm.descent - fm.ascent) / 2;
 		canvas.drawText(text, width / 2, textY, textPaint);
@@ -159,16 +159,16 @@ public class LFilletImageView extends ImageView {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			isDown = true;
-			invalidate();
-			break;
-		case MotionEvent.ACTION_UP:
-			isDown = false;
-			invalidate();
-			break;
-		default:
-			break;
+			case MotionEvent.ACTION_DOWN:
+				isDown = true;
+				invalidate();
+				break;
+			case MotionEvent.ACTION_UP:
+				isDown = false;
+				invalidate();
+				break;
+			default:
+				break;
 		}
 		return true;
 	}

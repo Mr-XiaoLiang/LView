@@ -8,49 +8,49 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 /**
- * ÎÂ¶È¼ÆÊÓÍ¼,ÓÃÀ´ÏÔÊ¾½ø¶È
+ * æ¸©åº¦è®¡è§†å›¾,ç”¨æ¥æ˜¾ç¤ºè¿›åº¦
  * @author LiuJ
  *
  */
 public class LThermometerView extends View {
 	/**
-	 * Íâ¿Ç»­±Ê
+	 * å¤–å£³ç”»ç¬”
 	 */
 	private Paint shellPaint;
 	/**
-	 * ÒºÌå»­±Ê
+	 * æ¶²ä½“ç”»ç¬”
 	 */
 	private Paint liquidPaint;
 	/**
-	 * Íâ¿ÇÑÕÉ«
+	 * å¤–å£³é¢œè‰²
 	 */
 	private int shellColor = Color.parseColor("#70d29c");
 	/**
-	 * ÒºÌåÑÕÉ«
+	 * æ¶²ä½“é¢œè‰²
 	 */
 	private int liquidColor = Color.parseColor("#70d29c");
 	/**
-	 * ²½³¤
+	 * æ­¥é•¿
 	 */
 	private float step;
 	/**
-	 * ¿í¶È
+	 * å®½åº¦
 	 */
 	private int width;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private int height;
 	/**
-	 * Íâ¿Ç¿í¶È
+	 * å¤–å£³å®½åº¦
 	 */
 	private float shellWidth;
 	/**
-	 * ÏÂ±ê
+	 * ä¸‹æ ‡
 	 */
 	private int index = 0;
 	/**
-	 * µ±Ç°×î´óÁ¿
+	 * å½“å‰æœ€å¤§é‡
 	 */
 	private int max = 0;
 
@@ -75,7 +75,7 @@ public class LThermometerView extends View {
 		shellPaint.setStrokeWidth(shellWidth);
 		step = (height-width)/100;
 		/**
-		 * ¼ÆËãÒºÌå¸ß¶È
+		 * è®¡ç®—æ¶²ä½“é«˜åº¦
 		 */
 		float liquidHeight = shellWidth / 2
 				+ (100 - index) * step;
@@ -86,13 +86,13 @@ public class LThermometerView extends View {
 			liquidHeight=height-width/2;
 		}
 		/**
-		 * »­ÒºÌå
+		 * ç”»æ¶²ä½“
 		 */
 		RectF rect = new RectF(width * 0.2f+shellWidth / 2, liquidHeight, width * 0.8f-shellWidth / 2, height - width / 2);
 		canvas.drawRoundRect(rect, width*0.3f, width*0.3f, liquidPaint);
 		canvas.drawCircle(width / 2, height-width / 2, (width-shellWidth)/2, liquidPaint);
 		/**
-		 * »­Íâ¿Ç
+		 * ç”»å¤–å£³
 		 */
 		rect = new RectF(width * 0.2f+shellWidth / 2, shellWidth / 2, width * 0.8f-shellWidth / 2, height - width / 2);
 		canvas.drawRoundRect(rect, width*0.3f, width*0.3f, shellPaint);
@@ -115,10 +115,10 @@ public class LThermometerView extends View {
 		this(context, null);
 	}
 	/**
-	 * ÉèÖÃÒºÌå×î¸ßÎ»ÖÃ
-	 * Ã¿Ò»·İ´ú±íÎÂ¶È¼Æ¸ß¶ÈµÄ°Ù·ÖÖ®Ò»
-	 * ÀíÂÛ×î¸ßÖµÎª100
-	 * @param max 
+	 * è®¾ç½®æ¶²ä½“æœ€é«˜ä½ç½®
+	 * æ¯ä¸€ä»½ä»£è¡¨æ¸©åº¦è®¡é«˜åº¦çš„ç™¾åˆ†ä¹‹ä¸€
+	 * ç†è®ºæœ€é«˜å€¼ä¸º100
+	 * @param max
 	 */
 	public void setMax(int max) {
 		this.max = max;

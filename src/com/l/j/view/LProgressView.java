@@ -12,74 +12,74 @@ import android.view.View;
 
 public class LProgressView extends View {
 	/**
-	 * ½ø¶ÈÌõÑÕÉ«
+	 * è¿›åº¦æ¡é¢œè‰²
 	 */
 	private int proColor;
 	/**
-	 * ÎÄ×ÖÑÕÉ«
+	 * æ–‡å­—é¢œè‰²
 	 */
 	private int textColor;
 	/**
-	 * ±³¾°ÑÕÉ«
+	 * èƒŒæ™¯é¢œè‰²
 	 */
 	private int bgColor;
 	/**
-	 * ½ø¶ÈÌõ»­±Ê
+	 * è¿›åº¦æ¡ç”»ç¬”
 	 */
 	private Paint proPaint;
 	/**
-	 * ¶Ëµã»­±Ê
+	 * ç«¯ç‚¹ç”»ç¬”
 	 */
 	private Paint epPaint;
 	/**
-	 * ±³¾°»­±Ê
+	 * èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint bgPaint;
 	/**
-	 * ÎÄ×Ö»­±Ê
+	 * æ–‡å­—ç”»ç¬”
 	 */
 	private Paint textPaint;
 	/**
-	 * ½ø¶ÈÌõ±³¾°
+	 * è¿›åº¦æ¡èƒŒæ™¯
 	 */
 	private Paint proBgPaint;
 	/**
-	 * ×Ü½ø¶È
+	 * æ€»è¿›åº¦
 	 */
 	private int allInt = 0;
 	/**
-	 * ÒÑ¾­¹ıÁËµÄ½ø¶È
+	 * å·²ç»è¿‡äº†çš„è¿›åº¦
 	 */
 	private int havingInt = 0;
 	/**
-	 * ½ø¶ÈÌõÊÇ·ñÓĞ±³¾°
+	 * è¿›åº¦æ¡æ˜¯å¦æœ‰èƒŒæ™¯
 	 */
 	private boolean proHaveBg = false;
 	/**
-	 * ÏÔÊ¾×Ö·û
+	 * æ˜¾ç¤ºå­—ç¬¦
 	 */
 	private String showText;
 	/**
-	 *  ¿í¶È
+	 *  å®½åº¦
 	 */
 	private float width;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private float height;
 	/**
-	 * ×ÖÌå´óĞ¡
+	 * å­—ä½“å¤§å°
 	 */
 	private float textSize;
 	/**
-	 * Ö±¾¶
+	 * ç›´å¾„
 	 */
 	private float diameter;
 	/**
-	 * ¶¯Ì¬½ø¶È
+	 * åŠ¨æ€è¿›åº¦
 	 */
 	private float index = 0;
-	
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -94,18 +94,18 @@ public class LProgressView extends View {
 		proBgPaint.setStrokeWidth(diameter);
 		float pro = getAngle();
 		if(proHaveBg){
-			//»­½ø¶ÈÌõ±³¾°
+			//ç”»è¿›åº¦æ¡èƒŒæ™¯
 			canvas.drawCircle(width/2, height/2, diameter*3f, proBgPaint);
 		}
 		/**
-		 * »­½ø¶ÈÌõ
+		 * ç”»è¿›åº¦æ¡
 		 */
 		canvas.drawArc(getRectF(), -90, pro, false, proPaint);
 		float[] loc = getLocation(pro);
 		canvas.drawCircle(loc[0], loc[1], diameter/2, epPaint);
 		canvas.drawCircle(loc[2], loc[3], diameter/2, epPaint);
 		/**
-		 * »­±³¾°
+		 * ç”»èƒŒæ™¯
 		 */
 		canvas.drawCircle(width/2, height/2, diameter*2.5f, bgPaint);
 		textSize = diameter*5/(showText.length()+1);
@@ -130,7 +130,7 @@ public class LProgressView extends View {
 
 
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 */
 	private void init(){
 		proColor = Color.parseColor("#46bb7f");
@@ -173,10 +173,10 @@ public class LProgressView extends View {
 	public LProgressView(Context context) {
 		this(context,null);
 	}
-	
+
 	/**
-	 * »ñÈ¡½Ç¶È
-	 * 
+	 * è·å–è§’åº¦
+	 *
 	 * @param x
 	 * @return
 	 */
@@ -187,19 +187,19 @@ public class LProgressView extends View {
 		}
 		double a = 1d*index/allInt;
 		showText = ((int)(a*100))+"%";
-		
+
 		return (float) (a*360);
 	}
 	/**
-	 * Ô²»¡Î»ÖÃ
-	 * 
+	 * åœ†å¼§ä½ç½®
+	 *
 	 * @return
 	 */
 	private RectF getRectF() {
 		if (width > height) {
 			return new RectF((width - height) / 2 + (diameter * 0.5f),
 					(diameter * 0.5f), width - (width - height) / 2
-							- (diameter * 0.5f), height - (diameter * 0.5f));
+					- (diameter * 0.5f), height - (diameter * 0.5f));
 		} else {
 			return new RectF((diameter * 0.5f), (height - width) / 2
 					+ (diameter * 0.5f), width - (diameter * 0.5f), height
@@ -207,7 +207,7 @@ public class LProgressView extends View {
 		}
 	}
 	/**
-	 * µã×ø±ê»ñÈ¡
+	 * ç‚¹åæ ‡è·å–
 	 * @return
 	 */
 	private float[] getLocation(float a) {
@@ -219,7 +219,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½ø¶ÈÌõÑÕÉ«
+	 * è·å–è¿›åº¦æ¡é¢œè‰²
 	 * @return
 	 */
 	public int getProColor() {
@@ -227,7 +227,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ½ø¶ÈÌõÑÕÉ«
+	 * è®¾ç½®è¿›åº¦æ¡é¢œè‰²
 	 * @param proColor
 	 */
 	public void setProColor(int proColor) {
@@ -236,7 +236,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * »ñÈ¡ÎÄ×ÖÑÕÉ«
+	 * è·å–æ–‡å­—é¢œè‰²
 	 * @return
 	 */
 	public int getTextColor() {
@@ -244,7 +244,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÎÄ×ÖÑÕÉ«
+	 * è®¾ç½®æ–‡å­—é¢œè‰²
 	 * @param textColor
 	 */
 	public void setTextColor(int textColor) {
@@ -253,7 +253,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * »ñÈ¡±³¾°ÑÕÉ«
+	 * è·å–èƒŒæ™¯é¢œè‰²
 	 * @return
 	 */
 	public int getBgColor() {
@@ -261,7 +261,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ±³¾°ÑÕÉ«
+	 * è®¾ç½®èƒŒæ™¯é¢œè‰²
 	 * @param bgColor
 	 */
 	public void setBgColor(int bgColor) {
@@ -270,7 +270,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * »ñÈ¡×ÜÊı
+	 * è·å–æ€»æ•°
 	 * @return
 	 */
 	public int getAllInt() {
@@ -278,7 +278,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * ÉèÖÃ×ÜÊı
+	 * è®¾ç½®æ€»æ•°
 	 * @param allInt
 	 */
 	public void setAllInt(int allInt) {
@@ -287,7 +287,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * »ñÈ¡ÒÑ¾­Íê³É½ø¶È
+	 * è·å–å·²ç»å®Œæˆè¿›åº¦
 	 * @return
 	 */
 	public int getHavingInt() {
@@ -295,7 +295,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÒÑÍê³É½ø¶È
+	 * è®¾ç½®å·²å®Œæˆè¿›åº¦
 	 * @param havingInt
 	 */
 	public void setHavingInt(int havingInt) {
@@ -304,7 +304,7 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * »ñÈ¡ÊÇ·ñÏÔÊ¾½ø¶ÈÌõ±³¾°
+	 * è·å–æ˜¯å¦æ˜¾ç¤ºè¿›åº¦æ¡èƒŒæ™¯
 	 * @return
 	 */
 	public boolean isProHaveBg() {
@@ -312,12 +312,12 @@ public class LProgressView extends View {
 	}
 
 	/**
-	 * ÉèÖÃÊÇ·ñÏÔÊ¾½ø¶ÈÌõ±³¾°
+	 * è®¾ç½®æ˜¯å¦æ˜¾ç¤ºè¿›åº¦æ¡èƒŒæ™¯
 	 * @param proHaveBg
 	 */
 	public void setProHaveBg(boolean proHaveBg) {
 		this.proHaveBg = proHaveBg;
 		invalidate();
 	}
-	
+
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\Android\AndroidGit\LView\res"><file name="dialog_bg" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\dialog_bg.xml" qualifiers="hdpi" type="drawable"/><file name="dialog_onclick" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\dialog_onclick.xml" qualifiers="hdpi" type="drawable"/><file name="ic_gray_left" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\ic_gray_left.png" qualifiers="hdpi" type="drawable"/><file name="ic_gray_right" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\ic_gray_right.png" qualifiers="hdpi" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi" type="drawable"/><file name="pkq" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\pkq.jpg" qualifiers="hdpi" type="drawable"/><file name="view_onclick_bg" path="D:\Android\AndroidGit\LView\res\drawable-hdpi\view_onclick_bg.xml" qualifiers="hdpi" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidGit\LView\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidGit\LView\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidGit\LView\res\drawable-xxhdpi\ic_launcher.png" qualifiers="xxhdpi" type="drawable"/><file name="activity_main" path="D:\Android\AndroidGit\LView\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="btn" path="D:\Android\AndroidGit\LView\res\layout\btn.xml" qualifiers="" type="layout"/><file name="choose" path="D:\Android\AndroidGit\LView\res\layout\choose.xml" qualifiers="" type="layout"/><file name="dialog_calendar" path="D:\Android\AndroidGit\LView\res\layout\dialog_calendar.xml" qualifiers="" type="layout"/><file name="dialog_list_item" path="D:\Android\AndroidGit\LView\res\layout\dialog_list_item.xml" qualifiers="" type="layout"/><file name="dialog_load" path="D:\Android\AndroidGit\LView\res\layout\dialog_load.xml" qualifiers="" type="layout"/><file name="dialog_progress" path="D:\Android\AndroidGit\LView\res\layout\dialog_progress.xml" qualifiers="" type="layout"/><file name="page_test" path="D:\Android\AndroidGit\LView\res\layout\page_test.xml" qualifiers="" type="layout"/><file name="pie" path="D:\Android\AndroidGit\LView\res\layout\pie.xml" qualifiers="" type="layout"/><file name="progress_button" path="D:\Android\AndroidGit\LView\res\layout\progress_button.xml" qualifiers="" type="layout"/><file name="radar" path="D:\Android\AndroidGit\LView\res\layout\radar.xml" qualifiers="" type="layout"/><file name="round" path="D:\Android\AndroidGit\LView\res\layout\round.xml" qualifiers="" type="layout"/><file name="thermometer" path="D:\Android\AndroidGit\LView\res\layout\thermometer.xml" qualifiers="" type="layout"/><file path="D:\Android\AndroidGit\LView\res\values\attrs.xml" qualifiers=""><declare-styleable name="roundedimageview">
+        <attr format="dimension" name="border_thickness"/>
+        <attr format="color" name="border_inside_color"/>
+        <attr format="color" name="border_outside_color"/>
+    </declare-styleable><attr format="color" name="text_color"/><declare-styleable name="clockview">
+        <attr name="type">
+            <enum name="hours" value="0"/>
+            <enum name="minutes" value="1"/>
+        </attr>
+        <attr format="color" name="border_color"/>
+        <attr name="text_color"/>
+        <attr format="dimension" name="border_width"/>
+        <attr format="color" name="dial_color"/>
+        <attr name="background_color"/>
+        <attr format="dimension" name="text_size"/>
+        <attr format="color" name="pointer_color"/>
+        <attr format="reference" name="background_image"/>
+        <attr format="color" name="text_color_un"/>
+        <attr format="color" name="scale_color"/>
+    </declare-styleable><declare-styleable name="calendarview">
+        <attr name="background_color"/>
+        <attr name="text_color"/>
+        <attr format="color" name="weeks_color"/>
+        <attr format="color" name="selected_color"/>
+        <attr format="color" name="today_color"/>
+        <attr format="integer" name="year"/>
+        <attr format="integer" name="month"/>
+        <attr format="integer" name="today"/>
+        <attr format="integer" name="selected"/>
+    </declare-styleable><attr format="color" name="background_color"/></file><file path="D:\Android\AndroidGit\LView\res\values\colors.xml" qualifiers=""><color name="ashen">#f4f4f4</color><color name="green">#70d29c</color><color name="red">#FF0000</color><color name="gary2">#666666</color><color name="gary">#f0f0f0</color><color name="no_color">#0000</color><color name="translucence">#30000000</color><color name="white">#FFFFFF</color><color name="black">#000000</color></file><file path="D:\Android\AndroidGit\LView\res\values\dimens.xml" qualifiers=""><dimen name="dimen_15">15sp</dimen><dimen name="dimen_5">5sp</dimen><dimen name="dimen_12">12sp</dimen><dimen name="dimen_25">25sp</dimen><dimen name="dimen_20">20sp</dimen><dimen name="dimen_10">10sp</dimen></file><file path="D:\Android\AndroidGit\LView\res\values\strings.xml" qualifiers=""><string name="app_name">我的View</string></file><file path="D:\Android\AndroidGit\LView\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+    </style><style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style></file></source><source path="D:\Android\AndroidGit\LView\build\generated\res\rs\debug"/><source path="D:\Android\AndroidGit\LView\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug"><source path="D:\Android\AndroidGit\LView\build-types\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="clockview"><attr name="type"><enum name="hours" value="0"/><enum name="minutes" value="1"/></attr><attr format="color" name="border_color"/><attr name="text_color"/><attr format="dimension" name="border_width"/><attr format="color" name="dial_color"/><attr name="background_color"/><attr format="dimension" name="text_size"/><attr format="color" name="pointer_color"/><attr format="reference" name="background_image"/><attr format="color" name="text_color_un"/><attr format="color" name="scale_color"/></declare-styleable><declare-styleable name="calendarview"><attr name="background_color"/><attr name="text_color"/><attr format="color" name="weeks_color"/><attr format="color" name="selected_color"/><attr format="color" name="today_color"/><attr format="integer" name="year"/><attr format="integer" name="month"/><attr format="integer" name="today"/><attr format="integer" name="selected"/></declare-styleable><declare-styleable name="roundedimageview"><attr format="dimension" name="border_thickness"/><attr format="color" name="border_inside_color"/><attr format="color" name="border_outside_color"/></declare-styleable></configuration></mergedItems></merger>

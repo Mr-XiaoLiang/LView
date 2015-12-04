@@ -12,86 +12,86 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * µÇÂ¼½çÃæ»¬¶¯¶¯»­
- * 
+ * ç™»å½•ç•Œé¢æ»‘åŠ¨åŠ¨ç”»
+ *
  * @author yanluxi
  *
  */
 public class LChooseBgView extends View {
 	/**
-	 * ÊÇ·ñÊÇ×ó±ß±»Ñ¡ÖĞ
+	 * æ˜¯å¦æ˜¯å·¦è¾¹è¢«é€‰ä¸­
 	 */
 	private boolean isLeft = true;
 	/**
-	 * ¿í¶È
+	 * å®½åº¦
 	 */
 	private int width;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private int height;
 	/**
-	 * ÉîÉ«»­±Ê
+	 * æ·±è‰²ç”»ç¬”
 	 */
 	private Paint darkPaint;
 	/**
-	 * Ç³É«»­±Ê
+	 * æµ…è‰²ç”»ç¬”
 	 */
 	private Paint lightPaint;
 	/**
-	 * ÓÃÀ´ÒÆ¶¯µÄ±ê¼Ç
+	 * ç”¨æ¥ç§»åŠ¨çš„æ ‡è®°
 	 */
 	private int index = 0;
 	/**
-	 * Èı½ÇĞÎ¸ß¶È
+	 * ä¸‰è§’å½¢é«˜åº¦
 	 */
 	private int triHeight;
 	/**
-	 * Èı½ÇĞÎ¿í¶È
+	 * ä¸‰è§’å½¢å®½åº¦
 	 */
 	private int triWidth;
 	/**
-	 * »ÒÉ«ÏßµÄ¿í¶È
+	 * ç°è‰²çº¿çš„å®½åº¦
 	 */
 	private int lineWidth = 1;
 	/**
-	 * ×ó±ßµÄÎÄ×Ö
+	 * å·¦è¾¹çš„æ–‡å­—
 	 */
 	private String leftName = "";
 	/**
-	 * ÓÒ±ßµÄÎÄ×Ö
+	 * å³è¾¹çš„æ–‡å­—
 	 */
 	private String rightName = "";
 	/**
-	 * ×ÖÌå´óĞ¡
+	 * å­—ä½“å¤§å°
 	 */
 	private float textSize = 0;
 	/**
-	 * ×ÖÌå´óĞ¡Óë¸ßµÄ±ÈÀı
+	 * å­—ä½“å¤§å°ä¸é«˜çš„æ¯”ä¾‹
 	 */
 	private float textRatio = 0.3F;
 	/**
-	 * ÒÆ¶¯²½³¤
+	 * ç§»åŠ¨æ­¥é•¿
 	 */
 	private int stepSize = 30;
 	/**
-	 * ÉîÉ«ÎÄ×Ö»­±Ê
+	 * æ·±è‰²æ–‡å­—ç”»ç¬”
 	 */
 	private Paint darkTextPaint;
 	/**
-	 * Ç³É«ÎÄ×Ö»­±Ê
+	 * æµ…è‰²æ–‡å­—ç”»ç¬”
 	 */
 	private Paint lightTextPaint;
 	/**
-	 * µã»÷»Øµ÷
+	 * ç‚¹å‡»å›è°ƒ
 	 */
 	private ChooseBgViewListener listener;
 	/**
-	 * ±³¾°»­±Ê
+	 * èƒŒæ™¯ç”»ç¬”
 	 */
 	private Paint bgPaint;
 	/**
-	 * ÊÇ·ñÊÇÈı½ÇĞÎ
+	 * æ˜¯å¦æ˜¯ä¸‰è§’å½¢
 	 */
 	private boolean style = false;
 
@@ -100,9 +100,9 @@ public class LChooseBgView extends View {
 		darkPaint = new Paint();
 		darkPaint.setAntiAlias(true);
 		darkPaint.setStyle(Paint.Style.FILL);
-		// darkPaint.setColor(Color.parseColor(""));//Èç¹û×Ô¶¨Òå»ÒÉ«,¾ÍÓÃÕâĞĞ´úÂë,×¢ÊÍÏÂÃæÄÇĞĞ
+		// darkPaint.setColor(Color.parseColor(""));//å¦‚æœè‡ªå®šä¹‰ç°è‰²,å°±ç”¨è¿™è¡Œä»£ç ,æ³¨é‡Šä¸‹é¢é‚£è¡Œ
 		darkPaint.setColor(Color.GRAY);
-		darkPaint.setStrokeWidth(lineWidth);// ÕâÀïÊÇ»ÒÉ«ÏßµÄ¿í¶È
+		darkPaint.setStrokeWidth(lineWidth);// è¿™é‡Œæ˜¯ç°è‰²çº¿çš„å®½åº¦
 		lightPaint = new Paint();
 		lightPaint.setAntiAlias(true);
 		lightPaint.setStyle(Paint.Style.FILL);
@@ -110,7 +110,7 @@ public class LChooseBgView extends View {
 
 		bgPaint = new Paint();
 		bgPaint.setAntiAlias(true);
-		bgPaint.setColor(Color.parseColor("#e7e7e7"));// ±³¾°ÑÕÉ«
+		bgPaint.setColor(Color.parseColor("#e7e7e7"));// èƒŒæ™¯é¢œè‰²
 
 		darkTextPaint = new Paint();
 		darkTextPaint.setAntiAlias(true);
@@ -120,7 +120,7 @@ public class LChooseBgView extends View {
 		lightTextPaint = new Paint();
 		lightTextPaint.setAntiAlias(true);
 		lightTextPaint.setTextAlign(Align.CENTER);
-		lightTextPaint.setColor(Color.BLUE);// ÎÄ×ÖÑÕÉ«
+		lightTextPaint.setColor(Color.BLUE);// æ–‡å­—é¢œè‰²
 	}
 
 	public LChooseBgView(Context context, AttributeSet attrs) {
@@ -136,38 +136,38 @@ public class LChooseBgView extends View {
 		super.onDraw(canvas);
 		width = getWidth();
 		height = getHeight();
-		triHeight = height / 6;// ÕâÊÇ¼ÆËãÈı½ÇĞÎ¸ß¶È,Èı½ÇĞÎ¸ß¶ÈÊÇ¿í¶ÈµÄÒ»°ë
+		triHeight = height / 6;// è¿™æ˜¯è®¡ç®—ä¸‰è§’å½¢é«˜åº¦,ä¸‰è§’å½¢é«˜åº¦æ˜¯å®½åº¦çš„ä¸€åŠ
 		triWidth = triHeight * 2;
 		/**
-		 * Èç¹ûÊÇ»­Ïß,indexµÄÎ»ÖÃ¶¨Î»ÔÚÏßµÄ×ó²à,Ò²¾ÍÊÇËµ ÏßÌõµÄÆğµãµÄÎ»ÒÆ·¶Î§ÔÚ0~width/2
-		 * ÏßÌõµÄÖÕµãµÄÎ»ÒÆ·¶Î§ÔÚwidth/2~width index µÄÎ»ÒÆ·¶Î§¾ÍÔÚ0~width/2
+		 * å¦‚æœæ˜¯ç”»çº¿,indexçš„ä½ç½®å®šä½åœ¨çº¿çš„å·¦ä¾§,ä¹Ÿå°±æ˜¯è¯´ çº¿æ¡çš„èµ·ç‚¹çš„ä½ç§»èŒƒå›´åœ¨0~width/2
+		 * çº¿æ¡çš„ç»ˆç‚¹çš„ä½ç§»èŒƒå›´åœ¨width/2~width index çš„ä½ç§»èŒƒå›´å°±åœ¨0~width/2
 		 */
 		if (style) {
 			if (index == 0) {
-				index = width / 4;// ´ËÊ±ÊÇÔÚ×óÏÂ index=widtn/4*3 ÊÇÔÚÓÒÏÂ×Ô¼ºÑ¡Ôñ
+				index = width / 4;// æ­¤æ—¶æ˜¯åœ¨å·¦ä¸‹ index=widtn/4*3 æ˜¯åœ¨å³ä¸‹è‡ªå·±é€‰æ‹©
 
 			}
 		}
 		/**
-		 * »­±³¾°
+		 * ç”»èƒŒæ™¯
 		 */
 		canvas.drawRect(0, 0, width, height, bgPaint);
 
 		/**
-		 * ÕâÊÇ»­ÏÂÃæµÄ»ÒÏß.×¢ÊÍºó¾Í²»»­ÁË
+		 * è¿™æ˜¯ç”»ä¸‹é¢çš„ç°çº¿.æ³¨é‡Šåå°±ä¸ç”»äº†
 		 */
 		canvas.drawLine(0, height, width, height, darkPaint);
 		/**
-		 * ÕâÊÇ»­ÉÏÃæµÄ»ÒÏß.×¢ÊÍºó¾Í²»»­ÁË
+		 * è¿™æ˜¯ç”»ä¸Šé¢çš„ç°çº¿.æ³¨é‡Šåå°±ä¸ç”»äº†
 		 */
 		canvas.drawLine(0, 1, width, 1, darkPaint);
 		/**
-		 * »­Èı½ÇĞÎ
+		 * ç”»ä¸‰è§’å½¢
 		 */
 		drawTriangle(canvas);
 		drawText(canvas);
 		/**
-		 * ¼ÆËãÎ»ÖÃ,Èç¹û²»·ûºÏÎ»ÖÃÒªÇó¾Í»»
+		 * è®¡ç®—ä½ç½®,å¦‚æœä¸ç¬¦åˆä½ç½®è¦æ±‚å°±æ¢
 		 */
 		if (style) {
 			if (isLeft) {
@@ -209,13 +209,13 @@ public class LChooseBgView extends View {
 	}
 
 	/**
-	 * »æÖÆ×ÖÌå
+	 * ç»˜åˆ¶å­—ä½“
 	 */
 	private void drawText(Canvas canvas) {
 		textSize = height * textRatio;
 		darkTextPaint.setTextSize(textSize);
 		lightTextPaint.setTextSize(textSize);
-		// ÎÄ×Ö¸ß¶È½ÃÕı
+		// æ–‡å­—é«˜åº¦çŸ«æ­£
 		FontMetrics fm = lightTextPaint.getFontMetrics();
 		float textY = height / 2 - fm.descent + (fm.descent - fm.ascent) / 2;
 		if (isLeft) {
@@ -225,38 +225,38 @@ public class LChooseBgView extends View {
 			canvas.drawText(leftName, width / 4, textY, darkTextPaint);
 			canvas.drawText(rightName, width / 4 * 3, textY, lightTextPaint);
 		}
-		// »­·Ö¸îÏß
+		// ç”»åˆ†å‰²çº¿
 		canvas.drawLine(width / 2, 0, width / 2, height, darkPaint);
 	}
 
 	/**
-	 * Èı½ÇĞÎµÄ»æÖÆ·½·¨
-	 * 
+	 * ä¸‰è§’å½¢çš„ç»˜åˆ¶æ–¹æ³•
+	 *
 	 * @param canvas
 	 */
 	private void drawTriangle(Canvas canvas) {
 		if(style){
 			/**
-			 * ÏÈ»­³öÈı½ÇĞÎµÄÍâ±ß
+			 * å…ˆç”»å‡ºä¸‰è§’å½¢çš„å¤–è¾¹
 			 */
-			 Path path = new Path();
-			 path.moveTo(index, height-triHeight-lineWidth);
-			 path.lineTo(index-triWidth/2-lineWidth, height);
-			 path.lineTo(index+triWidth/2+lineWidth, height);
-			 path.close();
-			 canvas.drawPath(path, darkPaint);
+			Path path = new Path();
+			path.moveTo(index, height-triHeight-lineWidth);
+			path.lineTo(index-triWidth/2-lineWidth, height);
+			path.lineTo(index+triWidth/2+lineWidth, height);
+			path.close();
+			canvas.drawPath(path, darkPaint);
 			/**
-			 * ÔÙ»­³öÈı½ÇĞÎµÄÀï±ß
+			 * å†ç”»å‡ºä¸‰è§’å½¢çš„é‡Œè¾¹
 			 */
-			 path = new Path();
-			 path.moveTo(index, height-triHeight);
-			 path.lineTo(index-triWidth/2, height);
-			 path.lineTo(index+triWidth/2, height);
-			 path.close();
-			 canvas.drawPath(path, lightPaint);
+			path = new Path();
+			path.moveTo(index, height-triHeight);
+			path.lineTo(index-triWidth/2, height);
+			path.lineTo(index+triWidth/2, height);
+			path.close();
+			canvas.drawPath(path, lightPaint);
 		}else{
 			/**
-			 * »­³öÒ»ÌõÏß
+			 * ç”»å‡ºä¸€æ¡çº¿
 			 */
 			canvas.drawLine(index, height - lineWidth, index + width / 2, height
 					- lineWidth, lightTextPaint);
@@ -319,5 +319,5 @@ public class LChooseBgView extends View {
 	public void setStyle(boolean style) {
 		this.style = style;
 	}
-	
+
 }

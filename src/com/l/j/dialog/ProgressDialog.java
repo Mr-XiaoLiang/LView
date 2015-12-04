@@ -1,6 +1,6 @@
 package com.l.j.dialog;
 
-import com.example.mytest.R;
+import com.l.j.R;
 import com.l.j.view.LProgressView;
 
 import android.app.Dialog;
@@ -10,20 +10,20 @@ import android.view.Window;
 
 public class ProgressDialog extends Dialog {
 	/**
-	 * ½ø¶È×ÜÊı
-	 * ½¨Òé100
+	 * è¿›åº¦æ€»æ•°
+	 * å»ºè®®100
 	 */
 	private int allInt = 0;
 	/**
-	 * ÒÑÍê³ÉÊıÁ¿
-	 * ½¨Òé²»Òª´óÓÚ½ø¶È×ÜÊı
+	 * å·²å®Œæˆæ•°é‡
+	 * å»ºè®®ä¸è¦å¤§äºè¿›åº¦æ€»æ•°
 	 */
 	private int havingInt = 0;
 	/**
-	 * ½ø¶È¿Ø¼ş
+	 * è¿›åº¦æ§ä»¶
 	 */
 	private LProgressView progressView;
-	
+
 	public ProgressDialog(Context context, int allInt, int havingInt) {
 		super(context);
 		this.allInt = allInt;
@@ -32,7 +32,7 @@ public class ProgressDialog extends Dialog {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// È¥³ıÆÁÄ»title
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// å»é™¤å±å¹•title
 		setContentView(R.layout.dialog_progress);
 		getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 		progressView = (LProgressView) findViewById(R.id.dialog_progress_pro);
@@ -40,7 +40,7 @@ public class ProgressDialog extends Dialog {
 		progressView.setHavingInt(havingInt);
 	}
 	/**
-	 * »ñÈ¡½ø¶ÈÌõÑÕÉ«
+	 * è·å–è¿›åº¦æ¡é¢œè‰²
 	 * @return
 	 */
 	public int getProColor() {
@@ -48,7 +48,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * ÉèÖÃ½ø¶ÈÌõÑÕÉ«
+	 * è®¾ç½®è¿›åº¦æ¡é¢œè‰²
 	 * @param proColor
 	 */
 	public void setProColor(int proColor) {
@@ -56,7 +56,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡ÎÄ×ÖÑÕÉ«
+	 * è·å–æ–‡å­—é¢œè‰²
 	 * @return
 	 */
 	public int getTextColor() {
@@ -64,7 +64,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * ÉèÖÃÎÄ×ÖÑÕÉ«
+	 * è®¾ç½®æ–‡å­—é¢œè‰²
 	 * @param textColor
 	 */
 	public void setTextColor(int textColor) {
@@ -72,7 +72,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡±³¾°ÑÕÉ«
+	 * è·å–èƒŒæ™¯é¢œè‰²
 	 * @return
 	 */
 	public int getBgColor() {
@@ -80,7 +80,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * ÉèÖÃ±³¾°ÑÕÉ«
+	 * è®¾ç½®èƒŒæ™¯é¢œè‰²
 	 * @param bgColor
 	 */
 	public void setBgColor(int bgColor) {
@@ -88,7 +88,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡×ÜÊı
+	 * è·å–æ€»æ•°
 	 * @return
 	 */
 	public int getAllInt() {
@@ -96,7 +96,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * ÉèÖÃ×ÜÊı
+	 * è®¾ç½®æ€»æ•°
 	 * @param allInt
 	 */
 	public void setAllInt(int allInt) {
@@ -104,7 +104,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡ÒÑ¾­Íê³É½ø¶È
+	 * è·å–å·²ç»å®Œæˆè¿›åº¦
 	 * @return
 	 */
 	public int getHavingInt() {
@@ -112,7 +112,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * ÉèÖÃÒÑÍê³É½ø¶È
+	 * è®¾ç½®å·²å®Œæˆè¿›åº¦
 	 * @param havingInt
 	 */
 	public void setHavingInt(int havingInt) {
@@ -120,7 +120,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡ÊÇ·ñÏÔÊ¾½ø¶ÈÌõ±³¾°
+	 * è·å–æ˜¯å¦æ˜¾ç¤ºè¿›åº¦æ¡èƒŒæ™¯
 	 * @return
 	 */
 	public boolean isProHaveBg() {
@@ -128,7 +128,7 @@ public class ProgressDialog extends Dialog {
 	}
 
 	/**
-	 * ÉèÖÃÊÇ·ñÏÔÊ¾½ø¶ÈÌõ±³¾°
+	 * è®¾ç½®æ˜¯å¦æ˜¾ç¤ºè¿›åº¦æ¡èƒŒæ™¯
 	 * @param proHaveBg
 	 */
 	public void setProHaveBg(boolean proHaveBg) {

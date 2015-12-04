@@ -2,7 +2,7 @@ package com.l.j.dialog;
 
 import java.util.Calendar;
 
-import com.example.mytest.R;
+import com.l.j.R;
 import com.l.j.view.LCalendarView;
 import com.l.j.view.LCalendarView.CalendarViewListener;
 
@@ -12,80 +12,79 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.CalendarView;
 import android.widget.TextView;
 
 public class CalendarDialog extends Dialog implements OnClickListener,
 		CalendarViewListener {
 	/**
-	 * ÈÕÀúÊÓÍ¼
+	 * æ—¥åŽ†è§†å›¾
 	 */
 	private LCalendarView calendarView;
 	/**
-	 * ÔÂ·Ý
+	 * æœˆä»½
 	 */
 	private TextView monthView;
 	/**
-	 * Äê·Ý
+	 * å¹´ä»½
 	 */
 	private TextView yearView;
 	/**
-	 * ×ó°´Å¥
+	 * å·¦æŒ‰é’®
 	 */
 	private View leftView;
 	/**
-	 * ÓÒ°´Å¥
+	 * å³æŒ‰é’®
 	 */
 	private View rightView;
 	/**
-	 * È·¶¨°´Å¥
+	 * ç¡®å®šæŒ‰é’®
 	 */
 	private TextView enterView;
 	/**
-	 * È¡Ïû°´Å¥
+	 * å–æ¶ˆæŒ‰é’®
 	 */
 	private TextView escView;
 	/**
-	 * ÔÂ
+	 * æœˆ
 	 */
 	private int month;
 	/**
-	 * Äê
+	 * å¹´
 	 */
 	private int year;
 	/**
-	 * ÈÕ
+	 * æ—¥
 	 */
 	private int day;
 	/**
-	 * ½ñÌì
+	 * ä»Šå¤©
 	 */
 	private int today;
 	/**
-	 * ½ñÄê
+	 * ä»Šå¹´
 	 */
 	private int thisYear;
 	/**
-	 * ±¾ÔÂ
+	 * æœ¬æœˆ
 	 */
 	private int thisMonth;
 	/**
-	 * »Øµ÷
+	 * å›žè°ƒ
 	 */
 	private CalendarDialogListener lis;
 	/**
-	 * ÆðÊ¼Äê
+	 * èµ·å§‹å¹´
 	 */
 	private int startYear = -1;
 	/**
-	 * ÆðÊ¼ÔÂ
+	 * èµ·å§‹æœˆ
 	 */
 	private int startMonth = -1;
 	/**
-	 * ÆðÊ¼Ìì
+	 * èµ·å§‹å¤©
 	 */
 	private int startDay = -1;
-	
+
 	public interface CalendarDialogListener {
 		public void calendarDialogListener(int year, int month, int day);
 	}
@@ -93,7 +92,7 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// È¥³ýÆÁÄ»title
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// åŽ»é™¤å±å¹•title
 		setContentView(R.layout.dialog_calendar);
 		getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 		calendarView = (LCalendarView) findViewById(R.id.dialog_calender_calender);
@@ -112,10 +111,10 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	}
 
 	private void init() {
-		enterView.setText("È·¶¨");
-		escView.setText("È¡Ïû");
-		monthView.setText(month + "ÔÂ");
-		yearView.setText(year + "Äê");
+		enterView.setText("ç¡®å®š");
+		escView.setText("å–æ¶ˆ");
+		monthView.setText(month + "æœˆ");
+		yearView.setText(year + "å¹´");
 		Calendar calendar = Calendar.getInstance();
 		today = calendar.get(Calendar.DAY_OF_MONTH);
 		thisMonth = calendar.get(Calendar.MONTH) + 1;
@@ -123,7 +122,7 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 		calendarView.setData(year, month, today, day);
 		calendarStartSet();
 	}
-	
+
 	private void calendarStartSet(){
 		if(startYear>0 && startMonth>0 && startDay>0){
 			if(year < startYear && month < startMonth){
@@ -133,10 +132,10 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 			}
 		}
 	}
-	
+
 	/**
-	 * ´´½¨Ò»¸öÈÕÆÚÑ¡ÔñÆ÷
-	 * ´«ÈëÄ¬ÈÏµÄÊ±¼ä
+	 * åˆ›å»ºä¸€ä¸ªæ—¥æœŸé€‰æ‹©å™¨
+	 * ä¼ å…¥é»˜è®¤çš„æ—¶é—´
 	 * @param context
 	 * @param month
 	 * @param year
@@ -144,7 +143,7 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	 * @param lis
 	 */
 	public CalendarDialog(Context context, int month, int year, int day,
-			CalendarDialogListener lis) {
+						  CalendarDialogListener lis) {
 		super(context);
 		this.month = month;
 		this.year = year;
@@ -152,18 +151,18 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 		this.lis = lis;
 	}
 	/**
-	 * ´´½¨Ò»¸öÓÐÏÞÖÆµÄÊ±¼äÑ¡ÔñÆ÷
+	 * åˆ›å»ºä¸€ä¸ªæœ‰é™åˆ¶çš„æ—¶é—´é€‰æ‹©å™¨
 	 * @param context
 	 * @param month
 	 * @param year
 	 * @param day
-	 * @param startMonth ÓÐÐ§Ñ¡ÔñµÄ¿ªÊ¼ÔÂ·Ý
-	 * @param startYear ÓÐÐ§Ñ¡ÔñµÄ¿ªÊ¼Äê·Ý
-	 * @param startDay ÓÐÐ§Ñ¡ÔñµÄ¿ªÊ¼Ìì
+	 * @param startMonth æœ‰æ•ˆé€‰æ‹©çš„å¼€å§‹æœˆä»½
+	 * @param startYear æœ‰æ•ˆé€‰æ‹©çš„å¼€å§‹å¹´ä»½
+	 * @param startDay æœ‰æ•ˆé€‰æ‹©çš„å¼€å§‹å¤©
 	 * @param lis
 	 */
 	public CalendarDialog(Context context, int month, int year, int day,int startMonth, int startYear, int startDay,
-			CalendarDialogListener lis) {
+						  CalendarDialogListener lis) {
 		super(context);
 		this.month = month;
 		this.year = year;
@@ -173,54 +172,54 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 		this.startYear = startYear;
 		this.startDay = startDay;
 	}
-	
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.dialog_calender_left:
-			month--;
-			if(startMonth>0&&startYear>0&&month<=startMonth&&year <= startYear){
-				leftView.setVisibility(View.INVISIBLE);
-				month=startMonth;
-			}
-			if(month<1){
-				year--;
-				month = 12;
-			}
-			yearView.setText(year+"Äê");
-			monthView.setText(month+"ÔÂ");
-			if(year == thisYear && month==thisMonth){
-				calendarView.setData(year, month, today, day);
-			}else{
-				calendarView.setData(year, month, 0, day);
-			}
-			calendarStartSet();
-			break;
-		case R.id.dialog_calender_right:
-			month++;
-			if(startMonth>0&&startYear>0&&month>startMonth&&year >= startYear){
-				leftView.setVisibility(View.VISIBLE);
-			}
-			if(month>12){
-				year++;
-				month = 1;
-			}
-			yearView.setText(year+"Äê");
-			monthView.setText(month+"ÔÂ");
-			if(year == thisYear && month==thisMonth){
-				calendarView.setData(year, month, today, day);
-			}else{
-				calendarView.setData(year, month, 0, day);
-			}
-			calendarStartSet();
-			break;
-		case R.id.dialog_calender_enter:
-			lis.calendarDialogListener(year, month, day);
-			dismiss();
-			break;
-		case R.id.dialog_calender_esc:
-			dismiss();
-			break;
+			case R.id.dialog_calender_left:
+				month--;
+				if(startMonth>0&&startYear>0&&month<=startMonth&&year <= startYear){
+					leftView.setVisibility(View.INVISIBLE);
+					month=startMonth;
+				}
+				if(month<1){
+					year--;
+					month = 12;
+				}
+				yearView.setText(year+"å¹´");
+				monthView.setText(month+"æœˆ");
+				if(year == thisYear && month==thisMonth){
+					calendarView.setData(year, month, today, day);
+				}else{
+					calendarView.setData(year, month, 0, day);
+				}
+				calendarStartSet();
+				break;
+			case R.id.dialog_calender_right:
+				month++;
+				if(startMonth>0&&startYear>0&&month>startMonth&&year >= startYear){
+					leftView.setVisibility(View.VISIBLE);
+				}
+				if(month>12){
+					year++;
+					month = 1;
+				}
+				yearView.setText(year+"å¹´");
+				monthView.setText(month+"æœˆ");
+				if(year == thisYear && month==thisMonth){
+					calendarView.setData(year, month, today, day);
+				}else{
+					calendarView.setData(year, month, 0, day);
+				}
+				calendarStartSet();
+				break;
+			case R.id.dialog_calender_enter:
+				lis.calendarDialogListener(year, month, day);
+				dismiss();
+				break;
+			case R.id.dialog_calender_esc:
+				dismiss();
+				break;
 
 		}
 	}

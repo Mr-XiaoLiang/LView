@@ -1,0 +1,11 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/main_list"/>
+
+</LinearLayout>
+<!-- From: file:/D:/Android/AndroidGit/LView/res/layout/activity_main.xml -->

@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 /**
- * ÊÕÖ§¹ÜÀíÊ×Ò³µÄ±ı×´Í¼
+ * æ”¶æ”¯ç®¡ç†é¦–é¡µçš„é¥¼çŠ¶å›¾
  * @author xiao
  *
  */
@@ -27,7 +27,7 @@ public class LPieView extends View {
 	private Paint greenPaint;
 	private int radius;
 	private int textSize;
-	
+
 	public LPieView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		redPaint = new Paint();
@@ -49,9 +49,9 @@ public class LPieView extends View {
 	public LPieView(Context context) {
 		this(context,null);
 	}
-	
-	
-	
+
+
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -78,7 +78,7 @@ public class LPieView extends View {
 	}
 
 	/**
-	 * »ñÈ¡½Ç¶È
+	 * è·å–è§’åº¦
 	 * @param i
 	 * @return
 	 */
@@ -90,7 +90,7 @@ public class LPieView extends View {
 		return new float[]{end1,end2};
 	}
 	/**
-	 * »­±ı
+	 * ç”»é¥¼
 	 * @param canvas
 	 */
 	private void drawPie(Canvas canvas){
@@ -108,7 +108,7 @@ public class LPieView extends View {
 		}
 	}
 	/**
-	 * »­×Ö
+	 * ç”»å­—
 	 * @param canvas
 	 */
 	private void drawText(Canvas canvas){
@@ -158,24 +158,24 @@ public class LPieView extends View {
 			y = height-textSize/2;
 		}
 		canvas.drawText(Text, x, y+TextY, greenPaint);
-		
-		
+
+
 		canvas.drawCircle(width-textSize*7.5f, height-textSize*0.7f, textSize*0.2f, redPaint);
 		canvas.drawCircle(width-textSize*3.5f, height-textSize*0.7f, textSize*0.2f, greenPaint);
-		canvas.drawText("ÊÕÈë", width-textSize*6, height-TextY, redPaint);
-		canvas.drawText("Ö§³ö", width-textSize*2, height-TextY, greenPaint);
+		canvas.drawText("æ”¶å…¥", width-textSize*6, height-TextY, redPaint);
+		canvas.drawText("æ”¯å‡º", width-textSize*2, height-TextY, greenPaint);
 	}
 	/**
-	 * ¸ù¾İ½Ç¶È¼°°ë¾¶¼ÆËãÎ»ÖÃ
-	 * @param angle ½Ç¶È
-	 * @param radiu °ë¾¶
+	 * æ ¹æ®è§’åº¦åŠåŠå¾„è®¡ç®—ä½ç½®
+	 * @param angle è§’åº¦
+	 * @param radiu åŠå¾„
 	 * @return
-	 * ¹«Ê½:ÀûÓÃÈı½Çº¯Êı·´Ïò¼ÆËã
-	 * X = ¿í¶È/2 + Math.sin(½Ç¶È/180*Math.PI)*°ë¾¶
-	 * Y = ¸ß¶È/2 + Math.cos(½Ç¶È/180*Math.PI)*°ë¾¶
+	 * å…¬å¼:åˆ©ç”¨ä¸‰è§’å‡½æ•°åå‘è®¡ç®—
+	 * X = å®½åº¦/2 + Math.sin(è§’åº¦/180*Math.PI)*åŠå¾„
+	 * Y = é«˜åº¦/2 + Math.cos(è§’åº¦/180*Math.PI)*åŠå¾„
 	 */
 	private float[] getLocation(float angle,float radiu){
-		//°Ñ½Ç¶È½ÃÕıÎª0¡ãÔÚyÖáÕı·½Ïò
+		//æŠŠè§’åº¦çŸ«æ­£ä¸º0Â°åœ¨yè½´æ­£æ–¹å‘
 		//angle += 180;
 		float x = (float) (width / 2 + (Math.sin(angle/180 * Math.PI) * radiu));
 		float y = (float) (height / 2 + (Math.cos(angle/180 * Math.PI) * radiu));
@@ -188,6 +188,7 @@ public class LPieView extends View {
 
 	public void setRedSize(float redSize) {
 		this.redSize = redSize;
+		invalidate();
 	}
 
 	public float getGreenSize() {
@@ -196,6 +197,7 @@ public class LPieView extends View {
 
 	public void setGreenSize(float greenSize) {
 		this.greenSize = greenSize;
+		invalidate();
 	}
-	
+
 }

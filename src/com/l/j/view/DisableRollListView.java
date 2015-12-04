@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 /**
- * 不可滚动的listview
- * 用于嵌套到ScrollView
+ * 涓嶅彲婊氬姩鐨刲istview
+ * 鐢ㄤ簬宓屽鍒癝crollView
  * @author xiao
  *
  */

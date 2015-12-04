@@ -1,5 +1,7 @@
 package com.l.j.view;
 
+import com.l.j.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -15,19 +17,17 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.example.mytest.R;
-
 /**
- * Ô²ĞÎImageView£¬¿ÉÉèÖÃ×î¶àÁ½¸ö¿í¶È²»Í¬ÇÒÑÕÉ«²»Í¬µÄÔ²ĞÎ±ß¿ò¡£
+ * åœ†å½¢ImageViewï¼Œå¯è®¾ç½®æœ€å¤šä¸¤ä¸ªå®½åº¦ä¸åŒä¸”é¢œè‰²ä¸åŒçš„åœ†å½¢è¾¹æ¡†ã€‚
  */
 public class RoundImageView extends ImageView {
 	private int mBorderThickness = 0;
 	private Context mContext;
 	private int defaultColor = 0xFFFFFFFF;
-	// Èç¹ûÖ»ÓĞÆäÖĞÒ»¸öÓĞÖµ£¬ÔòÖ»»­Ò»¸öÔ²ĞÎ±ß¿ò
+	// å¦‚æœåªæœ‰å…¶ä¸­ä¸€ä¸ªæœ‰å€¼ï¼Œåˆ™åªç”»ä¸€ä¸ªåœ†å½¢è¾¹æ¡†
 	private int mBorderOutsideColor = 0;
 	private int mBorderInsideColor = 0;
-	// ¿Ø¼şÄ¬ÈÏ³¤¡¢¿í
+	// æ§ä»¶é»˜è®¤é•¿ã€å®½
 	private int defaultWidth = 0;
 	private int defaultHeight = 0;
 
@@ -82,7 +82,7 @@ public class RoundImageView extends ImageView {
 		if (defaultHeight == 0) {
 			defaultHeight = getHeight();
 		}
-		// ±£Ö¤ÖØĞÂ¶ÁÈ¡Í¼Æ¬ºó²»»áÒòÎªÍ¼Æ¬´óĞ¡¶ø¸Ä±ä¿Ø¼ş¿í¡¢¸ßµÄ´óĞ¡£¨Õë¶Ô¿í¡¢¸ßÎªwrap_content²¼¾ÖµÄimageview£¬µ«»áµ¼ÖÂmarginÎŞĞ§£©
+		// ä¿è¯é‡æ–°è¯»å–å›¾ç‰‡åä¸ä¼šå› ä¸ºå›¾ç‰‡å¤§å°è€Œæ”¹å˜æ§ä»¶å®½ã€é«˜çš„å¤§å°ï¼ˆé’ˆå¯¹å®½ã€é«˜ä¸ºwrap_contentå¸ƒå±€çš„imageviewï¼Œä½†ä¼šå¯¼è‡´marginæ— æ•ˆï¼‰
 		// if (defaultWidth != 0 && defaultHeight != 0) {
 		// LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 		// defaultWidth, defaultHeight);
@@ -90,28 +90,28 @@ public class RoundImageView extends ImageView {
 		// }
 		int radius = 0;
 		if (mBorderInsideColor != defaultColor
-				&& mBorderOutsideColor != defaultColor) {// ¶¨Òå»­Á½¸ö±ß¿ò£¬·Ö±ğÎªÍâÔ²±ß¿òºÍÄÚÔ²±ß¿ò
+				&& mBorderOutsideColor != defaultColor) {// å®šä¹‰ç”»ä¸¤ä¸ªè¾¹æ¡†ï¼Œåˆ†åˆ«ä¸ºå¤–åœ†è¾¹æ¡†å’Œå†…åœ†è¾¹æ¡†
 			radius = (defaultWidth < defaultHeight ? defaultWidth
 					: defaultHeight) / 2 - 2 * mBorderThickness;
-			// »­ÄÚÔ²
+			// ç”»å†…åœ†
 			drawCircleBorder(canvas, radius + mBorderThickness / 2,
 					mBorderInsideColor);
-			// »­ÍâÔ²
+			// ç”»å¤–åœ†
 			drawCircleBorder(canvas, radius + mBorderThickness
 					+ mBorderThickness / 2, mBorderOutsideColor);
 		} else if (mBorderInsideColor != defaultColor
-				&& mBorderOutsideColor == defaultColor) {// ¶¨Òå»­Ò»¸ö±ß¿ò
+				&& mBorderOutsideColor == defaultColor) {// å®šä¹‰ç”»ä¸€ä¸ªè¾¹æ¡†
 			radius = (defaultWidth < defaultHeight ? defaultWidth
 					: defaultHeight) / 2 - mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2,
 					mBorderInsideColor);
 		} else if (mBorderInsideColor == defaultColor
-				&& mBorderOutsideColor != defaultColor) {// ¶¨Òå»­Ò»¸ö±ß¿ò
+				&& mBorderOutsideColor != defaultColor) {// å®šä¹‰ç”»ä¸€ä¸ªè¾¹æ¡†
 			radius = (defaultWidth < defaultHeight ? defaultWidth
 					: defaultHeight) / 2 - mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2,
 					mBorderOutsideColor);
-		} else {// Ã»ÓĞ±ß¿ò
+		} else {// æ²¡æœ‰è¾¹æ¡†
 			radius = (defaultWidth < defaultHeight ? defaultWidth
 					: defaultHeight) / 2;
 		}
@@ -121,29 +121,29 @@ public class RoundImageView extends ImageView {
 	}
 
 	/**
-	 * »ñÈ¡²Ã¼ôºóµÄÔ²ĞÎÍ¼Æ¬
-	 * 
+	 * è·å–è£å‰ªåçš„åœ†å½¢å›¾ç‰‡
+	 *
 	 * @param radius
-	 *            °ë¾¶
+	 *            åŠå¾„
 	 */
 	public Bitmap getCroppedRoundBitmap(Bitmap bmp, int radius) {
 		Bitmap scaledSrcBmp;
 		int diameter = radius * 2;
 
-		// ÎªÁË·ÀÖ¹¿í¸ß²»ÏàµÈ£¬Ôì³ÉÔ²ĞÎÍ¼Æ¬±äĞÎ£¬Òò´Ë½ØÈ¡³¤·½ĞÎÖĞ´¦ÓÚÖĞ¼äÎ»ÖÃ×î´óµÄÕı·½ĞÎÍ¼Æ¬
+		// ä¸ºäº†é˜²æ­¢å®½é«˜ä¸ç›¸ç­‰ï¼Œé€ æˆåœ†å½¢å›¾ç‰‡å˜å½¢ï¼Œå› æ­¤æˆªå–é•¿æ–¹å½¢ä¸­å¤„äºä¸­é—´ä½ç½®æœ€å¤§çš„æ­£æ–¹å½¢å›¾ç‰‡
 		int bmpWidth = bmp.getWidth();
 		int bmpHeight = bmp.getHeight();
 		int squareWidth = 0, squareHeight = 0;
 		int x = 0, y = 0;
 		Bitmap squareBitmap;
-		if (bmpHeight > bmpWidth) {// ¸ß´óÓÚ¿í
+		if (bmpHeight > bmpWidth) {// é«˜å¤§äºå®½
 			squareWidth = squareHeight = bmpWidth;
 			x = 0;
 			y = (bmpHeight - bmpWidth) / 2;
-			// ½ØÈ¡Õı·½ĞÎÍ¼Æ¬
+			// æˆªå–æ­£æ–¹å½¢å›¾ç‰‡
 			squareBitmap = Bitmap.createBitmap(bmp, x, y, squareWidth,
 					squareHeight);
-		} else if (bmpHeight < bmpWidth) {// ¿í´óÓÚ¸ß
+		} else if (bmpHeight < bmpWidth) {// å®½å¤§äºé«˜
 			squareWidth = squareHeight = bmpHeight;
 			x = (bmpWidth - bmpHeight) / 2;
 			y = 0;
@@ -178,7 +178,7 @@ public class RoundImageView extends ImageView {
 				paint);
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(scaledSrcBmp, rect, rect, paint);
-		// bitmap»ØÊÕ(recycleµ¼ÖÂÔÚ²¼¾ÖÎÄ¼şXML¿´²»µ½Ğ§¹û)
+		// bitmapå›æ”¶(recycleå¯¼è‡´åœ¨å¸ƒå±€æ–‡ä»¶XMLçœ‹ä¸åˆ°æ•ˆæœ)
 		// bmp.recycle();
 		// squareBitmap.recycle();
 		// scaledSrcBmp.recycle();
@@ -189,18 +189,18 @@ public class RoundImageView extends ImageView {
 	}
 
 	/**
-	 * ±ßÔµ»­Ô²
+	 * è¾¹ç¼˜ç”»åœ†
 	 */
 	private void drawCircleBorder(Canvas canvas, int radius, int color) {
 		Paint paint = new Paint();
-		/* È¥¾â³İ */
+		/* å»é”¯é½¿ */
 		paint.setAntiAlias(true);
 		paint.setFilterBitmap(true);
 		paint.setDither(true);
 		paint.setColor(color);
-		/* ÉèÖÃpaintµÄ¡¡style¡¡ÎªSTROKE£º¿ÕĞÄ */
+		/* è®¾ç½®paintçš„ã€€styleã€€ä¸ºSTROKEï¼šç©ºå¿ƒ */
 		paint.setStyle(Paint.Style.STROKE);
-		/* ÉèÖÃpaintµÄÍâ¿ò¿í¶È */
+		/* è®¾ç½®paintçš„å¤–æ¡†å®½åº¦ */
 		paint.setStrokeWidth(mBorderThickness);
 		canvas.drawCircle(defaultWidth / 2, defaultHeight / 2, radius, paint);
 	}
@@ -220,5 +220,5 @@ public class RoundImageView extends ImageView {
 	public void setDefaultHeight(int defaultHeight) {
 		this.defaultHeight = defaultHeight;
 	}
-	
+
 }

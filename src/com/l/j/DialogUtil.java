@@ -18,8 +18,8 @@ public class DialogUtil {
 	private double dialogHeightProportion = 0.4;
 
 	/**
-	 * »ñÈ¡Ò»¸öÃ»ÓĞÏŞÖÆµÄÈÕÆÚÑ¡Ôñ¶Ô»°¿ò
-	 * 
+	 * è·å–ä¸€ä¸ªæ²¡æœ‰é™åˆ¶çš„æ—¥æœŸé€‰æ‹©å¯¹è¯æ¡†
+	 *
 	 * @param context
 	 * @param month
 	 * @param year
@@ -28,16 +28,16 @@ public class DialogUtil {
 	 * @return
 	 */
 	public Dialog getCalendarDialog(Activity context, int month, int year,
-			int day, CalendarDialogListener lis) {
+									int day, CalendarDialogListener lis) {
 		CalendarDialog dialog = new CalendarDialog(context, month, year, day,
 				lis);
 		Window window = dialog.getWindow();
-		window.setGravity(Gravity.CENTER); // ´Ë´¦¿ÉÒÔÉèÖÃdialogÏÔÊ¾µÄÎ»ÖÃ
+		window.setGravity(Gravity.CENTER); // æ­¤å¤„å¯ä»¥è®¾ç½®dialogæ˜¾ç¤ºçš„ä½ç½®
 		dialog.setCancelable(true);
 		dialog.show();
 		WindowManager m = context.getWindowManager();
-		Display d = m.getDefaultDisplay(); // »ñÈ¡ÆÁÄ»¿í¡¢¸ßÓÃ
-		WindowManager.LayoutParams p = window.getAttributes(); // »ñÈ¡¶Ô»°¿òµ±Ç°µÄ²ÎÊıÖµ
+		Display d = m.getDefaultDisplay(); // è·å–å±å¹•å®½ã€é«˜ç”¨
+		WindowManager.LayoutParams p = window.getAttributes(); // è·å–å¯¹è¯æ¡†å½“å‰çš„å‚æ•°å€¼
 		p.height = (int) (d.getHeight() * dialogHeightProportion);
 		p.width = (int) (d.getWidth() * dialogWidthProportion);
 		dialog.onWindowAttributesChanged(p);
@@ -45,29 +45,29 @@ public class DialogUtil {
 		return dialog;
 	}
 	/**
-	 * »ñÈ¡Ò»¸öÓĞÏŞÖÆµÄÈÕÆÚÑ¡Ôñ¶Ô»°¿ò
+	 * è·å–ä¸€ä¸ªæœ‰é™åˆ¶çš„æ—¥æœŸé€‰æ‹©å¯¹è¯æ¡†
 	 * @param context
 	 * @param month
 	 * @param year
 	 * @param day
-	 * @param startMonth ÆğÊ¼µÄÔÂ·İ
-	 * @param startYear ÆğÊ¼Äê·İ
-	 * @param startDay ÆğÊ¼ÈÕÆÚ
+	 * @param startMonth èµ·å§‹çš„æœˆä»½
+	 * @param startYear èµ·å§‹å¹´ä»½
+	 * @param startDay èµ·å§‹æ—¥æœŸ
 	 * @param lis
 	 * @return
 	 */
 	public Dialog getCalendarDialog(Activity context, int month, int year,
-			int day, int startMonth, int startYear, int startDay,
-			CalendarDialogListener lis) {
+									int day, int startMonth, int startYear, int startDay,
+									CalendarDialogListener lis) {
 		CalendarDialog dialog = new CalendarDialog(context, month, year, day,
 				startMonth, startYear, startDay, lis);
 		Window window = dialog.getWindow();
-		window.setGravity(Gravity.CENTER); // ´Ë´¦¿ÉÒÔÉèÖÃdialogÏÔÊ¾µÄÎ»ÖÃ
+		window.setGravity(Gravity.CENTER); // æ­¤å¤„å¯ä»¥è®¾ç½®dialogæ˜¾ç¤ºçš„ä½ç½®
 		dialog.setCancelable(true);
 		dialog.show();
 		WindowManager m = context.getWindowManager();
-		Display d = m.getDefaultDisplay(); // »ñÈ¡ÆÁÄ»¿í¡¢¸ßÓÃ
-		WindowManager.LayoutParams p = window.getAttributes(); // »ñÈ¡¶Ô»°¿òµ±Ç°µÄ²ÎÊıÖµ
+		Display d = m.getDefaultDisplay(); // è·å–å±å¹•å®½ã€é«˜ç”¨
+		WindowManager.LayoutParams p = window.getAttributes(); // è·å–å¯¹è¯æ¡†å½“å‰çš„å‚æ•°å€¼
 		p.height = (int) (d.getHeight() * dialogHeightProportion);
 		p.width = (int) (d.getWidth() * dialogWidthProportion);
 		dialog.onWindowAttributesChanged(p);
@@ -77,54 +77,54 @@ public class DialogUtil {
 
 
 	/**
-	 * »ñÈ¡Ò»¸ö¼ÓÔØÌáÊ¾dialog
-	 * 
+	 * è·å–ä¸€ä¸ªåŠ è½½æç¤ºdialog
+	 *
 	 * @param context
 	 * @return
 	 */
 	public Dialog getLoadDialog(Activity context) {
 		LoadDialog dialog = new LoadDialog(context);
 		Window window = dialog.getWindow();
-		window.setGravity(Gravity.CENTER); // ´Ë´¦¿ÉÒÔÉèÖÃdialogÏÔÊ¾µÄÎ»ÖÃ
+		window.setGravity(Gravity.CENTER); // æ­¤å¤„å¯ä»¥è®¾ç½®dialogæ˜¾ç¤ºçš„ä½ç½®
 		dialog.setCancelable(true);
 		dialog.show();
 		WindowManager m = context.getWindowManager();
-		Display d = m.getDefaultDisplay(); // »ñÈ¡ÆÁÄ»¿í¡¢¸ßÓÃ
-		WindowManager.LayoutParams p = window.getAttributes(); // »ñÈ¡¶Ô»°¿òµ±Ç°µÄ²ÎÊıÖµ
+		Display d = m.getDefaultDisplay(); // è·å–å±å¹•å®½ã€é«˜ç”¨
+		WindowManager.LayoutParams p = window.getAttributes(); // è·å–å¯¹è¯æ¡†å½“å‰çš„å‚æ•°å€¼
 		p.height = (int) (d.getHeight() * 0.2);
 		p.width = (int) (d.getWidth() * 0.2);
 		dialog.onWindowAttributesChanged(p);
-		p.dimAmount = 0f;// ÉèÖÃ±³¾°²»±ä°µ
+		p.dimAmount = 0f;// è®¾ç½®èƒŒæ™¯ä¸å˜æš—
 		window.setAttributes(p);
 		return dialog;
 	}
 
 	/**
-	 * »ñÈ¡Ò»¸öÌá½»½ø¶Èdialog
-	 * 
+	 * è·å–ä¸€ä¸ªæäº¤è¿›åº¦dialog
+	 *
 	 * @param context
 	 * @return
 	 */
 	public Dialog getProgressDialog(Activity context, int allInt, int havingInt) {
 		ProgressDialog dialog = new ProgressDialog(context, allInt, havingInt);
 		Window window = dialog.getWindow();
-		window.setGravity(Gravity.CENTER); // ´Ë´¦¿ÉÒÔÉèÖÃdialogÏÔÊ¾µÄÎ»ÖÃ
+		window.setGravity(Gravity.CENTER); // æ­¤å¤„å¯ä»¥è®¾ç½®dialogæ˜¾ç¤ºçš„ä½ç½®
 		dialog.setCancelable(true);
 		dialog.show();
 		WindowManager m = context.getWindowManager();
-		Display d = m.getDefaultDisplay(); // »ñÈ¡ÆÁÄ»¿í¡¢¸ßÓÃ
-		WindowManager.LayoutParams p = window.getAttributes(); // »ñÈ¡¶Ô»°¿òµ±Ç°µÄ²ÎÊıÖµ
+		Display d = m.getDefaultDisplay(); // è·å–å±å¹•å®½ã€é«˜ç”¨
+		WindowManager.LayoutParams p = window.getAttributes(); // è·å–å¯¹è¯æ¡†å½“å‰çš„å‚æ•°å€¼
 		p.height = (int) (d.getHeight() * 0.6);
 		p.width = (int) (d.getWidth() * 0.6);
 		dialog.onWindowAttributesChanged(p);
-		p.dimAmount = 0f;// ÉèÖÃ±³¾°²»±ä°µ
+		p.dimAmount = 0f;// è®¾ç½®èƒŒæ™¯ä¸å˜æš—
 		window.setAttributes(p);
 		return dialog;
 	}
 
 
 	public DialogUtil(double dialogWidthProportion,
-			double dialogHeightProportion) {
+					  double dialogHeightProportion) {
 		super();
 		this.dialogWidthProportion = dialogWidthProportion;
 		this.dialogHeightProportion = dialogHeightProportion;

@@ -3,64 +3,64 @@ package com.l.j.option;
 import android.graphics.Color;
 
 /**
- * 
- * @author LiuJ ÕâÊÇ½ø¶ÈÌõ°´Å¥µÄ²ÎÊıÉèÖÃÀà
- * 
+ *
+ * @author LiuJ è¿™æ˜¯è¿›åº¦æ¡æŒ‰é’®çš„å‚æ•°è®¾ç½®ç±»
+ *
  */
 public class LProgressButtonOption {
-	// °´Å¥Ô²½ÇµÄ³ß´ç
+	// æŒ‰é’®åœ†è§’çš„å°ºå¯¸
 	private final int btnRadius;
-	// °´Å¥¿ªÊ¼±³¾°É«
+	// æŒ‰é’®å¼€å§‹èƒŒæ™¯è‰²
 	private final int btnStartBgColor;
-	// °´Å¥¿ªÊ¼±³¾°Í¼Æ¬
+	// æŒ‰é’®å¼€å§‹èƒŒæ™¯å›¾ç‰‡
 	private final int btnStartBgImage;
-	// °´Å¥¿ªÊ¼ÎÄ×Ö
+	// æŒ‰é’®å¼€å§‹æ–‡å­—
 	private final String btnStartText;
-	// °´Å¥µã»÷Ç°×ÖÌåÑÕÉ«
+	// æŒ‰é’®ç‚¹å‡»å‰å­—ä½“é¢œè‰²
 	private final int btnStartTextColor;
-	// °´Å¥¿ªÊ¼µÄÍ¼Æ¬
+	// æŒ‰é’®å¼€å§‹çš„å›¾ç‰‡
 	private final int btnStartIcon;
-	// °´Å¥½áÊø±³¾°É«
+	// æŒ‰é’®ç»“æŸèƒŒæ™¯è‰²
 	private final int btnEndBgColor;
-	// °´Å¥½áÊø±³¾°Í¼Æ¬
+	// æŒ‰é’®ç»“æŸèƒŒæ™¯å›¾ç‰‡
 	private final int btnEndBgImage;
-	// °´Å¥½áÊøÎÄ×Ö
+	// æŒ‰é’®ç»“æŸæ–‡å­—
 	private final String btnEndText;
-	// °´Å¥½áÊø×ÖÌåÑÕÉ«
+	// æŒ‰é’®ç»“æŸå­—ä½“é¢œè‰²
 	private final int btnEndTextColor;
-	// °´Å¥½áÊøµÄÍ¼Æ¬
+	// æŒ‰é’®ç»“æŸçš„å›¾ç‰‡
 	private final int btnEndIcon;
-	// °´Å¥Òì³£±³¾°É«
+	// æŒ‰é’®å¼‚å¸¸èƒŒæ™¯è‰²
 	private final int btnErrorBgColor;
-	// °´Å¥Òì³£±³¾°Í¼Æ¬
+	// æŒ‰é’®å¼‚å¸¸èƒŒæ™¯å›¾ç‰‡
 	private final int btnErrorBgImage;
-	// °´Å¥½áÊøÎÄ×Ö
+	// æŒ‰é’®ç»“æŸæ–‡å­—
 	private final String btnErrorText;
-	// °´Å¥½áÊø×ÖÌåÑÕÉ«
+	// æŒ‰é’®ç»“æŸå­—ä½“é¢œè‰²
 	private final int btnErrorTextColor;
-	// °´Å¥½áÊøµÄÍ¼Æ¬
+	// æŒ‰é’®ç»“æŸçš„å›¾ç‰‡
 	private final int btnErrorIcon;
-	// ½ø¶ÈÌõÑÕÉ«
+	// è¿›åº¦æ¡é¢œè‰²
 	private final int btnProgressColor;
-	// ½ø¶ÈÌõ¿í¶È(Óë°´Å¥¸ß¶ÈµÄ±ÈÀı)
+	// è¿›åº¦æ¡å®½åº¦(ä¸æŒ‰é’®é«˜åº¦çš„æ¯”ä¾‹)
 	private final float btnProgressWidth;
-	// ½ø¶ÈÌõ±³¾°ÑÕÉ«
+	// è¿›åº¦æ¡èƒŒæ™¯é¢œè‰²
 	private final int btnProgressBgColor;
-	// ÊÇ·ñÏÔÊ¾°Ù·Ö±È
+	// æ˜¯å¦æ˜¾ç¤ºç™¾åˆ†æ¯”
 	private final boolean isShowPercent;
-	// ½ø¶ÈÌõÖĞĞÄ±³¾°ÊÇ·ñÍ¸Ã÷
+	// è¿›åº¦æ¡ä¸­å¿ƒèƒŒæ™¯æ˜¯å¦é€æ˜
 	private final boolean isProgressCenterLucency;
-	// ½ø¶ÈÌõÖĞĞÄ±³¾°µÄÑÕÉ«
+	// è¿›åº¦æ¡ä¸­å¿ƒèƒŒæ™¯çš„é¢œè‰²
 	private final int btnProgressCenterColor;
-	// ½ø¶ÈÌõÊıÖµµÄÑÕÉ«
+	// è¿›åº¦æ¡æ•°å€¼çš„é¢œè‰²
 	private final int btnProgressPercentColor;
-	// ½ø¶ÈÌõÖĞĞÄ±³¾°µÄÍ¼Æ¬
+	// è¿›åº¦æ¡ä¸­å¿ƒèƒŒæ™¯çš„å›¾ç‰‡
 	private final int btnProgressCenterImage;
-	//°´Å¥Í¼±êµÄ³ß´ç
+	//æŒ‰é’®å›¾æ ‡çš„å°ºå¯¸
 	private final float btnIconSize;
-	//Í¼±ê°´Å¥µÄ±ÈÀıÀàĞÍ
+	//å›¾æ ‡æŒ‰é’®çš„æ¯”ä¾‹ç±»å‹
 	private final int btnIconSizeType;
-	//°´Å¥Í¼±êµÄÔ²½Ç´óĞ¡
+	//æŒ‰é’®å›¾æ ‡çš„åœ†è§’å¤§å°
 	private final int btnIconRadius;
 	public LProgressButtonOption(Builder builder) {
 		super();
@@ -91,10 +91,10 @@ public class LProgressButtonOption {
 		this.btnIconSize = builder.btnIconSize;
 		this.btnIconSizeType = builder.btnIconSizeType;
 		this.btnIconRadius = builder.btnIconRadius;
-		
+
 	}
 
-	
+
 
 	public int getBtnRadius() {
 		return btnRadius;
@@ -238,7 +238,7 @@ public class LProgressButtonOption {
 		return btnProgressCenterImage;
 	}
 
-	
+
 
 	public float getBtnIconSize() {
 		return btnIconSize;
@@ -257,108 +257,108 @@ public class LProgressButtonOption {
 
 	public static class Builder {
 		/**
-		 * °´Å¥Ô²½Ç°ë¾¶µÄ±¸Ñ¡Ïî ÉÏÏÂ°ëÔ²µÄ°´Å¥ÑùÊ½
+		 * æŒ‰é’®åœ†è§’åŠå¾„çš„å¤‡é€‰é¡¹ ä¸Šä¸‹åŠåœ†çš„æŒ‰é’®æ ·å¼
 		 */
 		public static final int btnRadius_VERTICAL = -3;
 		/**
-		 * °´Å¥Ô²½Ç°ë¾¶µÄ±¸Ñ¡Ïî ×óÓÒ°ëÔ²µÄÑùÊ½
+		 * æŒ‰é’®åœ†è§’åŠå¾„çš„å¤‡é€‰é¡¹ å·¦å³åŠåœ†çš„æ ·å¼
 		 */
 		public static final int btnRadius_HORIZONTAL = -2;
 		/**
-		 * °´Å¥Ô²½Ç°ë¾¶µÄ±¸Ñ¡Ïî ·½ĞÎ
+		 * æŒ‰é’®åœ†è§’åŠå¾„çš„å¤‡é€‰é¡¹ æ–¹å½¢
 		 */
 		public static final int btnRadius_SQUARE = -1;
 		/**
-		 * °´Å¥³õÊ¼×´Ì¬µÄÄ¬ÈÏÑÕÉ«
+		 * æŒ‰é’®åˆå§‹çŠ¶æ€çš„é»˜è®¤é¢œè‰²
 		 */
 		public static final int btnColor_DEFAULT = Color.rgb(0, 153, 204);
 		/**
-		 * °´Å¥Ä¬ÈÏµÄ³É¹¦ÑÕÉ«
+		 * æŒ‰é’®é»˜è®¤çš„æˆåŠŸé¢œè‰²
 		 */
 		public static final int btnColor_SUCCESS = Color.rgb(153, 204, 0);
 		/**
-		 * °´Å¥Ä¬ÈÏµÄÒì³£ÑÕÉ«
+		 * æŒ‰é’®é»˜è®¤çš„å¼‚å¸¸é¢œè‰²
 		 */
 		public static final int btnColor_ERROR = Color.rgb(255, 68, 68);
 		/**
-		 * °´Å¥Ä¬ÈÏµÄÍ¼Æ¬
+		 * æŒ‰é’®é»˜è®¤çš„å›¾ç‰‡
 		 */
 		public static final int btnImage_NONE = -1;
 		/**
-		 * °´Å¥Í¼±êµÄ³ß´ç±ä»¯¶ÔÏó
-		 * Ïà¶ÔÓÚ°´Å¥¿í¶È
+		 * æŒ‰é’®å›¾æ ‡çš„å°ºå¯¸å˜åŒ–å¯¹è±¡
+		 * ç›¸å¯¹äºæŒ‰é’®å®½åº¦
 		 */
 		public static final int btnIconSizeType_WIDTH = 0;
 		/**
-		 * °´Å¥Í¼±êµÄ³ß´ç±ä»¯¶ÔÏó
-		 * Ïà¶ÔÓÚ°´Å¥¸ß¶È
+		 * æŒ‰é’®å›¾æ ‡çš„å°ºå¯¸å˜åŒ–å¯¹è±¡
+		 * ç›¸å¯¹äºæŒ‰é’®é«˜åº¦
 		 */
 		public static final int btnIconSizeType_HEIGHT = 1;
 		/**
-		 * °´Å¥Í¼±êµÄ³ß´ç±ä»¯¶ÔÏó
-		 * ×Ô¶¯,×Ô¶¯Ñ¡Ôñ½ÏĞ¡µÄÄÇ¸ö
+		 * æŒ‰é’®å›¾æ ‡çš„å°ºå¯¸å˜åŒ–å¯¹è±¡
+		 * è‡ªåŠ¨,è‡ªåŠ¨é€‰æ‹©è¾ƒå°çš„é‚£ä¸ª
 		 */
 		public static final int btnIconSizeType_AUTO = -1;
-		
-		// °´Å¥Ô²½ÇµÄ³ß´ç
+
+		// æŒ‰é’®åœ†è§’çš„å°ºå¯¸
 		private int btnRadius = btnRadius_HORIZONTAL;
-		// °´Å¥¿ªÊ¼±³¾°É«
+		// æŒ‰é’®å¼€å§‹èƒŒæ™¯è‰²
 		private int btnStartBgColor = btnColor_DEFAULT;
-		// °´Å¥¿ªÊ¼±³¾°Í¼Æ¬
+		// æŒ‰é’®å¼€å§‹èƒŒæ™¯å›¾ç‰‡
 		private int btnStartBgImage = btnImage_NONE;
-		// °´Å¥¿ªÊ¼ÎÄ×Ö
+		// æŒ‰é’®å¼€å§‹æ–‡å­—
 		private String btnStartText = "";
-		// °´Å¥µã»÷Ç°×ÖÌåÑÕÉ«
+		// æŒ‰é’®ç‚¹å‡»å‰å­—ä½“é¢œè‰²
 		private int btnStartTextColor = Color.WHITE;
-		// °´Å¥¿ªÊ¼µÄÍ¼Æ¬
+		// æŒ‰é’®å¼€å§‹çš„å›¾ç‰‡
 		private int btnStartIcon = btnImage_NONE;
-		// °´Å¥½áÊø±³¾°É«
+		// æŒ‰é’®ç»“æŸèƒŒæ™¯è‰²
 		private int btnEndBgColor = btnColor_SUCCESS;
-		// °´Å¥½áÊø±³¾°Í¼Æ¬
+		// æŒ‰é’®ç»“æŸèƒŒæ™¯å›¾ç‰‡
 		private int btnEndBgImage = btnImage_NONE;
-		// °´Å¥½áÊøÎÄ×Ö
+		// æŒ‰é’®ç»“æŸæ–‡å­—
 		private String btnEndText = "";
-		// °´Å¥½áÊø×ÖÌåÑÕÉ«
+		// æŒ‰é’®ç»“æŸå­—ä½“é¢œè‰²
 		private int btnEndTextColor = Color.WHITE;
-		// °´Å¥½áÊøµÄÍ¼Æ¬
+		// æŒ‰é’®ç»“æŸçš„å›¾ç‰‡
 		private int btnEndIcon = btnImage_NONE;
-		// °´Å¥Òì³£±³¾°É«
+		// æŒ‰é’®å¼‚å¸¸èƒŒæ™¯è‰²
 		private int btnErrorBgColor = btnColor_ERROR;
-		// °´Å¥Òì³£±³¾°Í¼Æ¬
+		// æŒ‰é’®å¼‚å¸¸èƒŒæ™¯å›¾ç‰‡
 		private int btnErrorBgImage = btnImage_NONE;
-		// °´Å¥½áÊøÎÄ×Ö
+		// æŒ‰é’®ç»“æŸæ–‡å­—
 		private String btnErrorText = "";
-		// °´Å¥½áÊø×ÖÌåÑÕÉ«
+		// æŒ‰é’®ç»“æŸå­—ä½“é¢œè‰²
 		private int btnErrorTextColor = Color.WHITE;
-		// °´Å¥½áÊøµÄÍ¼Æ¬
+		// æŒ‰é’®ç»“æŸçš„å›¾ç‰‡
 		private int btnErrorIcon = btnImage_NONE;
-		// ½ø¶ÈÌõÑÕÉ«
+		// è¿›åº¦æ¡é¢œè‰²
 		private int btnProgressColor = btnColor_DEFAULT;
-		// ½ø¶ÈÌõ¿í¶È(Óë°´Å¥¸ß¶ÈµÄ±ÈÀı)
+		// è¿›åº¦æ¡å®½åº¦(ä¸æŒ‰é’®é«˜åº¦çš„æ¯”ä¾‹)
 		private float btnProgressWidth = 0.05f;
-		// ½ø¶ÈÌõ±³¾°ÑÕÉ«
+		// è¿›åº¦æ¡èƒŒæ™¯é¢œè‰²
 		private int btnProgressBgColor = Color.parseColor("#e7e7e7");
-		// ÊÇ·ñÏÔÊ¾°Ù·Ö±È
+		// æ˜¯å¦æ˜¾ç¤ºç™¾åˆ†æ¯”
 		private boolean isShowPercent = false;
-		// ½ø¶ÈÌõÖĞĞÄ±³¾°ÊÇ·ñÍ¸Ã÷
+		// è¿›åº¦æ¡ä¸­å¿ƒèƒŒæ™¯æ˜¯å¦é€æ˜
 		private boolean isProgressCenterLucency = true;
-		// ½ø¶ÈÌõÖĞĞÄ±³¾°µÄÑÕÉ«
+		// è¿›åº¦æ¡ä¸­å¿ƒèƒŒæ™¯çš„é¢œè‰²
 		private int btnProgressCenterColor = Color.WHITE;
-		// ½ø¶ÈÌõÖĞĞÄ±³¾°µÄÍ¼Æ¬
+		// è¿›åº¦æ¡ä¸­å¿ƒèƒŒæ™¯çš„å›¾ç‰‡
 		private int btnProgressCenterImage = btnImage_NONE;
-		// ½ø¶ÈÌõÊıÖµµÄÑÕÉ«
+		// è¿›åº¦æ¡æ•°å€¼çš„é¢œè‰²
 		private int btnProgressPercentColor = Color.GRAY;
-		//°´Å¥Í¼±êµÄ³ß´ç
+		//æŒ‰é’®å›¾æ ‡çš„å°ºå¯¸
 		private float btnIconSize = 0.4f;
-		//Í¼±ê°´Å¥µÄ±ÈÀıÀàĞÍ
+		//å›¾æ ‡æŒ‰é’®çš„æ¯”ä¾‹ç±»å‹
 		private int btnIconSizeType = btnIconSizeType_AUTO;
-		//°´Å¥Í¼±êµÄÔ²½Ç´óĞ¡
+		//æŒ‰é’®å›¾æ ‡çš„åœ†è§’å¤§å°
 		private int btnIconRadius = 0;
 		/**
-		 * °´Å¥Ô²½ÇµÄ³ß´ç
-		 * 
+		 * æŒ‰é’®åœ†è§’çš„å°ºå¯¸
+		 *
 		 * @param btnRadius
-		 *            Ô²½ÇµÄpxÊı
+		 *            åœ†è§’çš„pxæ•°
 		 * @return
 		 */
 		public Builder setBtnRadius(int btnRadius) {
@@ -367,8 +367,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥¿ªÊ¼Ê±µÄ±³¾°É«
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼€å§‹æ—¶çš„èƒŒæ™¯è‰²
+		 *
 		 * @param btnStartBgColor
 		 * @return
 		 */
@@ -378,10 +378,10 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥¿ªÊ¼Ê±µÄ±³¾°Í¼Æ¬
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼€å§‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
+		 *
 		 * @param btnStartBgImage
-		 *            Í¼Æ¬µÄid
+		 *            å›¾ç‰‡çš„id
 		 * @return
 		 */
 		public Builder setBtnStartBgImage(int btnStartBgImage) {
@@ -390,8 +390,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥¿ªÊ¼Ê±µÄÎÄ×ÖÏÔÊ¾
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼€å§‹æ—¶çš„æ–‡å­—æ˜¾ç¤º
+		 *
 		 * @param btnStartText
 		 * @return
 		 */
@@ -401,8 +401,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥¿ªÊ¼Ê±ÏÔÊ¾ÎÄ×ÖµÄÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼€å§‹æ—¶æ˜¾ç¤ºæ–‡å­—çš„é¢œè‰²
+		 *
 		 * @param btnStartTextColor
 		 * @return
 		 */
@@ -412,8 +412,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥¿ªÊ¼Ê±µÄÍ¼±êÏÔÊ¾
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼€å§‹æ—¶çš„å›¾æ ‡æ˜¾ç¤º
+		 *
 		 * @param btnStartIcon
 		 * @return
 		 */
@@ -423,8 +423,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½áÊøÊ±µÄ±³¾°ÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®ç»“æŸæ—¶çš„èƒŒæ™¯é¢œè‰²
+		 *
 		 * @param btnEndBgColor
 		 * @return
 		 */
@@ -434,8 +434,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½áÊøÊ±µÄ±³¾°Í¼Æ¬
-		 * 
+		 * è®¾ç½®æŒ‰é’®ç»“æŸæ—¶çš„èƒŒæ™¯å›¾ç‰‡
+		 *
 		 * @param btnEndBgImage
 		 * @return
 		 */
@@ -445,8 +445,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½áÊøÊ±µÄÎÄ×ÖÏÔÊ¾
-		 * 
+		 * è®¾ç½®æŒ‰é’®ç»“æŸæ—¶çš„æ–‡å­—æ˜¾ç¤º
+		 *
 		 * @param btnEndText
 		 * @return
 		 */
@@ -456,8 +456,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½áÊøÊ±µÄ×ÖÌåÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®ç»“æŸæ—¶çš„å­—ä½“é¢œè‰²
+		 *
 		 * @param btnEndTextColor
 		 * @return
 		 */
@@ -467,8 +467,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½áÊøÊ±µÄÍ¼±ê
-		 * 
+		 * è®¾ç½®æŒ‰é’®ç»“æŸæ—¶çš„å›¾æ ‡
+		 *
 		 * @param btnEndIcon
 		 * @return
 		 */
@@ -478,8 +478,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥Òì³£½áÊøÊ±µÄ±³¾°ÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼‚å¸¸ç»“æŸæ—¶çš„èƒŒæ™¯é¢œè‰²
+		 *
 		 * @param btnErrorBgColor
 		 * @return
 		 */
@@ -489,8 +489,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥Òì³£½áÊøÊ±µÄ±³¾°Í¼Æ¬
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼‚å¸¸ç»“æŸæ—¶çš„èƒŒæ™¯å›¾ç‰‡
+		 *
 		 * @param btnErrorBgImage
 		 * @return
 		 */
@@ -500,8 +500,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥Òì³£Ê±µÄÎÄ×Ö
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼‚å¸¸æ—¶çš„æ–‡å­—
+		 *
 		 * @param btnErrorText
 		 * @return
 		 */
@@ -511,8 +511,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥Òì³£Ê±µÄ×ÖÌåµÄÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼‚å¸¸æ—¶çš„å­—ä½“çš„é¢œè‰²
+		 *
 		 * @param btnErrorTextColor
 		 * @return
 		 */
@@ -522,8 +522,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥Òì³£Ê±µÄÍ¼±ê
-		 * 
+		 * è®¾ç½®æŒ‰é’®å¼‚å¸¸æ—¶çš„å›¾æ ‡
+		 *
 		 * @param btnErrorIcon
 		 * @return
 		 */
@@ -533,8 +533,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½ø¶ÈÌõÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®è¿›åº¦æ¡é¢œè‰²
+		 *
 		 * @param btnProgressColor
 		 * @return
 		 */
@@ -544,8 +544,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½ø¶ÈÌõ¿í¶È
-		 * 
+		 * è®¾ç½®æŒ‰é’®è¿›åº¦æ¡å®½åº¦
+		 *
 		 * @param btnProgressWidth
 		 * @return
 		 */
@@ -555,8 +555,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½ø¶ÈÌõµÄ±³¾°ÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®è¿›åº¦æ¡çš„èƒŒæ™¯é¢œè‰²
+		 *
 		 * @param btnProgressBgColor
 		 * @return
 		 */
@@ -566,8 +566,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥ÊÇ·ñÏÔÊ¾½ø¶ÈÊıÖµÏÔÊ¾
-		 * 
+		 * è®¾ç½®æŒ‰é’®æ˜¯å¦æ˜¾ç¤ºè¿›åº¦æ•°å€¼æ˜¾ç¤º
+		 *
 		 * @param isShowPercent
 		 * @return
 		 */
@@ -577,8 +577,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½ø¶ÈÌõÖĞĞÄ²¿·ÖÊÇ·ñÍ¸Ã÷
-		 * 
+		 * è®¾ç½®æŒ‰é’®è¿›åº¦æ¡ä¸­å¿ƒéƒ¨åˆ†æ˜¯å¦é€æ˜
+		 *
 		 * @param isProgressCenterLucency
 		 * @return
 		 */
@@ -588,8 +588,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½ø¶ÈÌõÖĞĞÄ²¿·ÖÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®è¿›åº¦æ¡ä¸­å¿ƒéƒ¨åˆ†é¢œè‰²
+		 *
 		 * @param btnProgressCenterColor
 		 * @return
 		 */
@@ -598,7 +598,7 @@ public class LProgressButtonOption {
 			return this;
 		}
 		/**
-		 * ÉèÖÃ½ø¶ÈÌõÖĞĞÄµÄÍ¼Æ¬
+		 * è®¾ç½®è¿›åº¦æ¡ä¸­å¿ƒçš„å›¾ç‰‡
 		 * @param btnProgressCenterImage
 		 * @return
 		 */
@@ -608,8 +608,8 @@ public class LProgressButtonOption {
 		}
 
 		/**
-		 * ÉèÖÃ°´Å¥½ø¶ÈÌõÊıÖµµÄÑÕÉ«
-		 * 
+		 * è®¾ç½®æŒ‰é’®è¿›åº¦æ¡æ•°å€¼çš„é¢œè‰²
+		 *
 		 * @param btnProgressPercentColor
 		 * @return
 		 */
@@ -618,8 +618,8 @@ public class LProgressButtonOption {
 			return this;
 		}
 		/**
-		 * ÉèÖÃ°´Å¥Í¼±êµÄ´óĞ¡³ß´ç
-		 * ¸¡µãÊı,Ïà¶ÔÓÚ°´Å¥µÄ´óĞ¡
+		 * è®¾ç½®æŒ‰é’®å›¾æ ‡çš„å¤§å°å°ºå¯¸
+		 * æµ®ç‚¹æ•°,ç›¸å¯¹äºæŒ‰é’®çš„å¤§å°
 		 * @param btnIconSize
 		 * @return
 		 */
@@ -628,7 +628,7 @@ public class LProgressButtonOption {
 			return this;
 		}
 		/**
-		 * °´Å¥Í¼±ê´óĞ¡¶Ô±ÈÏà¶Ô¶ÔÏó
+		 * æŒ‰é’®å›¾æ ‡å¤§å°å¯¹æ¯”ç›¸å¯¹å¯¹è±¡
 		 * @param btnIconSizeType
 		 * @return
 		 */
@@ -637,7 +637,7 @@ public class LProgressButtonOption {
 			return this;
 		}
 		/**
-		 * ÉèÖÃÍ¼±êµÄÔ²½Ç´óĞ¡
+		 * è®¾ç½®å›¾æ ‡çš„åœ†è§’å¤§å°
 		 * @param btnIconRadius
 		 * @return
 		 */
@@ -645,6 +645,6 @@ public class LProgressButtonOption {
 			this.btnIconRadius = btnIconRadius;
 			return this;
 		}
-		
+
 	}
 }

@@ -1,5 +1,7 @@
 package com.l.j.view;
 
+import com.l.j.R;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,8 +10,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-
-import com.example.mytest.R;
 
 public class LoginBgView extends View {
 
@@ -20,35 +20,35 @@ public class LoginBgView extends View {
 			Color.parseColor("#477fb8"), Color.parseColor("#4d79ba"),
 			Color.parseColor("#406db0"), Color.parseColor("#406db0") };
 	/**
-	 * »­±Ê
+	 * ç”»ç¬”
 	 */
 	private Paint paint;
 	/**
-	 * ¿í¶È
+	 * å®½åº¦
 	 */
 	private int width;
 	/**
-	 * ¸ß¶È
+	 * é«˜åº¦
 	 */
 	private int height;
 	/**
-	 * ĞĞ¸ß
+	 * è¡Œé«˜
 	 */
 	private int lineHeight;
 	/**
-	 * Í¸Ã÷¶È
+	 * é€æ˜åº¦
 	 */
 	private int alpha = 255;
 	/**
-	 * ÊÇ·ñÏÔÊ¾logo
+	 * æ˜¯å¦æ˜¾ç¤ºlogo
 	 */
 	private boolean isShowLogo = false;
 	/**
-	 * ÊÇ·ñ¿ªÊ¼
+	 * æ˜¯å¦å¼€å§‹
 	 */
 	private boolean isStart = false;
 	/**
-	 * µ±ÊÓÍ¼½áÊø¶¯»­
+	 * å½“è§†å›¾ç»“æŸåŠ¨ç”»
 	 */
 	private OnViewEnd end;
 	public LoginBgView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -74,7 +74,7 @@ public class LoginBgView extends View {
 		height = getHeight();
 		lineHeight = height / 10;
 		paint.setAlpha(alpha);
-		
+
 		for (int i = 0; i < colors.length; i++) {
 			paint.setColor(colors[i]);
 			canvas.drawRect(0, i * lineHeight, width, (i + 1) * lineHeight,
