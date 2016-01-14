@@ -27,7 +27,7 @@
 		        android:padding="5sp"
 		        android:gravity="center"
 		        android:textColor="@color/white"
-		        android:text="这是标题"/>
+		        android:text="标题"/>
 		    <TextView 
 		        android:id="@+id/tab1"
 		        android:layout_width="0px"
@@ -45,7 +45,7 @@
 		        android:padding="5sp"
 		        android:gravity="center"
 		        android:textColor="@color/white"
-		        android:text="这是标题"/>
+		        android:text="标题"/>
 		    <TextView 
 		        android:id="@+id/tab3"
 		        android:layout_width="0px"
@@ -63,13 +63,18 @@
 		        android:padding="5sp"
 		        android:gravity="center"
 		        android:textColor="@color/white"
-		        android:text="这是标题"/>
+		        android:text="标题"/>
 		</LinearLayout>
 		
         <com.l.j.view.LTabPointView
             android:id="@+id/tabview"
             android:layout_width="fill_parent"
             android:layout_height="10sp"
+            android:layout_marginBottom="20sp"/>
+        <com.l.j.view.LTabLineView
+            android:id="@+id/tabview2"
+            android:layout_width="fill_parent"
+            android:layout_height="5sp"
             android:layout_marginBottom="20sp"/>
     </LinearLayout>
     

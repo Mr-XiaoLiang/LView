@@ -2,21 +2,26 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
+            backward-compatibility can go here.
         -->
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- 弹出框动画 由下至上 -->
+    <style name="dialogstyle_vertical" parent="@android:style/Animation.Dialog">
+        <item name="@android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
+        <!-- 进入时的动画 -->
+        <item name="@android:windowExitAnimation">@anim/slide_out_to_bottom</item>
+        <!-- 退出时的动画 -->
     </style>
 
 </resources>

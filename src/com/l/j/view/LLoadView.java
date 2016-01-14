@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
 public class LLoadView extends View {
@@ -128,16 +127,19 @@ public class LLoadView extends View {
 		float[] loc = getLocation1();
 		float[] angle = getAngle1();
 		canvas.drawArc(rectF1, angle[0], angle[1], false, arcPaint1);
+		//这是画圆弧两头的圆点
 		canvas.drawCircle(loc[0], loc[1], radius/2, circlePaint1);
 		canvas.drawCircle(loc[2], loc[3], radius / 2, circlePaint1);
 		angle = getAngle2();
 		loc = getLocation2();
 		canvas.drawArc(rectF2, angle[0], angle[1], false, arcPaint2);
+		//这是画圆弧两头的圆点
 		canvas.drawCircle(loc[0], loc[1], radius/2, circlePaint2);
 		canvas.drawCircle(loc[2], loc[3], radius/2, circlePaint2);
 		angle = getAngle3();
 		loc = getLocation3();
 		canvas.drawArc(rectF3, angle[0], angle[1], false, arcPaint3);
+		//这是画圆弧两头的圆点
 		canvas.drawCircle(loc[0], loc[1], radius/2, circlePaint3);
 		canvas.drawCircle(loc[2], loc[3], radius/2, circlePaint3);
 		if (!stop) {
@@ -299,7 +301,7 @@ public class LLoadView extends View {
 		float y2 = (float) (height / 2 + (Math.sin((ang[1]+ang[0])/180 * Math.PI) * radius * 3));
 		return new float[] { x1, y1, x2, y2 };
 	}
-
+	
 	private float[] getLocation2() {
 		float[] ang = getAngle2();
 		float x1 = (float) (width / 2 + (Math.cos(ang[0]/180 * Math.PI) * radius * 2));
@@ -327,5 +329,5 @@ public class LLoadView extends View {
 		this.stop = stop;
 		invalidate();
 	}
-
+	
 }

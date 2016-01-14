@@ -14,6 +14,7 @@ import com.l.j.view.LThermometerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ public class ViewTest extends Activity {
 
 	private LPieView pieView;
 	private LRadarView radarView;
-	private LSlideButtonView buttonView;
+	private LSlideButtonView buttonView,buttonView2,buttonView3;
 	private LThermometerView thermometerView;
 	private LProgressButton progressButton;
 
@@ -56,6 +57,24 @@ public class ViewTest extends Activity {
 				setContentView(R.layout.btn);
 				buttonView = (LSlideButtonView) findViewById(R.id.b);
 				buttonView.setOnSlideListener(new SlideButtonViewListener() {
+					@Override
+					public void SlideButtonOnClick(LSlideButtonView SlideButtonView, boolean isOpen) {
+						Toast.makeText(ViewTest.this, isOpen + "", Toast.LENGTH_SHORT).show();
+					}
+				});
+				buttonView2 = (LSlideButtonView) findViewById(R.id.btn);
+				buttonView2.setOnSlideListener(new SlideButtonViewListener() {
+					@Override
+					public void SlideButtonOnClick(LSlideButtonView SlideButtonView, boolean isOpen) {
+						Toast.makeText(ViewTest.this, isOpen + "", Toast.LENGTH_SHORT).show();
+					}
+				});
+				buttonView3 = (LSlideButtonView) findViewById(R.id.btn2);
+				buttonView3.setBtnType(false);
+				buttonView3.setBtnColor(Color.WHITE);
+				buttonView3.setOffColor(Color.GRAY);
+				buttonView3.setTextColor(Color.GRAY);
+				buttonView3.setOnSlideListener(new SlideButtonViewListener() {
 					@Override
 					public void SlideButtonOnClick(LSlideButtonView SlideButtonView, boolean isOpen) {
 						Toast.makeText(ViewTest.this, isOpen + "", Toast.LENGTH_SHORT).show();

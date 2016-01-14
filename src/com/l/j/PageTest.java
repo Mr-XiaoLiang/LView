@@ -1,6 +1,8 @@
 package com.l.j;
 
+import com.l.j.option.LTabLineViewOption;
 import com.l.j.view.LPagePointView;
+import com.l.j.view.LTabLineView;
 import com.l.j.view.LTabPointView;
 import com.l.j.view.NoScrollViewPager;
 
@@ -15,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class PageTest extends FragmentActivity implements OnClickListener {
 
@@ -22,11 +25,13 @@ public class PageTest extends FragmentActivity implements OnClickListener {
 	private NoScrollViewPager viewPager;
 	public static final int thisType_bottom = 0;
 	public static final int thisType_top = 1;
+	public static final int thisType_top_line = 2;
 	private View[] viewList = new View[5];
 	private int[] colors = {Color.BLACK,Color.BLUE,Color.DKGRAY,Color.GREEN,Color.RED};
 	private LPagePointView pointView;
 	private LTabPointView tabView;
-	private View tab0,tab1,tab2,tab3,tab4;
+	private LTabLineView tabLineView;
+	private TextView tab0,tab1,tab2,tab3,tab4;
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -34,24 +39,21 @@ public class PageTest extends FragmentActivity implements OnClickListener {
 		viewPager = (NoScrollViewPager) findViewById(R.id.viewpage);
 		pointView = (LPagePointView) findViewById(R.id.pointview);
 		tabView = (LTabPointView) findViewById(R.id.tabview);
-		tab0 = findViewById(R.id.tab0);
-		tab1 = findViewById(R.id.tab1);
-		tab2 = findViewById(R.id.tab2);
-		tab3 = findViewById(R.id.tab3);
-		tab4 = findViewById(R.id.tab4);
+		tabLineView = (LTabLineView) findViewById(R.id.tabview2);
+		tab0 = (TextView) findViewById(R.id.tab0);
+		tab1 = (TextView) findViewById(R.id.tab1);
+		tab2 = (TextView) findViewById(R.id.tab2);
+		tab3 = (TextView) findViewById(R.id.tab3);
+		tab4 = (TextView) findViewById(R.id.tab4);
 		tab0.setOnClickListener(this);
 		tab1.setOnClickListener(this);
 		tab2.setOnClickListener(this);
 		tab3.setOnClickListener(this);
 		tab4.setOnClickListener(this);
-
 		thisType = getIntent().getIntExtra("type", thisType_bottom);
-		if(thisType==thisType_bottom){
-			tabView.setVisibility(View.GONE);
-		}else{
-			pointView.setVisibility(View.GONE);
-		}
-		tabView.setTabSize(new int[]{1,2,1,2,1});
+		tabView.setVisibility(View.GONE);
+		pointView.setVisibility(View.GONE);
+		tabLineView.setVisibility(View.GONE);
 		viewPager.setNoScroll(false);
 		viewPager.setOnPageChangeListener(changeListener);
 		LinearLayout.LayoutParams point;
@@ -63,7 +65,23 @@ public class PageTest extends FragmentActivity implements OnClickListener {
 			image.setImageResource(R.drawable.ic_launcher);
 			viewList[i] = image;
 		}
-		pointView.setPointSize(viewList.length);
+		switch (thisType) {
+		case thisType_bottom:
+			pointView.setVisibility(View.VISIBLE);
+			pointView.setPointSize(viewList.length);
+			break;
+		case thisType_top:
+			tabView.setVisibility(View.VISIBLE);
+			tabView.setTabSize(new int[]{1,2,1,2,1});
+			break;
+		case thisType_top_line:
+			tabLineView.setVisibility(View.VISIBLE);
+			LTabLineViewOption lineViewOption = new LTabLineViewOption(new LTabLineViewOption.Builder().setTabWeight(new int[]{1,2,1,2,1}).setTabTextLength(new int[]{2,4,2,4,2}).setTextSize((int) tab0.getTextSize()));
+			tabLineView.setOption(lineViewOption);
+			break;
+		default:
+			break;
+		}
 		viewPager.setAdapter(pagerAdapter);
 	}
 	private OnPageChangeListener changeListener = new OnPageChangeListener() {
@@ -78,6 +96,7 @@ public class PageTest extends FragmentActivity implements OnClickListener {
 			System.out.println("onPageScrolled==>>"+arg0+" , "+arg1+" , "+arg2);
 			pointView.onChange(arg0, arg1);
 			tabView.onChange(arg0, arg1);
+			tabLineView.onChange(arg0, arg1);
 		}
 
 		@Override

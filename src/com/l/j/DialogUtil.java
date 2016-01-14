@@ -4,6 +4,10 @@ import com.l.j.dialog.CalendarDialog;
 import com.l.j.dialog.LoadDialog;
 import com.l.j.dialog.ProgressDialog;
 import com.l.j.dialog.CalendarDialog.CalendarDialogListener;
+import com.l.j.dialog.LWheelDialog;
+import com.l.j.dialog.LWheelDialog.LWheelDialogType;
+import com.l.j.view.LCalendarView;
+import com.l.j.view.LWheelView.LWheelViewListener;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -28,9 +32,9 @@ public class DialogUtil {
 	 * @return
 	 */
 	public Dialog getCalendarDialog(Activity context, int month, int year,
-									int day, CalendarDialogListener lis) {
+									int day, LCalendarView.SlideType slideType,CalendarDialogListener lis) {
 		CalendarDialog dialog = new CalendarDialog(context, month, year, day,
-				lis);
+				slideType,lis);
 		Window window = dialog.getWindow();
 		window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
 		dialog.setCancelable(true);
@@ -58,9 +62,9 @@ public class DialogUtil {
 	 */
 	public Dialog getCalendarDialog(Activity context, int month, int year,
 									int day, int startMonth, int startYear, int startDay,
-									CalendarDialogListener lis) {
+									LCalendarView.SlideType slideType,CalendarDialogListener lis) {
 		CalendarDialog dialog = new CalendarDialog(context, month, year, day,
-				startMonth, startYear, startDay, lis);
+				startMonth, startYear, startDay,slideType, lis);
 		Window window = dialog.getWindow();
 		window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
 		dialog.setCancelable(true);
@@ -121,8 +125,30 @@ public class DialogUtil {
 		window.setAttributes(p);
 		return dialog;
 	}
-
-
+	/**
+	 * 获取一个时间滚轮选择器
+	 * @param context
+	 * @param type
+	 * @param listener
+	 * @return
+	 */
+	public Dialog getWheelDialog(Activity context,LWheelDialogType type,LWheelViewListener listener){
+		LWheelDialog dialog = new LWheelDialog(context, type, listener);
+		Window window = dialog.getWindow();
+		window.setGravity(Gravity.BOTTOM); // 此处可以设置dialog显示的位置
+		window.setWindowAnimations(R.style.dialogstyle_vertical); // 添加动画
+		dialog.setCancelable(true);
+		dialog.show();
+		WindowManager m = context.getWindowManager();
+		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+		WindowManager.LayoutParams p = window.getAttributes(); // 获取对话框当前的参数值
+		p.height = (int) (d.getHeight() * 0.5);
+		p.width = (int) (d.getWidth());
+		dialog.onWindowAttributesChanged(p);
+		window.setAttributes(p);
+		return dialog;
+	}
+	
 	public DialogUtil(double dialogWidthProportion,
 					  double dialogHeightProportion) {
 		super();

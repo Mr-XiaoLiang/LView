@@ -30,6 +30,14 @@ public class LSlideButtonView extends View {
 	 */
 	private int btnColor = Color.parseColor("#3fc279");
 	/**
+	 * 文字颜色
+	 */
+	private int textColor = Color.WHITE;
+	/**
+	 * 阴影颜色
+	 */
+	private int shadowColor = Color.GRAY;
+	/**
 	 * 阴影画笔
 	 */
 	private Paint shadowPaint;
@@ -114,36 +122,40 @@ public class LSlideButtonView extends View {
 	 * 角度
 	 */
 	private float angle = 0;
+	/**
+	 * 按钮样式
+	 */
+	private boolean btnType = true;
 
 	public LSlideButtonView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		bgPaint = new Paint();
 		bgPaint.setAntiAlias(true);
-		bgPaint.setStyle(Paint.Style.FILL);
-
 		textPaint = new Paint();
 		textPaint.setAntiAlias(true);
 		textPaint.setStyle(Paint.Style.FILL);
 		textPaint.setTextAlign(Align.CENTER);
-		textPaint.setColor(Color.WHITE);
-
 		btnPaint = new Paint();
 		btnPaint.setAntiAlias(true);
 		btnPaint.setStyle(Paint.Style.FILL);
-		btnPaint.setColor(btnColor);
-
 		shadowPaint = new Paint();
 		shadowPaint.setAntiAlias(true);
 		shadowPaint.setStyle(Paint.Style.FILL);
-		shadowPaint.setColor(Color.GRAY);
-		shadowPaint.setAlpha(128);
+		init();
+	}
 
+	private void init(){
+		bgPaint.setStyle(Paint.Style.FILL);
+		textPaint.setColor(textColor);
+		btnPaint.setColor(btnColor);
+		shadowPaint.setColor(shadowColor);
+		shadowPaint.setAlpha(128);
 		red = Color.red(offColor);
 		blue = Color.blue(offColor);
 		green = Color.green(offColor);
-
+		calculateUnitColor();
 	}
-
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -157,8 +169,8 @@ public class LSlideButtonView extends View {
 		} else {
 			radius = width / 4;
 		}
-		//这是加阴影的算法矫正
-//		radius*=0.9;
+		// 这是加阴影的算法矫正
+		// radius*=0.9;
 		if (X == 0) {
 			X = width / 2 - radius;
 		}
@@ -190,13 +202,13 @@ public class LSlideButtonView extends View {
 		}
 	}
 
-	private void getAngle(){
-		angle = 720f/(radius*2);
-		angle = (X-(width/2-radius))*angle;
-		if(X == (width / 2 - radius)){
+	private void getAngle() {
+		angle = 720f / (radius * 2);
+		angle = (X - (width / 2 - radius)) * angle;
+		if (X == (width / 2 - radius)) {
 			angle = 0;
 		}
-		if(X == (width / 2 + radius)){
+		if (X == (width / 2 + radius)) {
 			angle = 720;
 		}
 	}
@@ -206,21 +218,25 @@ public class LSlideButtonView extends View {
 	 */
 	private void drawBg(Canvas canvas) {
 		int index = X - width / 2 + radius;
-		bgPaint.setColor(Color.rgb(red - (int) (index * unitRed), green
-				- (int) (index * unitGreen), blue - (int) (index * unitBlue)));
-		// 按钮突出
-		RectF rect = new RectF(width / 2 - radius * 2, height / 2 - radius*0.7f,
-				width / 2 + radius * 2, height / 2 + radius*0.7f);
-		canvas.drawRoundRect(rect, radius*0.7f, radius*0.7f, bgPaint);
-		// 按钮全包
-//		 RectF rect = new RectF(width / 2 - radius * 2, height / 2 - radius,
-//		 width / 2 + radius * 2, height / 2+radius);
-//		 canvas.drawRoundRect(rect, radius, radius, bgPaint);
+		bgPaint.setColor(Color.rgb(red - (int) (index * unitRed), green - (int) (index * unitGreen),
+				blue - (int) (index * unitBlue)));
+		if (btnType) {
+			// 按钮突出
+			RectF rect = new RectF(width / 2 - radius * 2, height / 2 - radius * 0.7f, width / 2 + radius * 2,
+					height / 2 + radius * 0.7f);
+			canvas.drawRoundRect(rect, radius * 0.7f, radius * 0.7f, bgPaint);
+		} else {
+			// 按钮全包
+			RectF rect = new RectF(width / 2 - radius * 2, height / 2 - radius, width / 2 + radius * 2,
+					height / 2 + radius);
+			canvas.drawRoundRect(rect, radius, radius, bgPaint);
+		}
 	}
 
 	private void drawButton(Canvas canvas) {
-		//画阴影
-//		canvas.drawCircle(X+radius*0.1f, height / 2+radius*0.1f, radius, shadowPaint);
+		// 画阴影
+		// canvas.drawCircle(X+radius*0.1f, height / 2+radius*0.1f, radius,
+		// shadowPaint);
 		float t = 2 * radius * 0.5f / radius;
 		getAngle();
 		t = Math.abs(t * (X - radius * 2));
@@ -230,6 +246,9 @@ public class LSlideButtonView extends View {
 			str = "ON";
 		} else {
 			str = "OFF";
+		}
+		if (t * 3 > radius * 2) {
+			t = radius * 2 / 3;
 		}
 		textPaint.setTextSize(t);
 		FontMetrics fm = textPaint.getFontMetrics();
@@ -249,9 +268,9 @@ public class LSlideButtonView extends View {
 		float endRed = Color.red(onColor);
 		float endBlue = Color.blue(onColor);
 		float endGreen = Color.green(onColor);
-		unitRed = Math.abs(startRed - endRed) / radius / 2;
-		unitBlue = Math.abs(startBlue - endBlue) / radius / 2;
-		unitGreen = Math.abs(startGreen - endGreen) / radius / 2;
+		unitRed = (startRed - endRed) / radius / 2;
+		unitBlue = (startBlue - endBlue) / radius / 2;
+		unitGreen = (startGreen - endGreen) / radius / 2;
 	}
 
 	@Override
@@ -264,32 +283,32 @@ public class LSlideButtonView extends View {
 			X = (width / 2 + radius);
 		}
 		switch (event.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				downTime = System.currentTimeMillis();
-				isTouchUp = false;
-				break;
-			case MotionEvent.ACTION_UP:
-				upTime = System.currentTimeMillis();
-				isTouchUp = true;
-				if (upTime - downTime <= 300) {
-					if (type) {
-						type = false;
-					} else {
-						type = true;
-					}
+		case MotionEvent.ACTION_DOWN:
+			downTime = System.currentTimeMillis();
+			isTouchUp = false;
+			break;
+		case MotionEvent.ACTION_UP:
+			upTime = System.currentTimeMillis();
+			isTouchUp = true;
+			if (upTime - downTime <= 300) {
+				if (type) {
+					type = false;
 				} else {
-					if (X > width / 2) {
-						type = true;
-					} else {
-						type = false;
-					}
+					type = true;
 				}
-				if (lis != null) {
-					lis.SlideButtonOnClick(this, type);
+			} else {
+				if (X > width / 2) {
+					type = true;
+				} else {
+					type = false;
 				}
-				break;
-			default:
-				break;
+			}
+			if (lis != null) {
+				lis.SlideButtonOnClick(this, type);
+			}
+			break;
+		default:
+			break;
 		}
 		invalidate();
 		return true;
@@ -310,8 +329,7 @@ public class LSlideButtonView extends View {
 	 *
 	 */
 	public interface SlideButtonViewListener {
-		public void SlideButtonOnClick(LSlideButtonView SlideButtonView,
-									   boolean isOpen);
+		public void SlideButtonOnClick(LSlideButtonView SlideButtonView, boolean isOpen);
 	}
 
 	/**
@@ -341,4 +359,54 @@ public class LSlideButtonView extends View {
 		return type;
 	}
 
+	public boolean isBtnType() {
+		return btnType;
+	}
+
+	/**
+	 * 设置btn的样式
+	 * 
+	 * @param btnType
+	 */
+	public void setBtnType(boolean btnType) {
+		this.btnType = btnType;
+		invalidate();
+	}
+
+	public int getOffColor() {
+		return offColor;
+	}
+
+	public void setOffColor(int offColor) {
+		this.offColor = offColor;
+		init();
+	}
+
+	public int getOnColor() {
+		return onColor;
+	}
+
+	public void setOnColor(int onColor) {
+		this.onColor = onColor;
+		init();
+	}
+
+	public int getBtnColor() {
+		return btnColor;
+	}
+
+	public void setBtnColor(int btnColor) {
+		this.btnColor = btnColor;
+		init();
+	}
+
+	public int getTextColor() {
+		return textColor;
+	}
+
+	public void setTextColor(int textColor) {
+		this.textColor = textColor;
+		init();
+	}
+	
 }

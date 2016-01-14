@@ -50,13 +50,16 @@ public class LTabPointView extends View {
 			return;
 		}
 		int tabAllWeight = getAllWeight();
+		//本单元格的左侧偏移量
 		int tabLeft = width/tabAllWeight*tabWeight[pointIndex]/2;
 		pointRadius = height/2;
+		//当单元格宽度小于最小单元格宽度时，圆点的直径等于最小单元格宽度
 		for(int i = 0;i<tabWeight.length;i++){
-			if(pointRadius>width/tabAllWeight*tabWeight[i]){
-				pointRadius=width/tabAllWeight*tabWeight[i];
+			if(pointRadius>width/tabAllWeight*tabWeight[i]/2){
+				pointRadius=width/tabAllWeight*tabWeight[i]/2;
 			}
 		}
+		//计算左侧非本单元格的偏移量
 		for(int i = 0;i<tabWeight.length;i++){
 			if(i<pointIndex){
 				tabLeft += width/tabAllWeight*tabWeight[i];
@@ -64,6 +67,7 @@ public class LTabPointView extends View {
 				break;
 			}
 		}
+		//当小点滑动到最顶端时的算法
 		if(pointIndex<=tabWeight.length-2){
 			tabLeft+=(width/tabAllWeight*(tabWeight[pointIndex]+tabWeight[pointIndex+1])/2)*(pointPercent);
 		}else{

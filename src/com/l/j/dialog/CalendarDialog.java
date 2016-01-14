@@ -5,6 +5,7 @@ import java.util.Calendar;
 import com.l.j.R;
 import com.l.j.view.LCalendarView;
 import com.l.j.view.LCalendarView.CalendarViewListener;
+import com.l.j.view.LCalendarView.SlideType;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -84,7 +85,11 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	 * 起始天
 	 */
 	private int startDay = -1;
-
+	/**
+	 * 日历滑动方式
+	 */
+	private LCalendarView.SlideType slideType = SlideType.Both;
+	
 	public interface CalendarDialogListener {
 		public void calendarDialogListener(int year, int month, int day);
 	}
@@ -107,6 +112,7 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 		enterView.setOnClickListener(this);
 		escView.setOnClickListener(this);
 		calendarView.setCalendarViewListener(this);
+		calendarView.setSlideType(slideType);
 		init();
 	}
 
@@ -119,8 +125,9 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 		today = calendar.get(Calendar.DAY_OF_MONTH);
 		thisMonth = calendar.get(Calendar.MONTH) + 1;
 		thisYear = calendar.get(Calendar.YEAR);
-		calendarView.setData(year, month, today, day);
+		calendarView.setData(year, month, today, day,year, month);
 		calendarStartSet();
+		calendarView.setStart(startYear, startMonth, startDay);
 	}
 
 	private void calendarStartSet(){
@@ -143,12 +150,13 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	 * @param lis
 	 */
 	public CalendarDialog(Context context, int month, int year, int day,
-						  CalendarDialogListener lis) {
+			LCalendarView.SlideType slideType,CalendarDialogListener lis) {
 		super(context);
 		this.month = month;
 		this.year = year;
 		this.day = day;
 		this.lis = lis;
+		this.slideType = slideType;
 	}
 	/**
 	 * 创建一个有限制的时间选择器
@@ -162,7 +170,7 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	 * @param lis
 	 */
 	public CalendarDialog(Context context, int month, int year, int day,int startMonth, int startYear, int startDay,
-						  CalendarDialogListener lis) {
+			LCalendarView.SlideType slideType,CalendarDialogListener lis) {
 		super(context);
 		this.month = month;
 		this.year = year;
@@ -171,6 +179,7 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 		this.startMonth = startMonth;
 		this.startYear = startYear;
 		this.startDay = startDay;
+		this.slideType = slideType;
 	}
 
 	@Override
@@ -189,9 +198,9 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 				yearView.setText(year+"年");
 				monthView.setText(month+"月");
 				if(year == thisYear && month==thisMonth){
-					calendarView.setData(year, month, today, day);
+					calendarView.setData(year, month, today, day,year, month);
 				}else{
-					calendarView.setData(year, month, 0, day);
+					calendarView.setData(year, month, 0, day,year, month);
 				}
 				calendarStartSet();
 				break;
@@ -207,9 +216,9 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 				yearView.setText(year+"年");
 				monthView.setText(month+"月");
 				if(year == thisYear && month==thisMonth){
-					calendarView.setData(year, month, today, day);
+					calendarView.setData(year, month, today, day,year, month);
 				}else{
-					calendarView.setData(year, month, 0, day);
+					calendarView.setData(year, month, 0, day,year, month);
 				}
 				calendarStartSet();
 				break;
@@ -225,8 +234,24 @@ public class CalendarDialog extends Dialog implements OnClickListener,
 	}
 
 	@Override
-	public void calendarSelected(int d) {
+	public void calendarSelected(int year, int month, int d) {
 		day = d;
 	}
 
+	@Override
+	public void calendarChange(int year, int month) {
+		this.year = year;
+		this.month = month;
+		yearView.setText(year+"年");
+		monthView.setText(month+"月");
+	}
+
+	public LCalendarView.SlideType getSlideType() {
+		return slideType;
+	}
+
+	public void setSlideType(LCalendarView.SlideType slideType) {
+		this.slideType = slideType;
+	}
+	
 }

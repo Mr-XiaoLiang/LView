@@ -3,11 +3,21 @@ package com.l.j;
 import java.util.Calendar;
 
 import com.l.j.dialog.CalendarDialog.CalendarDialogListener;
+import com.l.j.dialog.LWheelDialog.LWheelDialogType;
+import com.l.j.view.LCalendarView;
 import com.l.j.view.LClockView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,10 +29,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 	private ListView listView;
 
-	private String[] names = { "ÈÕÀúÑ¡Ôñ-Ã»ÓĞÏŞÖÆ", "ÈÕÀúÑ¡Ôñ-ÓĞÏŞÖÆ", "Ñ¡Ïî¿¨ÇĞ»»-Èı½ÇĞÎ",
-			"Ñ¡Ïî¿¨ÇĞ»»-ÏßĞÎ", "Ê±¼äÑ¡Ôñ-Ğ¡Ê±", "Ê±¼äÑ¡Ôñ-·ÖÖÓ",
-			"¼ÓÔØµÈ´ı¶¯»­", "±ıÍ¼", "½ø¶ÈÍ¼", "À×´ïÍ¼",
-			"Ô²ĞÎÍ¼Æ¬", "»¬¶¯°´Å¥", "ÎÂ¶È¼Æ","½ø¶ÈÌõ°´Å¥","Ò³ÃæÏÂ·½Ğ¡µã","tabĞ¡µã"};
+	private String[] names = { "æ—¥å†é€‰æ‹©-æ—¥æœŸæ²¡æœ‰é™åˆ¶&å…¨å‘æ‹–åŠ¨", "æ—¥å†é€‰æ‹©-æ—¥æœŸæœ‰é™åˆ¶&å•å‘", "é€‰é¡¹å¡åˆ‡æ¢-ä¸‰è§’å½¢",
+			"é€‰é¡¹å¡åˆ‡æ¢-çº¿å½¢", "æ—¶é—´é€‰æ‹©-å°æ—¶", "æ—¶é—´é€‰æ‹©-åˆ†é’Ÿ",
+			"åŠ è½½ç­‰å¾…åŠ¨ç”»", "é¥¼å›¾", "è¿›åº¦å›¾", "é›·è¾¾å›¾",
+			"åœ†å½¢å›¾ç‰‡", "æ»‘åŠ¨æŒ‰é’®", "æ¸©åº¦è®¡","è¿›åº¦æ¡æŒ‰é’®","é¡µé¢ä¸‹æ–¹å°ç‚¹","tabå°ç‚¹","æ—¥æœŸæ»šè½®","æ—¶é—´æ»šè½®","å…¨å¥—æ»šè½®","tabæ¡å½¢"};
 
 	private DialogUtil dialogUtil;
 	private Calendar calendar;
@@ -33,8 +43,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		listView = (ListView) findViewById(R.id.main_list);
-//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//				android.R.layout.activity_list_item, names);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.dialog_list_item, R.id.dialog_list_item_name, names);
 		listView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
@@ -43,7 +51,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		dialogUtil = new DialogUtil();
 		calendar = Calendar.getInstance();
 	}
-
+	
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		switch (arg2) {
@@ -51,7 +59,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				dialogUtil.getCalendarDialog(this,
 						calendar.get(Calendar.MONTH) + 1,
 						calendar.get(Calendar.YEAR),
-						calendar.get(Calendar.DAY_OF_MONTH),
+						calendar.get(Calendar.DAY_OF_MONTH),LCalendarView.SlideType.Both,
 						new CalendarDialogListener() {
 							@Override
 							public void calendarDialogListener(int year, int month,
@@ -65,9 +73,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 						calendar.get(Calendar.MONTH) + 1,
 						calendar.get(Calendar.YEAR),
 						calendar.get(Calendar.DAY_OF_MONTH),
-						10,
-						2015,
-						23,
+						calendar.get(Calendar.MONTH)+1,
+						calendar.get(Calendar.YEAR),
+						calendar.get(Calendar.DAY_OF_MONTH),
+						LCalendarView.SlideType.Horizontal,
 						new CalendarDialogListener() {
 							@Override
 							public void calendarDialogListener(int year, int month,
@@ -110,6 +119,20 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			case 15:
 				intent = new Intent(this, PageTest.class);
 				intent.putExtra("type", PageTest.thisType_top);
+				startActivity(intent);
+				break;
+			case 16:
+				dialogUtil.getWheelDialog(this, LWheelDialogType.DATE, null);
+			break;
+			case 17:
+				dialogUtil.getWheelDialog(this, LWheelDialogType.TIME, null);
+				break;
+			case 18:
+				dialogUtil.getWheelDialog(this, LWheelDialogType.ALL, null);
+				break;
+			case 19:
+				intent = new Intent(this, PageTest.class);
+				intent.putExtra("type", PageTest.thisType_top_line);
 				startActivity(intent);
 				break;
 			default:
