@@ -77,12 +77,47 @@ public class LLoadView extends View {
 	 * 停止
 	 */
 	private boolean stop = false;
-
+	/**
+	 * 是否显示背景
+	 */
+	private boolean isShowBg = false;
+	/**
+	 * 背景透明度
+	 * 0-255
+	 */
+	private int bgAlpha = 64;
+	
 	public LLoadView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		color1 = Color.GREEN;
 		color2 = Color.RED;
 		color3 = Color.BLUE;
+		arcPaint1 = new Paint();
+		arcPaint1.setAntiAlias(true);
+		arcPaint1.setStyle(Paint.Style.STROKE);
+		arcPaint2 = new Paint();
+		arcPaint2.setAntiAlias(true);
+		arcPaint2.setStyle(Paint.Style.STROKE);
+		arcPaint3 = new Paint();
+		arcPaint3.setAntiAlias(true);
+		arcPaint3.setStyle(Paint.Style.STROKE);
+		circlePaint1 = new Paint();
+		circlePaint1.setAntiAlias(true);
+		circlePaint2 = new Paint();
+		circlePaint2.setAntiAlias(true);
+		bgPaint3 = new Paint();
+		bgPaint3.setAntiAlias(true);
+		bgPaint3.setStyle(Paint.Style.STROKE);
+		circlePaint3 = new Paint();
+		circlePaint3.setAntiAlias(true);
+		bgPaint1 = new Paint();
+		bgPaint1.setAntiAlias(true);
+//		bgPaint1.setStrokeWidth(30);
+		bgPaint1.setStyle(Paint.Style.STROKE);
+		bgPaint2 = new Paint();
+		bgPaint2.setAntiAlias(true);
+		bgPaint2.setStyle(Paint.Style.STROKE);
+
 		initPaint();
 	}
 
@@ -115,9 +150,11 @@ public class LLoadView extends View {
 		/**
 		 * 画背景
 		 */
-//		 canvas.drawCircle(width/2, height/2, radius*3f, bgPaint1);
-//		 canvas.drawCircle(width/2, height/2, radius*2f, bgPaint2);
-//		 canvas.drawCircle(width/2, height/2, radius*1f, bgPaint3);
+		if(isShowBg){
+		 canvas.drawCircle(width/2, height/2, radius*3f, bgPaint1);
+		 canvas.drawCircle(width/2, height/2, radius*2f, bgPaint2);
+		 canvas.drawCircle(width/2, height/2, radius*1f, bgPaint3);
+		}
 		/**
 		 * 圆弧位置
 		 */
@@ -152,51 +189,18 @@ public class LLoadView extends View {
 	}
 
 	private void initPaint() {
-		arcPaint1 = new Paint();
 		arcPaint1.setColor(color1);
-		arcPaint1.setAntiAlias(true);
-		arcPaint1.setStyle(Paint.Style.STROKE);
-
-		arcPaint2 = new Paint();
 		arcPaint2.setColor(color2);
-		arcPaint2.setAntiAlias(true);
-		arcPaint2.setStyle(Paint.Style.STROKE);
-
-		arcPaint3 = new Paint();
 		arcPaint3.setColor(color3);
-		arcPaint3.setAntiAlias(true);
-		arcPaint3.setStyle(Paint.Style.STROKE);
-
-		circlePaint1 = new Paint();
 		circlePaint1.setColor(color1);
-		circlePaint1.setAntiAlias(true);
-
-		circlePaint2 = new Paint();
 		circlePaint2.setColor(color2);
-		circlePaint2.setAntiAlias(true);
-
-		circlePaint3 = new Paint();
 		circlePaint3.setColor(color3);
-		circlePaint3.setAntiAlias(true);
-
-		bgPaint1 = new Paint();
 		bgPaint1.setColor(color1);
-		bgPaint1.setAntiAlias(true);
-		bgPaint1.setStrokeWidth(30);
-		bgPaint1.setStyle(Paint.Style.STROKE);
-		bgPaint1.setAlpha(128);
-
-		bgPaint2 = new Paint();
+		bgPaint1.setAlpha(bgAlpha);
 		bgPaint2.setColor(color2);
-		bgPaint2.setAntiAlias(true);
-		bgPaint2.setStyle(Paint.Style.STROKE);
-		bgPaint2.setAlpha(128);
-
-		bgPaint3 = new Paint();
+		bgPaint2.setAlpha(bgAlpha);
 		bgPaint3.setColor(color3);
-		bgPaint3.setAntiAlias(true);
-		bgPaint3.setStyle(Paint.Style.STROKE);
-		bgPaint3.setAlpha(128);
+		bgPaint3.setAlpha(bgAlpha);
 	}
 
 	/**
@@ -328,6 +332,50 @@ public class LLoadView extends View {
 	public void stop(boolean stop) {
 		this.stop = stop;
 		invalidate();
+	}
+
+	public int getColor1() {
+		return color1;
+	}
+
+	public void setColor1(int color1) {
+		this.color1 = color1;
+		initPaint();
+	}
+
+	public int getColor2() {
+		return color2;
+	}
+
+	public void setColor2(int color2) {
+		this.color2 = color2;
+		initPaint();
+	}
+
+	public int getColor3() {
+		return color3;
+	}
+
+	public void setColor3(int color3) {
+		this.color3 = color3;
+		initPaint();
+	}
+
+	public boolean isShowBg() {
+		return isShowBg;
+	}
+
+	public void setShowBg(boolean isShowBg) {
+		this.isShowBg = isShowBg;
+	}
+
+	public int getBgAlpha() {
+		return bgAlpha;
+	}
+
+	public void setBgAlpha(int bgAlpha) {
+		this.bgAlpha = bgAlpha;
+		initPaint();
 	}
 	
 }
