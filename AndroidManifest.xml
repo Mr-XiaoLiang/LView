@@ -29,6 +29,8 @@
             android:name="com.l.j.ViewTest"/>
          <activity
             android:name="com.l.j.PageTest"/>
+         <activity
+            android:name="com.l.j.CountDownListActivity"/>
     </application>
 
 </manifest>
