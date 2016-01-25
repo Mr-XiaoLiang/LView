@@ -18,4 +18,8 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="fill_parent"
 	    android:id="@+id/count_down_item_view"/>
+	<com.l.j.view.LCountDownView2 
+	    android:layout_width="60dp"
+	    android:layout_height="fill_parent"
+	    android:id="@+id/count_down_item_view2"/>
 </LinearLayout>
