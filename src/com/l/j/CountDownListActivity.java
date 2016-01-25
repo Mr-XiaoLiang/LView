@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.l.j.view.LCountDownView;
 import com.l.j.view.LCountDownView.LCountDownViewListener;
+import com.l.j.view.LCountDownView2;
+import com.l.j.view.LCountDownView2.LCountDownViewListener2;
 import com.l.j.view.LGoodsSizeChangeView;
 import com.l.j.view.LGoodsSizeChangeView.OnLGoodsSizeChangeViewListener;
 
@@ -39,6 +41,8 @@ public class CountDownListActivity extends Activity {
 	private CDListener listener;
 	
 	private GSCListener listener2;
+	
+	private CDListener2 listener3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,7 @@ public class CountDownListActivity extends Activity {
 		}
 		listener = new CDListener();
 		listener2 = new GSCListener();
+		listener3 = new CDListener2();
 		list.setAdapter(adapter = new ShowAdapter());
 		list.invalidate();
 		adapter.notifyDataSetInvalidated();
@@ -92,6 +97,7 @@ public class CountDownListActivity extends Activity {
 				holder.text = (TextView) convertView.findViewById(R.id.count_down_item_text);
 				holder.downView = (LCountDownView) convertView.findViewById(R.id.count_down_item_view);
 				holder.changeView = (LGoodsSizeChangeView) convertView.findViewById(R.id.count_down_item_size);
+//				holder.downView2 = (LCountDownView2) convertView.findViewById(R.id.count_down_item_view2);
 				convertView.setTag(holder);
 			} else {
 				holder = (Holder) convertView.getTag();
@@ -99,6 +105,8 @@ public class CountDownListActivity extends Activity {
 			holder.text.setText(beans.get(position).getText());
 			holder.downView.setTime(position, 0, beans.get(position).getData(), beans.get(position).getTimestamp());
 			holder.downView.setListener(listener);
+//			holder.downView2.setTime(position, 0, beans.get(position).getData(), beans.get(position).getTimestamp());
+//			holder.downView2.setListener(listener3);
 			holder.changeView.setGoodsSize(position,beans.get(position).getSize());
 			holder.changeView.setListener(listener2);
 			return convertView;
@@ -108,6 +116,7 @@ public class CountDownListActivity extends Activity {
 			TextView text;
 			LCountDownView downView;
 			LGoodsSizeChangeView changeView;
+//			LCountDownView2 downView2;
 		}
 	}
 
@@ -125,6 +134,30 @@ public class CountDownListActivity extends Activity {
 	}
 	
 	private class CDListener implements LCountDownViewListener {
+		@Override
+		public void onCountDown(int thisPosition, int thisID, int second, String date, long timestamp) {
+			Bundle bundle = new Bundle();
+			bundle.putInt("thisPosition", thisPosition);
+			bundle.putInt("date", second);
+			bundle.putLong("timestamp", timestamp);
+			Message message = new Message();
+			message.what = 1;
+			message.setData(bundle);
+			handler.sendMessage(message);
+		}
+
+		@Override
+		public void onCountDownForEnd(int thisPosition, int thisID) {
+			Bundle bundle = new Bundle();
+			bundle.putInt("thisPosition", thisPosition);
+			Message message = new Message();
+			message.what = 2;
+			message.setData(bundle);
+			handler.sendMessage(message);
+		}
+	}
+	
+	private class CDListener2 implements LCountDownViewListener2 {
 		@Override
 		public void onCountDown(int thisPosition, int thisID, int second, String date, long timestamp) {
 			Bundle bundle = new Bundle();
