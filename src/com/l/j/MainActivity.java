@@ -8,16 +8,8 @@ import com.l.j.view.LCalendarView;
 import com.l.j.view.LClockView;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Paint.Align;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -34,7 +26,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			"时间选择-分钟","加载等待动画", "饼图", "进度图", "雷达图", 
 			"圆形图片", "滑动按钮", "温度计", "进度条按钮", "页面下方小点", 
 			"tab小点", "日期滚轮", "时间滚轮", "全套滚轮","tab条形", 
-			"倒计时View" };
+			"倒计时View","商品列表" };
 
 	private DialogUtil dialogUtil;
 	private Calendar calendar;
@@ -130,6 +122,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		case 20:
 			intent = new Intent(this, CountDownListActivity.class);
+			startActivity(intent);
+			break;
+		case 21:
+			intent = new Intent(this, ShopListTest.class);
 			startActivity(intent);
 			break;
 		default:

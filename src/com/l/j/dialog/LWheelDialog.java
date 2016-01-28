@@ -96,9 +96,7 @@ public class LWheelDialog extends Dialog implements LWheelViewListener,android.v
 		LWheelViewOption option2 = 
 				new LWheelViewOption(
 						new LWheelViewOption.Builder()
-						.setCycle(false)
-						.setIntervalHeight(0.1f)
-						.setTextSize(0.1f));
+						.setCycle(false));
 		wheel1.setOption(option2);
 		wheel2.setOption(option2);
 		wheel3.setOption(option);
