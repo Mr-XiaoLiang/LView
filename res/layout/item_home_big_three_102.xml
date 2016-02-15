@@ -3,7 +3,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="5dp" 
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/item_home_big_three_102_root">
 
     <FrameLayout
         android:id="@+id/item_home_big_three_102_root1"

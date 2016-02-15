@@ -28,15 +28,22 @@ public class HomeSmallBannerItem_105 extends LinearLayout implements OnClickList
 	private ImageLoader loader;
 	private Context context;
 	private OnClickListener listener;
+	private LinearLayout root;
 	
 	public HomeSmallBannerItem_105(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_small_banner_105,
 				this, true);
+		root = (LinearLayout) findViewById(R.id.item_home_small_banner_105_root);
 		imageView = (ImageView) findViewById(R.id.item_home_small_banner_105_img);
 		imageView.setOnClickListener(this);
 		loader = ImageLoader.getInstance();
+		WindowManager m = ((Activity) context).getWindowManager();
+		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+		ViewGroup.LayoutParams p = root.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+		p.height = (int)(d.getHeight() * 0.15);
+		root.setLayoutParams(p);
 		if(bean!=null)
 			dataSet();
 	}
@@ -84,15 +91,15 @@ public class HomeSmallBannerItem_105 extends LinearLayout implements OnClickList
 	public HomeSmallBannerItem_105(Context context) {
 		this(context,null);
 	}
-	@Override
-	public void onWindowFocusChanged(boolean hasWindowFocus) {
-		super.onWindowFocusChanged(hasWindowFocus);
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.1);
-		setLayoutParams(p);
-	}
+//	@Override
+//	public void onWindowFocusChanged(boolean hasWindowFocus) {
+//		super.onWindowFocusChanged(hasWindowFocus);
+//		WindowManager m = ((Activity) context).getWindowManager();
+//		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+//		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+//		p.height = (int)(d.getHeight() * 0.1);
+//		setLayoutParams(p);
+//	}
 
 	public HomeSmallBannerItem_105(Context context, HomeMediumBannerItemBean bean,OnClickListener listener) {
 		this(context);

@@ -32,10 +32,12 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 	private FrameLayout rootLayout1,rootLayout2,rootLayout3;
 	private ImageLoader loader;
 	private OnClickListener clickListener;
+	private LinearLayout root;
 	
 	private void init(){
 		LayoutInflater.from(context).inflate(R.layout.item_home_big_three_102,
 				this, true);
+		root = (LinearLayout) findViewById(R.id.item_home_big_three_102_root);
 		bgView1 = (ImageView) findViewById(R.id.item_home_big_three_102_bg1);
 		bgView2 = (ImageView) findViewById(R.id.item_home_big_three_102_bg2);
 		bgView3 = (ImageView) findViewById(R.id.item_home_big_three_102_bg3);
@@ -52,6 +54,13 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 		rootLayout2 = (FrameLayout) findViewById(R.id.item_home_big_three_102_root2);
 		rootLayout3 = (FrameLayout) findViewById(R.id.item_home_big_three_102_root3);
 		loader = ImageLoader.getInstance();
+		
+		WindowManager m = ((Activity) context).getWindowManager();
+		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+		ViewGroup.LayoutParams p = root.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+		p.height = (int)(d.getHeight() * 0.25);
+		root.setLayoutParams(p);
+		
 		if(bean==null){
 			return;
 		}
@@ -151,13 +160,13 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 		this.clickListener = clickListener;
 		DataSet();
 	}
-	@Override
-	public void onWindowFocusChanged(boolean hasWindowFocus) {
-		super.onWindowFocusChanged(hasWindowFocus);
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.25);
-		setLayoutParams(p);
-	}
+//	@Override
+//	public void onWindowFocusChanged(boolean hasWindowFocus) {
+//		super.onWindowFocusChanged(hasWindowFocus);
+//		WindowManager m = ((Activity) context).getWindowManager();
+//		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+//		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+//		p.height = (int)(d.getHeight() * 0.25);
+//		setLayoutParams(p);
+//	}
 }

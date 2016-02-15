@@ -29,6 +29,10 @@ public class ShopListBean {
 	 */
 	public static final int HomeSmallBannerItem_105 = 105;
 	/**
+	 * 特点声明
+	 */
+	public static final int HomeTraitStatementItem_106 = 106;
+	/**
 	 * item的类型
 	 */
 	private ArrayList<Integer> types;

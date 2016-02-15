@@ -1,6 +1,6 @@
 package com.l.j.view.shopitem.bean;
 /**
- * 中型横幅
+ * 横幅
  * @author LiuJ
  *
  */

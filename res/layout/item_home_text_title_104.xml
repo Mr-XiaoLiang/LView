@@ -3,6 +3,7 @@
     android:layout_height="match_parent" 
     android:orientation="vertical"
     android:gravity="center"
+    android:id="@+id/item_home_text_title_104_root"
     android:background="@color/white">
 	<TextView 
 	    android:id="@+id/item_home_text_title_104_text"

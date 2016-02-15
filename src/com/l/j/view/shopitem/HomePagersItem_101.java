@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.View.MeasureSpec;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -66,6 +67,11 @@ public class HomePagersItem_101 extends FrameLayout implements OnPageChangeListe
 		pagerView = (ViewPager) findViewById(R.id.item_home_pagers_101_pager);
 		pointView = (LPagePointView) findViewById(R.id.item_home_pagers_101_point);
 		rootLayout = (FrameLayout) findViewById(R.id.item_home_pagers_101_root);
+		WindowManager m = ((Activity) context).getWindowManager();
+		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+		ViewGroup.LayoutParams p = rootLayout.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+		p.height = (int)(d.getHeight() * 0.25);
+		rootLayout.setLayoutParams(p);
 		imageLoader = ImageLoader.getInstance();
 		if(bean==null||bean.getImgUrlSize()==0){
 			return;
@@ -89,15 +95,7 @@ public class HomePagersItem_101 extends FrameLayout implements OnPageChangeListe
 		pagerView.setOnPageChangeListener(this);
 		pagerView.setAdapter(pagerAdapter);
 	}
-	@Override
-	public void onWindowFocusChanged(boolean hasWindowFocus) {
-		super.onWindowFocusChanged(hasWindowFocus);
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.25);
-		setLayoutParams(p);
-	}
+	
 	private class OnImageClickListener implements OnClickListener {
 		private int index;
 		

@@ -26,6 +26,7 @@ public class HomeTextTitleItem_104 extends LinearLayout implements OnClickListen
 	private OnClickListener listener;
 	private TextView textView;
 	private HomeTextTitleItem_104Bean bean;
+	private LinearLayout root;
 	
 	@Override
 	public void onClick(View v) {
@@ -63,8 +64,14 @@ public class HomeTextTitleItem_104 extends LinearLayout implements OnClickListen
 		this.context = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_text_title_104,
 				this, true);
+		root = (LinearLayout) findViewById(R.id.item_home_text_title_104_root);
 		textView = (TextView) findViewById(R.id.item_home_text_title_104_text);
 		textView.setOnClickListener(this);
+		WindowManager m = ((Activity) context).getWindowManager();
+		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+		ViewGroup.LayoutParams p = root.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+		p.height = (int)(d.getHeight() * 0.08);
+		root.setLayoutParams(p);
 		if(bean==null){
 			return;
 		}
@@ -83,13 +90,13 @@ public class HomeTextTitleItem_104 extends LinearLayout implements OnClickListen
 		this.bean = bean;
 		dataSet();
 	}
-	@Override
-	public void onWindowFocusChanged(boolean hasWindowFocus) {
-		super.onWindowFocusChanged(hasWindowFocus);
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.08);
-		setLayoutParams(p);
-	}
+//	@Override
+//	public void onWindowFocusChanged(boolean hasWindowFocus) {
+//		super.onWindowFocusChanged(hasWindowFocus);
+//		WindowManager m = ((Activity) context).getWindowManager();
+//		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+//		ViewGroup.LayoutParams p = getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
+//		p.height = (int)(d.getHeight() * 0.08);
+//		setLayoutParams(p);
+//	}
 }
