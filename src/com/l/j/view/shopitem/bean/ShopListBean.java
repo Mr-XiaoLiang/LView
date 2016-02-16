@@ -33,13 +33,21 @@ public class ShopListBean {
 	 */
 	public static final int HomeTraitStatementItem_106 = 106;
 	/**
+	 * 动态三列图片
+	 */
+	public static final int HomeThreeImgItem_107 = 107;
+	/**
+	 * 间隔标题
+	 */
+	public static final int HomeDivisionTitleItem_108 = 108;
+	/**
 	 * item的类型
 	 */
 	private ArrayList<Integer> types;
 	/**
 	 * item的属性
 	 */
-	private ArrayList<Object> beans;
+	private ArrayList<ShopItemBean> beans;
 	public ArrayList<Integer> getTypes() {
 		return types;
 	}
@@ -52,7 +60,7 @@ public class ShopListBean {
 	public void setTypes(ArrayList<Integer> types) {
 		this.types = types;
 	}
-	public ArrayList<Object> getBeans() {
+	public ArrayList<ShopItemBean> getBeans() {
 		return beans;
 	}
 	public Object getBeans(int i) {
@@ -61,10 +69,10 @@ public class ShopListBean {
 	public int getBeansSize() {
 		return beans.size();
 	}
-	public void setBeans(ArrayList<Object> beans) {
+	public void setBeans(ArrayList<ShopItemBean> beans) {
 		this.beans = beans;
 	}
-	public void addBean(Object o){
+	public void addBean(ShopItemBean o){
 		beans.add(o);
 	}
 	public void addType(int i){
@@ -73,12 +81,11 @@ public class ShopListBean {
 	public ShopListBean() {
 		super();
 		this.types = new ArrayList<Integer>();
-		this.beans = new ArrayList<Object>();
+		this.beans = new ArrayList<ShopItemBean>();
 	}
-	public ShopListBean(ArrayList<Integer> types, ArrayList<Object> beans) {
+	public ShopListBean(ArrayList<Integer> types, ArrayList<ShopItemBean> beans) {
 		super();
 		this.types = types;
 		this.beans = beans;
 	}
-	
 }

@@ -33,6 +33,7 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 	private ImageLoader loader;
 	private OnClickListener clickListener;
 	private LinearLayout root;
+	private int windowHeight = 0;
 	
 	private void init(){
 		LayoutInflater.from(context).inflate(R.layout.item_home_big_three_102,
@@ -54,13 +55,14 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 		rootLayout2 = (FrameLayout) findViewById(R.id.item_home_big_three_102_root2);
 		rootLayout3 = (FrameLayout) findViewById(R.id.item_home_big_three_102_root3);
 		loader = ImageLoader.getInstance();
-		
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+		if(windowHeight<1){
+			WindowManager m = ((Activity) context).getWindowManager();
+			Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+			windowHeight = d.getHeight();
+		}
 		ViewGroup.LayoutParams p = root.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.25);
+		p.height = (int)(windowHeight * 0.25);
 		root.setLayoutParams(p);
-		
 		if(bean==null){
 			return;
 		}
@@ -140,7 +142,9 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 	}
 
 	public HomeBigThreeItem_102(Context context) {
-		this(context,null);
+		super(context);
+		this.context = context;
+		init();
 	}
 	public HomeBigThreeItem_102Bean getBean() {
 		return bean;
@@ -155,11 +159,32 @@ public class HomeBigThreeItem_102 extends LinearLayout implements OnClickListene
 		this.clickListener = clickListener;
 	}
 	public HomeBigThreeItem_102(Context context, HomeBigThreeItem_102Bean bean, OnClickListener clickListener) {
-		this(context);
+		super(context);
 		this.bean = bean;
+		this.context = context;
 		this.clickListener = clickListener;
-		DataSet();
+		init();
 	}
+	public HomeBigThreeItem_102(Context context, HomeBigThreeItem_102Bean bean,
+			OnClickListener clickListener, int windowHeight) {
+		super(context);
+		this.bean = bean;
+		this.context = context;
+		this.clickListener = clickListener;
+		this.windowHeight = windowHeight;
+		init();
+	}
+	public HomeBigThreeItem_102(Context context, HomeBigThreeItem_102Bean bean, int windowHeight) {
+		super(context);
+		this.context = context;
+		this.bean = bean;
+		this.windowHeight = windowHeight;
+		init();
+	}
+	public void setWindowHeight(int windowHeight) {
+		this.windowHeight = windowHeight;
+	}
+	
 //	@Override
 //	public void onWindowFocusChanged(boolean hasWindowFocus) {
 //		super.onWindowFocusChanged(hasWindowFocus);

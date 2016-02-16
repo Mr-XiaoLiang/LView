@@ -1,10 +1,11 @@
 package com.l.j.view.shopitem.bean;
+
 /**
  * 中型横幅
  * @author LiuJ
  *
  */
-public class HomeTextTitleItem_104Bean {
+public class HomeTextTitleItem_104Bean extends ShopItemBean {
 	private String text;
 	private BeanType intent;
 	private String initenMsg;

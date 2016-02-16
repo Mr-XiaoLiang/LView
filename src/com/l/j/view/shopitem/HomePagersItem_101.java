@@ -59,19 +59,24 @@ public class HomePagersItem_101 extends FrameLayout implements OnPageChangeListe
 	/**
 	 * 根节点
 	 */
-	private FrameLayout rootLayout;
+	private FrameLayout root;
+	private int windowHeight = 0;
 	
 	private void init(){
 		LayoutInflater.from(context).inflate(R.layout.item_home_pagers_101,
 				this, true);
 		pagerView = (ViewPager) findViewById(R.id.item_home_pagers_101_pager);
 		pointView = (LPagePointView) findViewById(R.id.item_home_pagers_101_point);
-		rootLayout = (FrameLayout) findViewById(R.id.item_home_pagers_101_root);
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = rootLayout.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.25);
-		rootLayout.setLayoutParams(p);
+		root = (FrameLayout) findViewById(R.id.item_home_pagers_101_root);
+		if (windowHeight < 1) {
+			WindowManager m = ((Activity) context).getWindowManager();
+			Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+			windowHeight = d.getHeight();
+		}
+		ViewGroup.LayoutParams p = root.getLayoutParams();// getWindow().getAttributes();
+		p.height = (int) (windowHeight * 0.25);
+		root.setLayoutParams(p);
+		
 		imageLoader = ImageLoader.getInstance();
 		if(bean==null||bean.getImgUrlSize()==0){
 			return;
@@ -190,16 +195,41 @@ public class HomePagersItem_101 extends FrameLayout implements OnPageChangeListe
 		init();
 	}
 	public HomePagersItem_101(Context context, AttributeSet attrs) {
-		this(context, attrs,0);
+		super(context, attrs);
+		this.context = context;
+		init();
 	}
 	public HomePagersItem_101(Context context) {
-		this(context,null);
+		super(context);
+		this.context = context;
+		init();
 	}
 	public HomePagersItem_101(Context context,HomePagersItem_101Bean bean,OnPageClickListener listener) {
-		this(context);
+		super(context);
 		this.bean = bean;
-		DataSet();
+		this.clickListener = listener;
+		this.context = context;
+		init();
 	}
+	
+	public HomePagersItem_101(Context context, HomePagersItem_101Bean bean, OnPageClickListener clickListener,
+			int windowHeight) {
+		super(context);
+		this.bean = bean;
+		this.clickListener = clickListener;
+		this.windowHeight = windowHeight;
+		this.context = context;
+		init();
+	}
+
+	public HomePagersItem_101(Context context, HomePagersItem_101Bean bean, int windowHeight) {
+		super(context);
+		this.bean = bean;
+		this.windowHeight = windowHeight;
+		this.context = context;
+		init();
+	}
+
 	public HomePagersItem_101Bean getBean() {
 		return bean;
 	}

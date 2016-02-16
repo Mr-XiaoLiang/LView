@@ -2,13 +2,7 @@ package com.l.j.view.shopitem.bean;
 
 import java.util.ArrayList;
 
-/**
- * 特点声明
- * 最多4个，超过的无效
- * @author LiuJ
- *
- */
-public class HomeTraitStatementItem_106Bean extends ShopItemBean {
+public class HomeThreeImgItem_107Bean extends ShopItemBean {
 	/**
 	 * 图片地址
 	 */
@@ -75,14 +69,14 @@ public class HomeTraitStatementItem_106Bean extends ShopItemBean {
 	public void setIntentMsg(ArrayList<String> intentMsg) {
 		this.intentMsg = intentMsg;
 	}
-	public HomeTraitStatementItem_106Bean(ArrayList<String> imgUrl, ArrayList<BeanType> imgIntent,
+	public HomeThreeImgItem_107Bean(ArrayList<String> imgUrl, ArrayList<BeanType> imgIntent,
 			ArrayList<String> intentMsg) {
 		super();
 		this.imgUrl = imgUrl;
 		this.imgIntent = imgIntent;
 		this.intentMsg = intentMsg;
 	}
-	public HomeTraitStatementItem_106Bean() {
+	public HomeThreeImgItem_107Bean() {
 		super();
 		this.imgUrl = new ArrayList<String>();
 		this.imgIntent = new ArrayList<BeanType>();
@@ -104,5 +98,4 @@ public class HomeTraitStatementItem_106Bean extends ShopItemBean {
 			imgIntent.add(t);
 		}
 	}
-	
 }

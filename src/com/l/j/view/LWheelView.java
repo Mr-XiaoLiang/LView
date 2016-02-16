@@ -6,17 +6,15 @@ import com.l.j.option.LWheelViewOption;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.FontMetrics;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader;
 import android.graphics.Typeface;
-import android.graphics.Bitmap.Config;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;

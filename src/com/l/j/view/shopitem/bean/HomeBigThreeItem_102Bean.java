@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author LiuJ
  *
  */
-public class HomeBigThreeItem_102Bean {
+public class HomeBigThreeItem_102Bean extends ShopItemBean {
 	private ArrayList<String> bgUrl;
 	private ArrayList<String> iconUrl;
 	private ArrayList<String> title;

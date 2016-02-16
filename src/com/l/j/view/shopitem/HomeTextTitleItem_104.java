@@ -27,6 +27,7 @@ public class HomeTextTitleItem_104 extends LinearLayout implements OnClickListen
 	private TextView textView;
 	private HomeTextTitleItem_104Bean bean;
 	private LinearLayout root;
+	private int windowHeight = 0;
 	
 	@Override
 	public void onClick(View v) {
@@ -62,15 +63,21 @@ public class HomeTextTitleItem_104 extends LinearLayout implements OnClickListen
 	public HomeTextTitleItem_104(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
+		init();
+	}
+	private void init(){
 		LayoutInflater.from(context).inflate(R.layout.item_home_text_title_104,
 				this, true);
 		root = (LinearLayout) findViewById(R.id.item_home_text_title_104_root);
 		textView = (TextView) findViewById(R.id.item_home_text_title_104_text);
 		textView.setOnClickListener(this);
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = root.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.08);
+		if (windowHeight < 1) {
+			WindowManager m = ((Activity) context).getWindowManager();
+			Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+			windowHeight = d.getHeight();
+		}
+		ViewGroup.LayoutParams p = root.getLayoutParams();// getWindow().getAttributes();
+		p.height = (int) (windowHeight * 0.08);
 		root.setLayoutParams(p);
 		if(bean==null){
 			return;
@@ -81,15 +88,37 @@ public class HomeTextTitleItem_104 extends LinearLayout implements OnClickListen
 		textView.setText(bean.getText());
 	}
 	public HomeTextTitleItem_104(Context context) {
-		this(context,null);
+		super(context);
+		this.context = context;
+		init();
 	}
 
 	public HomeTextTitleItem_104(Context context, HomeTextTitleItem_104Bean bean, OnClickListener listener) {
-		this(context);
+		super(context);
 		this.listener = listener;
 		this.bean = bean;
-		dataSet();
+		this.context = context;
+		init();
 	}
+
+	public HomeTextTitleItem_104(Context context, OnClickListener listener, HomeTextTitleItem_104Bean bean,
+			int windowHeight) {
+		super(context);
+		this.listener = listener;
+		this.bean = bean;
+		this.windowHeight = windowHeight;
+		this.context = context;
+		init();
+	}
+
+	public HomeTextTitleItem_104(Context context, HomeTextTitleItem_104Bean bean, int windowHeight) {
+		super(context);
+		this.bean = bean;
+		this.windowHeight = windowHeight;
+		this.context = context;
+		init();
+	}
+	
 //	@Override
 //	public void onWindowFocusChanged(boolean hasWindowFocus) {
 //		super.onWindowFocusChanged(hasWindowFocus);

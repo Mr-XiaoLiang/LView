@@ -339,7 +339,7 @@ public class LClockView extends View {
 						canvas.drawText(i + "", scale[0], scale[1] + textY,
 								selectedTextPaint);
 					}
-					if (hoursItems[i] > 0) {
+					if (hoursItems[i] >= 0) {
 						canvas.drawText(i + "", scale[0], scale[1] + textY,
 								textPaint);
 					} else {
@@ -353,7 +353,7 @@ public class LClockView extends View {
 						canvas.drawText(i + "", scale[0], scale[1] + textY2,
 								selectedSmallTextPaint);
 					}
-					if (hoursItems[i] > 0) {
+					if (hoursItems[i] >= 0) {
 						canvas.drawText(i + "", scale[0], scale[1] + textY2,
 								smallTextPaint);
 					} else {
@@ -374,7 +374,7 @@ public class LClockView extends View {
 				if (i % 5 != 0) {
 					continue;
 				}
-				if (minutesItems[i] > 0) {
+				if (minutesItems[i] >= 0) {
 					canvas.drawText(i + "", scale[0], scale[1] + textY,
 							textPaint);
 				} else {

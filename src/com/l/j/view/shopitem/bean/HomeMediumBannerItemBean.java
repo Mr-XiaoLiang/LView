@@ -1,10 +1,11 @@
 package com.l.j.view.shopitem.bean;
+
 /**
  * 横幅
  * @author LiuJ
  *
  */
-public class HomeMediumBannerItemBean {
+public class HomeMediumBannerItemBean extends ShopItemBean {
 	private String imgUrl;
 	private BeanType intent;
 	private String initenMsg;

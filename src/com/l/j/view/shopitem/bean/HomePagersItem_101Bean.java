@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author LiuJ
  *
  */
-public class HomePagersItem_101Bean {
+public class HomePagersItem_101Bean extends ShopItemBean {
 	/**
 	 * 图片地址
 	 */

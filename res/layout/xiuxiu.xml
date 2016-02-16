@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:weightSum="2"
+    android:gravity="center">
+	<com.l.j.view.LXiuXiu
+	    android:layout_width="match_parent"
+	    android:layout_height="0px"
+	    android:layout_weight="1"
+	    android:src="@drawable/phone"
+	    android:id="@+id/xiu"/>
+</LinearLayout>

@@ -11,6 +11,7 @@ import com.l.j.view.LRadarView;
 import com.l.j.view.LSlideButtonView;
 import com.l.j.view.LSlideButtonView.SlideButtonViewListener;
 import com.l.j.view.LThermometerView;
+import com.l.j.view.LXiuXiu;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +26,7 @@ public class ViewTest extends Activity {
 	private LSlideButtonView buttonView,buttonView2,buttonView3;
 	private LThermometerView thermometerView;
 	private LProgressButton progressButton;
+	private LXiuXiu lXiuXiu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,10 @@ public class ViewTest extends Activity {
 						}
 					}
 				});
+				break;
+			case 15:
+				setContentView(R.layout.xiuxiu);
+				lXiuXiu = (LXiuXiu) findViewById(R.id.xiu);
 				break;
 		}
 	}

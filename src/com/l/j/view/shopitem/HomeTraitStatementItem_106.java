@@ -28,7 +28,7 @@ public class HomeTraitStatementItem_106 extends LinearLayout implements OnClickL
 	private HomeTraitStatementItem_106Bean bean;
 	private OnClickListener listener;
 	private LinearLayout root;
-	
+	private int windowHeight = 0;
 	
 	@Override
 	public void onClick(View v) {
@@ -73,10 +73,13 @@ public class HomeTraitStatementItem_106 extends LinearLayout implements OnClickL
 		img3.setOnClickListener(this);
 		img4.setOnClickListener(this);
 		imageLoader = ImageLoader.getInstance();
-		WindowManager m = ((Activity) context).getWindowManager();
-		Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-		ViewGroup.LayoutParams p = root.getLayoutParams();//getWindow().getAttributes(); // 获取对话框当前的参数值
-		p.height = (int)(d.getHeight() * 0.12);
+		if (windowHeight < 1) {
+			WindowManager m = ((Activity) context).getWindowManager();
+			Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+			windowHeight = d.getHeight();
+		}
+		ViewGroup.LayoutParams p = root.getLayoutParams();// getWindow().getAttributes();
+		p.height = (int) (windowHeight * 0.12);
 		root.setLayoutParams(p);
 		dataSet();
 	}
@@ -125,6 +128,24 @@ public class HomeTraitStatementItem_106 extends LinearLayout implements OnClickL
 	public HomeTraitStatementItem_106(Context context, HomeTraitStatementItem_106Bean bean) {
 		super(context);
 		this.bean = bean;
+		this.context = context;
+		init();
+	}
+
+	public HomeTraitStatementItem_106(Context context, HomeTraitStatementItem_106Bean bean, OnClickListener listener,
+			int windowHeight) {
+		super(context);
+		this.bean = bean;
+		this.listener = listener;
+		this.windowHeight = windowHeight;
+		this.context = context;
+		init();
+	}
+
+	public HomeTraitStatementItem_106(Context context, HomeTraitStatementItem_106Bean bean, int windowHeight) {
+		super(context);
+		this.bean = bean;
+		this.windowHeight = windowHeight;
 		this.context = context;
 		init();
 	}
