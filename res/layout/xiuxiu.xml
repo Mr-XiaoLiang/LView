@@ -1,13 +1,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:orientation="vertical"
-    android:weightSum="2"
-    android:gravity="center">
-	<com.l.j.view.LXiuXiu
-	    android:layout_width="match_parent"
-	    android:layout_height="0px"
-	    android:layout_weight="1"
-	    android:src="@drawable/phone"
-	    android:id="@+id/xiu"/>
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.l.j.view.LXiuXiu
+        android:id="@+id/xiu1"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:src="@drawable/phone" />
+    <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+    <com.l.j.view.LXiuXiu
+        android:id="@+id/xiu2"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:src="@drawable/phone" />
+    <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+    <com.l.j.view.LXiuXiu
+        android:id="@+id/xiu3"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:src="@drawable/phone" />
+    <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+    <com.l.j.view.LXiuXiu
+        android:id="@+id/xiu4"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:src="@drawable/phone" />
+
 </LinearLayout>

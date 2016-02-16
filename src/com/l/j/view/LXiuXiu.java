@@ -9,6 +9,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RadialGradient;
@@ -29,23 +30,29 @@ import android.widget.ImageView;
 public class LXiuXiu extends ImageView {
 	private Paint paint;
 	private Bitmap bitmap;
-	private int color;
+	private int color = 0;
 	private int width, height;
 	private ArrayList<Integer> radius;
 	private int maxRadiu;
-	private Integer step = 1;
+	private Integer step = 0;
 	private float imgRatio = 0.3f;
 	private Shader mRadialGradient = null;
 	private int red, green, blue;
 	private LXiuXiuOnClickListener listener;
-
+	private XiuXiuType xiuXiuType = XiuXiuType.OUT;
+	private WaveType waveType = WaveType.SHADE;
+	private int stepRatio = 5;
+	
 	private void init() {
 		int bitmapRadiu = (int) (maxRadiu * imgRatio);
-		if (bitmapRadiu > Math.min(width, height)) {
-			bitmapRadiu = Math.min(width, height);
+		if (bitmapRadiu > Math.min(width, height)/2) {
+			bitmapRadiu = Math.min(width, height)/2;
 		}
 		bitmap = getCroppedRoundBitmap(((BitmapDrawable) getDrawable()).getBitmap(), bitmapRadiu);
-		color = bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2);
+		if(color==0)
+			color = bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2);
+		if(step==0)
+			step = (maxRadiu-bitmapRadiu)/100*stepRatio;
 		red = Color.red(color);
 		green = Color.green(color);
 		blue = Color.blue(color);
@@ -54,9 +61,19 @@ public class LXiuXiu extends ImageView {
 
 	private void onChange() {
 		Iterator<Integer> it = radius.iterator();
-		while (it.hasNext()) {
-			if (it.next() > maxRadiu)
-				it.remove();
+		switch (xiuXiuType) {
+		case IN:
+			while (it.hasNext()) {
+				if (it.next() >= maxRadiu*(1-imgRatio))
+					it.remove();
+			}
+			break;
+		case OUT:
+			while (it.hasNext()) {
+				if (it.next() >= maxRadiu)
+					it.remove();
+			}
+			break;
 		}
 		for(int i = 0;i<radius.size();i++){
 			radius.set(i, radius.get(i)+step);
@@ -64,17 +81,50 @@ public class LXiuXiu extends ImageView {
 	}
 
 	private void setColor(int r){
-		int alpha = (int) (1-r/(maxRadiu *(1 - imgRatio)))*255;
-		int edgeColor = Color.argb(alpha, red, green, blue);
-		mRadialGradient = new RadialGradient(width/2, height/2, r, Color.TRANSPARENT, edgeColor, Shader.TileMode.REPEAT);
+		int alpha = 0;
+		switch (xiuXiuType) {
+		case IN:
+			alpha = (int) ((maxRadiu*(1-imgRatio)-r)*1.0/maxRadiu*255);
+			break;
+		case OUT:
+			alpha = (int) ((maxRadiu-r)*1.0/maxRadiu*255);
+			break;
+		}
+		int edgeColor = Color.argb(alpha,red,green,blue);
+		mRadialGradient = new RadialGradient(width/2, height/2, r+maxRadiu*imgRatio, Color.TRANSPARENT, edgeColor, Shader.TileMode.REPEAT);
 		paint.setShader(mRadialGradient);
+	}
+	
+	private void setColor2(int r){
+		int alpha = 0;
+		switch (xiuXiuType) {
+		case IN:
+			alpha = (int) ((maxRadiu*(1-imgRatio)-r)*1.0/maxRadiu*255);
+			break;
+		case OUT:
+			alpha = (int) ((maxRadiu-r)*1.0/maxRadiu*255);
+			break;
+		}
+		paint.setAlpha(alpha);
 	}
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		for(Integer i : radius){
-			setColor(i);
-			canvas.drawCircle(width/2, height/2, i+(maxRadiu*imgRatio), paint);
+		switch (waveType) {
+		case ALWAYS:
+			paint.setColor(color);
+			for(Integer i : radius){
+				setColor2(i);
+				canvas.drawCircle(width/2, height/2, i+(maxRadiu*imgRatio), paint);
+			}
+			paint.setAlpha(255);
+			break;
+		case SHADE:
+			for(Integer i : radius){
+				setColor(i);
+				canvas.drawCircle(width/2, height/2, i+(maxRadiu*imgRatio), paint);
+			}
+			break;
 		}
 		canvas.drawBitmap(bitmap, width/2-bitmap.getWidth()/2, height/2-bitmap.getHeight()/2, paint);
 		if(radius.size()>0){
@@ -83,21 +133,12 @@ public class LXiuXiu extends ImageView {
 		}
 	}
 
-//	@Override
-//	public boolean performClick() {
-//		radius.add(1);
-//		if(listener!=null){
-//			listener.onXiu(this);
-//		}
-//		invalidate();
-//		return super.performClick();
-//	}
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_UP:
-			radius.add(1);
+			radius.add(0);
 			if(listener!=null){
 				listener.onXiu(this);
 			}
@@ -110,10 +151,12 @@ public class LXiuXiu extends ImageView {
 	}
 	
 	
+	
 	public LXiuXiu(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		paint = new Paint();
 		paint.setAntiAlias(true);
+		paint.setStyle(Style.FILL);
 		radius = new ArrayList<Integer>();
 	}
 
@@ -129,7 +172,14 @@ public class LXiuXiu extends ImageView {
 	public void onWindowFocusChanged(boolean hasWindowFocus) {
 		width = getWidth();
 		height = getHeight();
-		maxRadiu = Math.max(height, width)/2;
+		switch (this.xiuXiuType) {
+		case IN:
+			maxRadiu = Math.min(height, width)/2;
+			break;
+		case OUT:
+			maxRadiu = Math.max(height, width)/2;
+			break;
+		}
 		init();
 		super.onWindowFocusChanged(hasWindowFocus);
 	}
@@ -206,11 +256,15 @@ public class LXiuXiu extends ImageView {
 	}
 
 	public Integer getStep() {
-		return step;
+		return stepRatio;
 	}
-
-	public void setStep(Integer step) {
-		this.step = step;
+	/**
+	 * 最大99
+	 * 最小1
+	 * @param step
+	 */
+	public void setStep(int step) {
+		stepRatio = step;
 	}
 
 	public float getImgRatio() {
@@ -221,4 +275,41 @@ public class LXiuXiu extends ImageView {
 		this.imgRatio = imgRatio;
 	}
 	
+	public XiuXiuType getXiuXiuType() {
+		return xiuXiuType;
+	}
+	/**
+	 * 设置波浪范围
+	 * @param xiuXiuType
+	 */
+	public void setXiuXiuType(XiuXiuType xiuXiuType) {
+		this.xiuXiuType = xiuXiuType;
+		switch (this.xiuXiuType) {
+		case IN:
+			maxRadiu = Math.min(height, width)/2;
+			break;
+		case OUT:
+			maxRadiu = Math.max(height, width)/2;
+			break;
+		}
+	}
+	
+	public WaveType getWaveType() {
+		return waveType;
+	}
+	/**
+	 * 设置波浪样式
+	 * @param waveType
+	 */
+	public void setWaveType(WaveType waveType) {
+		this.waveType = waveType;
+	}
+
+	public enum WaveType{
+		SHADE,ALWAYS
+	}
+
+	public enum XiuXiuType{
+		IN,OUT
+	}
 }
