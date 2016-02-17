@@ -90,6 +90,10 @@ public class LXiuXiu extends ImageView {
 			alpha = (int) ((maxRadiu-r)*1.0/maxRadiu*255);
 			break;
 		}
+		if(alpha>255)
+			alpha = 255;
+		if(alpha<0)
+			alpha = 0;
 		int edgeColor = Color.argb(alpha,red,green,blue);
 		mRadialGradient = new RadialGradient(width/2, height/2, r+maxRadiu*imgRatio, Color.TRANSPARENT, edgeColor, Shader.TileMode.REPEAT);
 		paint.setShader(mRadialGradient);
@@ -105,6 +109,10 @@ public class LXiuXiu extends ImageView {
 			alpha = (int) ((maxRadiu-r)*1.0/maxRadiu*255);
 			break;
 		}
+		if(alpha>255)
+			alpha = 255;
+		if(alpha<0)
+			alpha = 0;
 		paint.setAlpha(alpha);
 	}
 	
