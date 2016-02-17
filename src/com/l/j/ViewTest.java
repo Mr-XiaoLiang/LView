@@ -3,13 +3,6 @@ package com.l.j;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
 import com.l.j.option.LProgressButtonOption;
 import com.l.j.view.LPieView;
 import com.l.j.view.LProgressButton;
@@ -19,9 +12,18 @@ import com.l.j.view.LSlideButtonView;
 import com.l.j.view.LSlideButtonView.SlideButtonViewListener;
 import com.l.j.view.LThermometerView;
 import com.l.j.view.LXiuXiu;
-import com.l.j.view.LXiuXiu.LXiuXiuOnClickListener;
 import com.l.j.view.LXiuXiu.WaveType;
 import com.l.j.view.LXiuXiu.XiuXiuType;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class ViewTest extends Activity {
 
@@ -141,6 +143,26 @@ public class ViewTest extends Activity {
 				lXiuXiu4 = (LXiuXiu) findViewById(R.id.xiu4);
 				lXiuXiu4.setXiuXiuType(XiuXiuType.IN);
 				lXiuXiu4.setWaveType(WaveType.ALWAYS);
+				break;
+			case 16:
+				setContentView(R.layout.built_in_drawers);
+				LinearLayout builtLeft = (LinearLayout) findViewById(R.id.built_in_left);
+//				LinearLayout buildRight = (LinearLayout) findViewById(R.id.built_in_right);
+				WindowManager m = getWindowManager();
+				Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+				ViewGroup.LayoutParams p = builtLeft.getLayoutParams();// getWindow().getAttributes();
+				p.width = (int) (d.getWidth() * 0.7);
+				builtLeft.setLayoutParams(p);
+//				buildRight.setLayoutParams(p);
+				break;
+			case 17:
+				setContentView(R.layout.swipe_drawers);
+				LinearLayout swipeLeft = (LinearLayout) findViewById(R.id.swipe_left);
+				WindowManager m2 = getWindowManager();
+				Display d2 = m2.getDefaultDisplay(); // 获取屏幕宽、高用
+				ViewGroup.LayoutParams p2 = swipeLeft.getLayoutParams();// getWindow().getAttributes();
+				p2.width = (int) (d2.getWidth() * 0.7);
+				swipeLeft.setLayoutParams(p2);
 				break;
 		}
 	}
