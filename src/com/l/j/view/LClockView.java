@@ -1051,4 +1051,10 @@ public class LClockView extends View {
 		}
 		pointerAngle = pa;
 	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
+	
 }
