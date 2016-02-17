@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.l.j.view.LCountDownView;
 import com.l.j.view.LCountDownView.LCountDownViewListener;
-import com.l.j.view.LCountDownView2;
 import com.l.j.view.LCountDownView2.LCountDownViewListener2;
 import com.l.j.view.LGoodsSizeChangeView;
 import com.l.j.view.LGoodsSizeChangeView.OnLGoodsSizeChangeViewListener;
@@ -42,7 +41,7 @@ public class CountDownListActivity extends Activity {
 	
 	private GSCListener listener2;
 	
-	private CDListener2 listener3;
+//	private CDListener2 listener3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class CountDownListActivity extends Activity {
 		setContentView(R.layout.count_down);
 		list = (ListView) findViewById(R.id.count_down_list);
 		hint = (TextView) findViewById(R.id.count_down_hint);
-		hint.setText("每个item的时间在初始化的时候是相差1分钟");
+		hint.setText("每个item的时间在初始化的时候是相差1分钟\n因为暂停及还原算法有点问题，所以存在事件误差，不做比较不太明显，但是不建议以此倒计时作为标准，建议仅作为展示用");
 
 		init();
 
@@ -64,7 +63,7 @@ public class CountDownListActivity extends Activity {
 		}
 		listener = new CDListener();
 		listener2 = new GSCListener();
-		listener3 = new CDListener2();
+//		listener3 = new CDListener2();
 		list.setAdapter(adapter = new ShowAdapter());
 		list.invalidate();
 		adapter.notifyDataSetInvalidated();

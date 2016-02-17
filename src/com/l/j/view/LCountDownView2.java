@@ -18,7 +18,7 @@ import android.view.SurfaceView;
 /**
  * 倒计时View
  * 
- * @author LiuJ 本控件资源消耗巨大， 不推荐优先使用， 推荐只在LCountDownView不能使用的情况下使用
+ * @author LiuJ 
  * 本view在列表里面存在大问题，放弃了，以后再说吧
  */
 public class LCountDownView2 extends SurfaceView implements Callback {
