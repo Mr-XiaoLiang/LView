@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		listView.setOnItemClickListener(this);
 		dialogUtil = new DialogUtil();
 		calendar = Calendar.getInstance();
+		
 	}
 
 	@Override
