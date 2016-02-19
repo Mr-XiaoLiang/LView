@@ -1,0 +1,93 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <com.l.j.view.RevealLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="LinearLayout" 
+                android:background="#eee"/>
+        </com.l.j.view.RevealLayout>
+
+        <com.l.j.view.RevealLayout
+            android:id="@+id/layout111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/button221"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:enabled="true"
+                android:background="#eee"
+                android:text="Button" />
+        </com.l.j.view.RevealLayout>
+
+        <com.l.j.view.RevealLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:enabled="true"
+                android:background="#eee"
+                android:text="Button" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello_world" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:background="#eee"
+                android:layout_margin="10dp"
+                android:enabled="true"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:enabled="true"
+                android:background="#eee"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:enabled="true"
+                android:background="#eee"
+                android:text="Button" />
+        </com.l.j.view.RevealLayout>
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="小良注：\n 本View不是我写的，是从网上找来的，写的很好 \n 但是有些缺陷，比如连续点击同一个位置，显示的效果不是很好。 \n 一次只有一个View能有动画效果 \n 但是因为我本身能力问题，暂时没有办法完善上述功能，所以直接把大神的Layout拿上来了 \n 所以这里明确注释下，同时，项目里面没有以L开头的View也不是本人所做，以示区分。\n Layout的代码没有丝毫的改动，原贴地址：http://blog.csdn.net/singwhatiwanna/article/details/42614953"/>
+    </LinearLayout>
+
+</ScrollView>

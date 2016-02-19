@@ -11,7 +11,7 @@ import android.view.View;
  * @author LiuJ 因为公司需要才写的，用途很有局限性 藏起来好了
  * 这是一个半圆行的抽屉拉手
  */
-public class SlidingDrawerHandle extends View {
+public class LSlidingDrawerHandlee extends View {
 	/**
 	 * 画笔
 	 */
@@ -19,15 +19,15 @@ public class SlidingDrawerHandle extends View {
 	
 	private int bgColor;
 
-	public SlidingDrawerHandle(Context context, AttributeSet attrs, int defStyleAttr) {
+	public LSlidingDrawerHandlee(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public SlidingDrawerHandle(Context context, AttributeSet attrs) {
+	public LSlidingDrawerHandlee(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	public SlidingDrawerHandle(Context context) {
+	public LSlidingDrawerHandlee(Context context) {
 		this(context, null);
 	}
 

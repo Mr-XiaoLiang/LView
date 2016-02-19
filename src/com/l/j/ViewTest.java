@@ -164,6 +164,9 @@ public class ViewTest extends Activity {
 				p2.width = (int) (d2.getWidth() * 0.7);
 				swipeLeft.setLayoutParams(p2);
 				break;
+			case 18:
+				setContentView(R.layout.ripple);
+				break;
 		}
 	}
 
