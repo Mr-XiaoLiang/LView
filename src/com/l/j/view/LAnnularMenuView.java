@@ -155,7 +155,7 @@ public class LAnnularMenuView extends View {
 				canvas.drawCircle(rX, rY, radius+itemDiameter*2, bgPaint);
 				canvas.restore();
 			}else{
-				canvas.drawCircle(rX, rY, radius, bgPaint);
+				canvas.drawCircle(rX, rY, radius+itemDiameter*2, bgPaint);
 			}
 			if(option.getSrc()!=null){
 				bgPaint.setShader(ringSrc);
@@ -167,7 +167,14 @@ public class LAnnularMenuView extends View {
 			bgPaint.setAntiAlias(true);
 			break;
 		case S:
-			//TODO 2016-02-19 17:57
+			if(option.getSrc()!=null){
+				bgPaint.setShader(ringSrc);
+				canvas.translate(rX-radius, rY-radius);
+				canvas.drawCircle(rX, rY, radius, bgPaint);
+				canvas.restore();
+			}
+			bgPaint.reset();
+			bgPaint.setAntiAlias(true);
 			break;
 		default:
 			break;
@@ -179,6 +186,7 @@ public class LAnnularMenuView extends View {
 		drawBg(canvas);
 		// TODO Auto-generated method stub
 	}
+	
 
 	/**
 	 * 使用渲染来绘制圆形图片
