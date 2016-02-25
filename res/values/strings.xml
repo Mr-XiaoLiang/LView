@@ -2,4 +2,5 @@
 <resources>
 
     <string name="app_name">LView-Eclipse</string>
+    <string name="phone_book_enter">确定(%1$s)</string>
 </resources>

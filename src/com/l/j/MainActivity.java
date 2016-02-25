@@ -27,7 +27,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			"时间选择-分钟","加载等待动画", "饼图", "进度图", "雷达图", 
 			"圆形图片", "滑动按钮", "温度计", "进度条按钮", "页面下方小点", 
 			"tab小点", "日期滚轮", "时间滚轮", "全套滚轮","tab条形", 
-			"倒计时View","商品列表","支付宝咻一咻","系统自带的抽屉用法演示","现在较流行的抽屉样式","带涟漪的Layout" };
+			"倒计时View","商品列表","支付宝咻一咻","系统自带的抽屉用法演示","现在较流行的抽屉样式",
+			"带涟漪的Layout","渐变的View","通讯录" };
 
 	private DialogUtil dialogUtil;
 	private Calendar calendar;
@@ -128,6 +129,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		case 21:
 			intent = new Intent(this, ShopListTest.class);
+			startActivity(intent);
+			break;
+		case 27:
+			intent = new Intent(this, PhoneBook.class);
 			startActivity(intent);
 			break;
 		default:

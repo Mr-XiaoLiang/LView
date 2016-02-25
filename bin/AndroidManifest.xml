@@ -10,7 +10,8 @@
 
     <!-- 获取网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    
+    <!-- 读联系人权限 -->  
+	<uses-permission android:name="android.permission.READ_CONTACTS" /> 
     <application
         android:name="com.l.j.option.MyApplication"
         android:allowBackup="true"
@@ -37,6 +38,8 @@
             android:name="com.l.j.CountDownListActivity"/>
          <activity
             android:name="com.l.j.ShopListTest"/>
+         <activity
+            android:name="com.l.j.PhoneBook"/>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.l.j.option.LProgressButtonOption;
+import com.l.j.view.LGradualView;
 import com.l.j.view.LPieView;
 import com.l.j.view.LProgressButton;
 import com.l.j.view.LProgressButton.LProgressButtonOnClickListener;
@@ -166,6 +167,9 @@ public class ViewTest extends Activity {
 				break;
 			case 18:
 				setContentView(R.layout.ripple);
+				break;
+			case 19:
+				setContentView(new LGradualView(this));
 				break;
 		}
 	}
