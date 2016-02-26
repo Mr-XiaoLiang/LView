@@ -1,16 +1,18 @@
 package com.l.j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
+import com.l.j.util.Pinyin4jUtil;
 import com.l.j.view.phoneBookSuite.ContactBean;
 import com.l.j.view.phoneBookSuite.LInitialsIndexView;
 import com.l.j.view.phoneBookSuite.LInitialsIndexView.LInitialsIndexViewListener;
 import com.l.j.view.phoneBookSuite.PhoneBookAdapter;
-import com.l.j.view.phoneBookSuite.ShowLetterDialog;
+import com.l.j.view.phoneBookSuite.PhoneBookAdapter.OnCheckedPhoneListener;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -28,14 +30,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.RecyclerView.State;
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -60,11 +58,12 @@ public class PhoneBook extends Activity
 	private AsyncQueryHandler asyncQueryHandler; // 异步查询数据库类对象
 	private ArrayList<ContactBean> dataList;
 	private HashMap<String, Integer> letterMap = new HashMap<String, Integer>();
-	private Adapter<ViewHolder> adapter;
+	private PhoneBookAdapter adapter;
 	private LinearLayoutManager linearLayoutManager;
 	private boolean onTouch = false;
 	private static final int REQUEST_CODE_ASK_READ_CONTACTS = 666666;
 	private TextView showLetter;//dialog替补方案
+	private HashMap<String, String> repeat = new HashMap<String, String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +80,8 @@ public class PhoneBook extends Activity
 		enter.setOnClickListener(this);
 		checkAll.setOnCheckedChangeListener(this);
 		indexView.setListener(this);
+		recyclerView.setOnScrollListener(new RecyclerViewScrollListener());
+		enter.setText(String.format(getResources().getString(R.string.phone_book_enter), 0));
 		// 实例化
 		asyncQueryHandler = new MyAsyncQueryHandler(getContentResolver());
 		if (Build.VERSION.SDK_INT >= 23) {
@@ -96,7 +97,20 @@ public class PhoneBook extends Activity
 			init();
 		}
 	}
-
+	//监听滑动事件，然后可以做出浮动的字母
+	private class RecyclerViewScrollListener extends OnScrollListener{
+		@Override
+		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+			super.onScrolled(recyclerView, dx, dy);
+			int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+			letterView.setVisibility(View.VISIBLE);
+			letterView.setText(dataList.get(firstVisibleItemPosition).getLetter());
+			if(!onTouch){
+				indexView.setSelected(dataList.get(firstVisibleItemPosition).getLetter());
+			}
+		}
+	}
+	
 	@SuppressLint("NewApi")
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -153,7 +167,8 @@ public class PhoneBook extends Activity
 					cursor.moveToPosition(i);
 					String name = cursor.getString(1);
 					String number = cursor.getString(2);
-					String sortKey = cursor.getString(3);
+//					String sortKey = cursor.getString(3);
+					String sortKey = Pinyin4jUtil.converterToFirstSpell(name);
 					int contactId = cursor.getInt(4);
 					Long photoId = cursor.getLong(5);
 					String lookUpKey = cursor.getString(6);
@@ -174,6 +189,7 @@ public class PhoneBook extends Activity
 					}
 				}
 				if (dataList.size() > 0) {
+					 Collections.sort(dataList,new SortByName());
 					Iterator<ContactBean> iter = dataList.iterator();
 					ArrayList<ContactBean> dataList2 = new ArrayList<ContactBean>();
 					String letter = "";
@@ -181,19 +197,27 @@ public class PhoneBook extends Activity
 					ContactBean bean;
 					while (iter.hasNext()) {
 						bean = iter.next();
+						if(repeat.get(bean.getPhoneNum())!=null)
+							continue;
 						if (!letter.equals(bean.getLetter())) {
 							ContactBean b = new ContactBean();
 							b.setLetter(bean.getLetter());
 							b.setPhone(false);
-							dataList2.add(index, b);
+//							dataList2.add(index, b);
+							dataList2.add(b);
 							letter = bean.getLetter();
 							letterMap.put(letter, index);
 							index++;
 						}
+//						dataList2.add(index, bean);
+						dataList2.add(bean);
+						repeat.put(bean.getPhoneNum(), bean.getDesplayName());
 						index++;
 					}
 					dataList = dataList2;
 					initRecyclerView();
+				}else{
+					letterView.setVisibility(View.INVISIBLE);
 				}
 			}
 			super.onQueryComplete(token, cookie, cursor);
@@ -201,7 +225,11 @@ public class PhoneBook extends Activity
 	}
 
 	private void initRecyclerView() {
+		String[] letters = new String[letterMap.size()];
+		letterMap.keySet().toArray(letters);
+		indexView.setLetters(letters);
 		adapter = new PhoneBookAdapter(PhoneBook.this, dataList);
+		adapter.setCheckedPhoneListener(checkedPhoneListener);
 		linearLayoutManager = new LinearLayoutManager(this);
 		// 设置列表类型（列表，宫格）
 		recyclerView.setLayoutManager(linearLayoutManager);
@@ -250,20 +278,50 @@ public class PhoneBook extends Activity
 	@Override
 	public void onInitialsIndexSelected(View v, int i, String s) {
 		showLetter.setText(s);
-//		linearLayoutManager.smoothScrollToPosition(recyclerView, new State(), letterMap.get(s));
+		scrollToPosition(s);
+//		linearLayoutManager.smoothScrollToPosition(recyclerView, state, position);
 	}
 
+	private void scrollToPosition(String s){
+		int position = 0;
+		int index = 1;
+		String ss = "";
+		if(letterMap.get(s)==null){
+			A:while(index<26){//最多让他循环26次
+				if(letterMap.get(String.valueOf((s.charAt(0)+index)))!=null){
+					position = letterMap.get(String.valueOf((s.charAt(0)+index)));
+					ss = String.valueOf((s.charAt(0)+index));
+					break A;
+				}else if(letterMap.get(String.valueOf((s.charAt(0)-index)))!=null){
+					position = letterMap.get(String.valueOf((s.charAt(0)+index)));
+					ss = String.valueOf((s.charAt(0)+index));
+					break A;
+				}
+				index++;
+			}
+		}else{
+			position = letterMap.get(s);
+			ss = s;
+		}
+		linearLayoutManager.smoothScrollToPosition(recyclerView, new State(), position);
+		if(!onTouch){
+			indexView.setSelected(ss);
+		}
+	}
+	
 	@Override
 	public void onInitialsIndexDown(View v, int i, String s) {
 		onTouch = true;
 		showLetter.setVisibility(View.VISIBLE);
 		showLetter.setText(s);
+		scrollToPosition(s);
 	}
 
 	@Override
 	public void onInitialsIndexUp(View v, int i, String s) {
 		onTouch = false;
 		showLetter.setVisibility(View.GONE);
+		scrollToPosition(s);
 	}
 
 	RecyclerView.OnScrollListener onListScroll = new OnScrollListener() {
@@ -278,12 +336,27 @@ public class PhoneBook extends Activity
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		// TODO Auto-generated method stub
+		adapter.checkAll(isChecked);
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
+		switch (v.getId()) {
+		case R.id.activity_phone_book_enter:
+			// TODO Auto-generated method stub
+			break;
+		default:
+			break;
+		}
 	}
+	private OnCheckedPhoneListener checkedPhoneListener = new OnCheckedPhoneListener() {
+		
+		@Override
+		public void onCheckedPhone(ContactBean[] checked) {
+			if(checked!=null)
+				enter.setText(String.format(getResources().getString(R.string.phone_book_enter), checked.length));
+			else
+				enter.setText(String.format(getResources().getString(R.string.phone_book_enter), 0));
+		}
+	};
 }

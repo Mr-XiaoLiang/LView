@@ -31,13 +31,12 @@
             <TextView 
                 android:id="@+id/item_contact_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"/>
+                android:layout_height="wrap_content"/>
             <TextView 
                 android:id="@+id/item_contact_tel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textColor="@color/gary_text"/>
         </LinearLayout>
     </LinearLayout>

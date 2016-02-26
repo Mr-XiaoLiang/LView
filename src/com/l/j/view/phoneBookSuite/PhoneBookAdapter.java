@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.l.j.R;
+import com.l.j.view.phoneBookSuite.PhoneBookAdapter.OnCheckedPhoneListener;
 
 import android.content.Context;
 import android.os.Handler;
@@ -29,13 +30,16 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 	private static final int ItemViewType_Contact = 666;
 	private List<ContactBean> beans;
 	private Context context;
+	private OnCheckedPhoneListener checkedPhoneListener;
+	private int maxCheckSize = 10;
 //	private HashMap<String, Boolean> checked;//储存已经选择过的项
 	
 	public PhoneBookAdapter(Context context,List<ContactBean> beans) {
 		super();
-		setHasStableIds(true);
 		this.beans = beans;
 		this.context = context;
+		//根据说明，本行代码会辅助数据显示，防止反复刷新，但是加上之后出现数据重复问题，暂时不纠结
+//		setHasStableIds(true);
 	}
 
 	@Override
@@ -92,9 +96,11 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 		public TextView name;
 		private CheckBox checkBox;
 		private OnItemChecked checked;
+		private View itemView;
 		
 		public ContactHolder(View itemView) {
 			super(itemView);
+			this.itemView = itemView;
 			phone = (TextView) itemView.findViewById(R.id.item_contact_tel);
 			name = (TextView) itemView.findViewById(R.id.item_contact_name);
 			checkBox = (CheckBox) itemView.findViewById(R.id.item_contact_check);
@@ -104,9 +110,10 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 			name.setText(b.getDesplayName());
 			checkBox.setChecked(b.isChecked());
 			checked = new OnItemChecked(position);
-			phone.setOnClickListener(checked);
-			checkBox.setOnCheckedChangeListener(checked);
-			name.setOnClickListener(checked);
+			itemView.setOnClickListener(checked);
+//			phone.setOnClickListener(checked);
+//			checkBox.setOnCheckedChangeListener(checked);
+//			name.setOnClickListener(checked);
 		}
 	}
 	
@@ -125,14 +132,15 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 		//为局部刷新用
 		ArrayList<Integer> change = new ArrayList<Integer>();
 		int checkedSize = 0;
-		int index = 0;
+//		int index = 0;
 		if(isChecked){
 			checkedSize = getCheckedSize();
 			int p = 0;
-			while(index+checkedSize<=10){
+			while(checkedSize<maxCheckSize){
 				if(beans.get(p).isChecked()!=isChecked&&beans.get(p).isPhone()){
 					beans.get(p).setChecked(isChecked);
-					index++;
+					checkedSize++;
+					change.add(p);
 				}
 				p++;
 			}
@@ -151,14 +159,29 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 		for(Integer integer : change){
 			notifyItemChanged(integer);
 		}
+		if(checkedPhoneListener!=null){
+			ContactBean[] returnBeans = new ContactBean[getCheckedSize()];
+			int index = 0;
+			for(ContactBean b : beans){
+				if(b.isChecked()){
+					returnBeans[index] = b;
+					index++;
+				}		
+			}
+			checkedPhoneListener.onCheckedPhone(returnBeans);
+		}
 	}
 	
 	private int getCheckedSize(){
 		int checkedSize = 0;
-		for(int i = 0;i<beans.size();i++){
-			if(beans.get(i).isChecked()==true){
+//		for(int i = 0;i<beans.size();i++){
+//			if(beans.get(i).isChecked()==true){
+//				checkedSize++;
+//			}
+//		}
+		for(ContactBean b : beans){
+			if(b.isChecked())
 				checkedSize++;
-			}
 		}
 		return checkedSize;
 	}
@@ -171,18 +194,21 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 		public OnItemChecked(int p) {
 			super();
 			this.p = p;
-			msg = new Message();
-			msg.what = OnItemChecked;
-			msg.obj = this.p;
 		}
 
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			msg = new Message();
+			msg.what = OnItemChecked;
+			msg.obj = this.p;
 			handler.sendMessage(msg);
 		}
 
 		@Override
 		public void onClick(View v) {
+			msg = new Message();
+			msg.what = OnItemChecked;
+			msg.obj = this.p;
 			handler.sendMessage(msg);
 		}
 
@@ -201,11 +227,13 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 				if(beans.get(p).isChecked()){
 					beans.get(p).setChecked(false);
 				}else{
-					while(getCheckedSize()>=10){
+					int size = getCheckedSize();
+					while(size>=10){
 						for(int i = 0;i<beans.size();i++){
-							if(beans.get(p).isChecked()){
-								beans.get(p).setChecked(false);
+							if(beans.get(i).isChecked()){
+								beans.get(i).setChecked(false);
 								change.add(i);
+								size--;
 								break;
 							}
 						}
@@ -220,4 +248,16 @@ public class PhoneBookAdapter extends Adapter<ViewHolder>{
 			super.handleMessage(msg);
 		}
 	};
+	public interface OnCheckedPhoneListener{
+		public void onCheckedPhone(ContactBean[] checked);
+	}
+
+	public OnCheckedPhoneListener getCheckedPhoneListener() {
+		return checkedPhoneListener;
+	}
+
+	public void setCheckedPhoneListener(OnCheckedPhoneListener checkedPhoneListener) {
+		this.checkedPhoneListener = checkedPhoneListener;
+	}
+
 }

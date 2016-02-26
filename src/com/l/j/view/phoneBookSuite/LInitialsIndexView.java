@@ -35,7 +35,8 @@ public class LInitialsIndexView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		FontMetrics fm = textPaint.getFontMetrics();
-		int gridHeight = getHeight()/letters.length;
+		int gridHeight = getHeight()/27;
+		int topHeight = (27-letters.length)*gridHeight/2;
 		float textY = gridHeight/2 - fm.descent + (fm.descent - fm.ascent) / 2;
 		if(isTouch){
 			bgPaint.setColor(onTouchBgColor);
@@ -49,9 +50,9 @@ public class LInitialsIndexView extends View {
 		canvas.drawRoundRect(0, 0, getWidth(), getHeight(), roundedCorners*getWidth(), roundedCorners*getWidth(), bgPaint);
 		for(int i = 0;i<letters.length;i++){
 			if(selected.equals(letters[i])){
-				canvas.drawText(letters[i], getWidth()/2, gridHeight*i+textY, selectedPaint);
+				canvas.drawText(letters[i], getWidth()/2, gridHeight*i+textY+topHeight, selectedPaint);
 			}else{
-				canvas.drawText(letters[i], getWidth()/2, gridHeight*i+textY, textPaint);
+				canvas.drawText(letters[i], getWidth()/2, gridHeight*i+textY+topHeight, textPaint);
 			}
 		}
 	}
@@ -60,8 +61,10 @@ public class LInitialsIndexView extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		//只要指头在上面，有触发，就认为是操作
-		int gridHeight = getHeight()/letters.length;
+		int gridHeight = getHeight()/27;
+		int topHeight = (27-letters.length)*gridHeight/2;
 		int y = (int) event.getY();
+		y-=topHeight;
 		int i = (int) (y/gridHeight);
 		if(i<0)
 			i = 0;
@@ -70,6 +73,8 @@ public class LInitialsIndexView extends View {
 		selected = letters[i];
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
+			if(y<0||y>getHeight()-topHeight*2)
+				return false;
 			isTouch = true;
 			if(listener!=null)
 				listener.onInitialsIndexDown(this,i, letters[i]);
@@ -114,7 +119,7 @@ public class LInitialsIndexView extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //		textSize = (int) getTextSize();
-		textSize = 20;
+		textSize = 30;
 		setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));
 		textPaint.setTextSize(textSize);
 		selectedPaint.setTextSize(textSize);
@@ -250,8 +255,18 @@ public class LInitialsIndexView extends View {
 		return letters;
 	}
 
-	public void setLetters(String[] letters) {
-		this.letters = letters;
+	public void setLetters(String[] l) {
+		this.letters = l;
+		//排序,这里使用冒泡算法,效率不是最高，但是好在数据量不大且使用次数不多
+		for(int i = 0;i<letters.length-1;i++){
+			for(int j = 0;j<letters.length-i-1;j++){
+				if(letters[j].charAt(0)>letters[j+1].charAt(0)){
+					String b = letters[j];
+					letters[j] = letters[j+1];
+					letters[j+1] = b;
+				}
+			}
+		}
 		invalidate();
 	}
 
